@@ -17,6 +17,7 @@
 		3B7A569C1C10723C00AE56C5 /* FieldTripOpenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A569B1C10723C00AE56C5 /* FieldTripOpenUITests.m */; };
 		3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56AF1C119A7B00AE56C5 /* MapViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3B7A56B21C119D8700AE56C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7A56B11C119D8700AE56C5 /* MapKit.framework */; };
+		3B7A56B51C11AB8A00AE56C5 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		3B7A56AE1C119A7B00AE56C5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = Controllers/MapViewController.h; sourceTree = "<group>"; };
 		3B7A56AF1C119A7B00AE56C5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = Controllers/MapViewController.m; sourceTree = "<group>"; };
 		3B7A56B11C119D8700AE56C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3B7A56B31C11AB8A00AE56C5 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SurveyViewController.h; path = Controllers/SurveyViewController.h; sourceTree = "<group>"; };
+		3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SurveyViewController.m; path = Controllers/SurveyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				3B7A56AD1C1199CE00AE56C5 /* Controllers */,
 				3B7A56771C10723C00AE56C5 /* AppDelegate.m */,
 				3B7A567C1C10723C00AE56C5 /* Main.storyboard */,
+				3B7A56B31C11AB8A00AE56C5 /* SurveyViewController.h */,
+				3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */,
 				3B7A56821C10723C00AE56C5 /* Assets.xcassets */,
 				3B7A56841C10723C00AE56C5 /* LaunchScreen.storyboard */,
 				3B7A56871C10723C00AE56C5 /* Info.plist */,
@@ -289,6 +294,7 @@
 				3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */,
 				3B7A56751C10723C00AE56C5 /* main.m in Sources */,
 				3B7A56811C10723C00AE56C5 /* FieldTripOpen.xcdatamodeld in Sources */,
+				3B7A56B51C11AB8A00AE56C5 /* SurveyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
