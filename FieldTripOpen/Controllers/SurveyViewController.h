@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XLForm.h"
+#import "XLFormViewController.h"
 
-@interface SurveyViewController : UIViewController
+@interface SurveyViewController : XLFormViewController
 
 @end
