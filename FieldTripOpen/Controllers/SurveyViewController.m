@@ -7,6 +7,9 @@
 //
 
 #import "SurveyViewController.h"
+#import "CBObjects.h"
+#import <CouchbaseLite/CouchbaseLite.h>
+
 
 @interface SurveyViewController ()
 
@@ -19,28 +22,75 @@
 }
 
 
--(instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self initializeForm];
-    }
-    return self;
+- (void)awakeFromNib{
+   
+    NSString* docID = [self createDocument:CBObjects.sharedInstance.database];
+    [self updateDocument:CBObjects.sharedInstance.database documentId:docID];
+    
+    [self createOrderedByDateView];
+    [self initializeForm];
+
 }
 
--(instancetype)init
-{
-    self = [super init];
-    if (self){
-        [self initializeForm];
-    }
-    return self;
+# pragma mark - CouchDB
+- (CBLView *)getView {
+    CBLDatabase* database = [CBObjects sharedInstance].database;
+    return [database viewNamed:@"byDate"];
 }
+- (void) createOrderedByDateView {
+    CBLView* orderedByDateView = [self getView];
+    [orderedByDateView setMapBlock: MAPBLOCK({
+        emit(doc[@"date"], nil);
+    }) version: @"1" /* Version of the mapper */ ];
+    NSLog(@"Ordered By Date View created.");
+}
+
+- (BOOL) updateDocument:(CBLDatabase *) database documentId:(NSString *) documentId {
+    // 1. Retrieve the document from the database
+    CBLDocument *getDocument = [database documentWithID: documentId];
+    // 2. Make a mutable copy of the properties from the document we just retrieved
+    NSMutableDictionary *docContent = [getDocument.properties mutableCopy];
+    // 3. Modify the document properties
+    docContent[@"description"] = @"Anyone is invited!";
+    docContent[@"address"] = @"123 Elm St.";
+    docContent[@"date"] = @"2014";
+    // 4. Save the Document revision to the database
+    NSError *error;
+    CBLSavedRevision *newRev = [getDocument putProperties:docContent error:&error];
+    if (!newRev) {
+        NSLog(@"Cannot update document. Error message: %@", error.localizedDescription);
+    }
+    // 5. Display the new revision of the document
+    NSLog(@"The new revision of the document contains: %@", newRev.properties);
+    return YES;
+}
+
+
+// creates the Document
+- (NSString *)createDocument: (CBLDatabase *)database {
+    // 1. Create an object that contains data for the new document
+    NSDictionary *eventDetails = @{
+                                   @"name": @"Big Party",
+                                   @"location": @"My House"
+                                   };
+    // 2. Create an empty document
+    CBLDocument *doc = [database createDocument];
+    // 3. Save the ID of the new document
+    NSString *docID = doc.documentID;
+    // 4. Write the document to the database
+    NSError *error;
+    CBLRevision *newRevision = [doc putProperties: eventDetails error:&error];
+    if (newRevision) {
+        NSLog(@"Document created and written to database, ID = %@", docID);
+    }
+    return docID;
+}
+
+
 
 #pragma mark - XLForms
 - (void)initializeForm{
     
-
    /* NSString *const kSwitchBool = @"switchBool";
     NSString *const kSwitchCheck = @"switchCheck";
     NSString *const kStepCounter = @"stepCounter";
@@ -255,8 +305,9 @@
     XLFormSectionDescriptor * section;
     XLFormRowDescriptor * row;
     
-    form = [XLFormDescriptor formDescriptorWithTitle:@"Add Event"];
-    section = [XLFormSectionDescriptor formSection];
+    form = [XLFormDescriptor formDescriptorWithTitle:@"Survey"];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"Section 1"];
+  
     [form addFormSection:section];
     
     // Title
