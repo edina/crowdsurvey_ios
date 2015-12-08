@@ -10,4 +10,12 @@
 
 @interface Field : NSObject
 
+@property (nonatomic, copy) NSString * fieldId;
+@property (nonatomic, copy) NSString * type;
+@property (nonatomic, copy) NSString * label;
+@property (nonatomic) BOOL * required;
+@property (nonatomic, copy) NSString * persistent;
+
+@property (nonatomic, copy) NSMutableDictionary * properties;
+
 @end

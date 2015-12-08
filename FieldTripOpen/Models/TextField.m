@@ -10,4 +10,14 @@
 
 @implementation TextField
 
+
+- (NSMutableDictionary *)properties
+{
+    if (!self.properties){
+        self.properties = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                           self.prefix, @"prefix", self.placeHolder, @"placeholder", self.maxChars, @"max-chars", nil];
+    }
+    return self.properties;
+}
+
 @end

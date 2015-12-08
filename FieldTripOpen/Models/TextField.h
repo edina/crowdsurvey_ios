@@ -9,5 +9,7 @@
 #import "Field.h"
 
 @interface TextField : Field
-
+@property (nonatomic, copy) NSString * prefix;
+@property (nonatomic, copy) NSString * placeHolder;
+@property (nonatomic, copy) NSString * maxChars;
 @end

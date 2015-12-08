@@ -9,8 +9,12 @@
 #import "SurveyViewController.h"
 #import "CBObjects.h"
 #import <CouchbaseLite/CouchbaseLite.h>
-
-
+#import "RKObjectMapping.h"
+#import "RKResponseDescriptor.h"
+#import "RKObjectRequestOperation.h"
+#import "Survey.h"
+#import "RKMIMETypeSerialization.h"
+#import "RKObjectMappingOperationDataSource.h"
 @interface SurveyViewController ()
 
 @end
@@ -45,15 +49,70 @@
     
     
     
-//    RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[Article class]];
-//    [articleMapping addAttributeMappingsFromDictionary:@{
-//                                                         @"title": @"title",
-//                                                         @"body": @"body",
-//                                                         @"author": @"author",
-//                                                         @"publication_date": @"publicationDate"
-//                                                         }];
+    RKObjectMapping* surveyMapping = [RKObjectMapping mappingForClass:[Survey class]];
+    
+//    [surveyMapping addAttributeMappingsFromDictionary:@{
+//                                                        @"title": @"title",
+//                                                        @"geoms": @"geoms",
+//                                                        @"field": @"field"
+//                                                        }];
+
+    [surveyMapping addAttributeMappingsFromDictionary:@{
+                                                        @"title": @"title",
+                                                        @"geoms": @"geoms"
+                                                        }];
+//    
+//    RKEntityMapping *categoryMapping = [RKEntityMapping mappingForEntityForName:@"Category" inManagedObjectStore:managedObjectStore];
+//    [categoryMapping addAttributeMappingsFromDictionary:@{ "id": "categoryID", @"name": "name" }];
+//    RKEntityMapping *articleMapping = [RKEntityMapping mappingForEntityForName:@"Article" inManagedObjectStore:managedObjectStore];
+//    [articleMapping addAttributeMappingsFromArray:@[@"title", @"author", @"body"]];
+//    [articleMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"categories" toKeyPath:@"categories" withMapping:categoryMapping]];
 
     
+    
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:surveyMapping method:RKRequestMethodAny pathPattern:nil keyPath:nil statusCodes:nil];
+    
+    NSURL *url = [NSURL URLWithString:@"https://rawgit.com/rgamez/accb2404e7f5ebad105c/raw/a78781321400feeeeabb5f57098622dd908059ea/survey-proposal-arrrays-everywhere.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    
+    
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        Survey *survey = [result firstObject];
+        NSLog(@"Mapped the Survey: %@", survey);
+        
+        
+        
+        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+        RKObjectMappingOperationDataSource *dataSource = [RKObjectMappingOperationDataSource new];
+        RKMappingOperation *op = [[RKMappingOperation alloc] initWithSourceObject:survey
+                                                                       destinationObject:jsonDict
+                                                                                 mapping:[surveyMapping inverseMapping]];
+        op.dataSource = dataSource;
+        
+        NSError *error = nil;
+        [op performMapping:&error];
+        NSData *data = [RKMIMETypeSerialization dataFromObject:jsonDict
+                                                      MIMEType:RKMIMETypeJSON
+                                                         error:&error];
+        
+        
+        NSString *jsonString = [[NSString alloc] initWithData:data
+                                                     encoding:NSUTF8StringEncoding];
+ 
+        NSLog(@"Mapped the Survey %@", jsonString );
+        // ******* Todo ****** - test serialising back to json
+        
+        // TODO://Put in couch
+//        [self createSurveyDocument:survey];
+        
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    
+    [operation start];
     
     
     NSString* docID = [self createSurveyDocument:survey];
