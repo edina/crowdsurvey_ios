@@ -38,17 +38,17 @@
 }
 
 - (void) startReplications {
-    // 1
-    NSURL *syncURL = [[NSURL alloc] initWithString:@"http://localhost:4984/couchbaseevents"];
-    // 2
-    CBLReplication *pull = [self.database createPullReplication:syncURL];
-    CBLReplication *push = [self.database createPushReplication:syncURL];
-    // 3
-    pull.continuous = YES;
-    push.continuous = YES;
-    // 4
-    [pull start];
-    [push start];
+//    // 1
+//    NSURL *syncURL = [[NSURL alloc] initWithString:@"http://localhost:4984/couchbaseevents"];
+//    // 2
+//    CBLReplication *pull = [self.database createPullReplication:syncURL];
+//    CBLReplication *push = [self.database createPushReplication:syncURL];
+//    // 3
+//    pull.continuous = YES;
+//    push.continuous = YES;
+//    // 4
+//    [pull start];
+//    [push start];
 }
 
 @end

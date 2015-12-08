@@ -14,6 +14,9 @@
 		3B7135881C15E2320001F321 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135871C15E2320001F321 /* libz.tbd */; };
 		3B71358A1C15E23B0001F321 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135891C15E23B0001F321 /* libsqlite3.tbd */; };
 		3B71358D1C15E9290001F321 /* CBObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358C1C15E9290001F321 /* CBObjects.m */; settings = {ASSET_TAGS = (); }; };
+		3B7135901C16F5AC0001F321 /* Survey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358F1C16F5AC0001F321 /* Survey.m */; settings = {ASSET_TAGS = (); }; };
+		3B7135941C16F6D70001F321 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7135931C16F6D70001F321 /* Field.m */; settings = {ASSET_TAGS = (); }; };
+		3B7135A01C16FA780001F321 /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71359F1C16FA780001F321 /* TextField.m */; settings = {ASSET_TAGS = (); }; };
 		3B7A56751C10723C00AE56C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56741C10723C00AE56C5 /* main.m */; };
 		3B7A56781C10723C00AE56C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56771C10723C00AE56C5 /* AppDelegate.m */; };
 		3B7A567E1C10723C00AE56C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7A567C1C10723C00AE56C5 /* Main.storyboard */; };
@@ -55,6 +58,12 @@
 		3B7135891C15E23B0001F321 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		3B71358B1C15E9290001F321 /* CBObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBObjects.h; sourceTree = "<group>"; };
 		3B71358C1C15E9290001F321 /* CBObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBObjects.m; sourceTree = "<group>"; };
+		3B71358E1C16F5AC0001F321 /* Survey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Survey.h; path = Models/Survey.h; sourceTree = "<group>"; };
+		3B71358F1C16F5AC0001F321 /* Survey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Survey.m; path = Models/Survey.m; sourceTree = "<group>"; };
+		3B7135921C16F6D70001F321 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Field.h; path = Models/Field.h; sourceTree = "<group>"; };
+		3B7135931C16F6D70001F321 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Field.m; path = Models/Field.m; sourceTree = "<group>"; };
+		3B71359E1C16FA780001F321 /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextField.h; path = Models/TextField.h; sourceTree = "<group>"; };
+		3B71359F1C16FA780001F321 /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextField.m; path = Models/TextField.m; sourceTree = "<group>"; };
 		3B7A56701C10723C00AE56C5 /* FieldTripOpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldTripOpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7A56741C10723C00AE56C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B7A56761C10723C00AE56C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +121,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B7135911C16F5BB0001F321 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B71358E1C16F5AC0001F321 /* Survey.h */,
+				3B71358F1C16F5AC0001F321 /* Survey.m */,
+				3B7135921C16F6D70001F321 /* Field.h */,
+				3B7135931C16F6D70001F321 /* Field.m */,
+				3B71359E1C16FA780001F321 /* TextField.h */,
+				3B71359F1C16FA780001F321 /* TextField.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		3B7A56671C10723C00AE56C5 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +164,7 @@
 				3B7A56771C10723C00AE56C5 /* AppDelegate.m */,
 				3B71358B1C15E9290001F321 /* CBObjects.h */,
 				3B71358C1C15E9290001F321 /* CBObjects.m */,
+				3B7135911C16F5BB0001F321 /* Models */,
 				3B7A56AD1C1199CE00AE56C5 /* Controllers */,
 				3B7A567C1C10723C00AE56C5 /* Main.storyboard */,
 				3B7A56821C10723C00AE56C5 /* Assets.xcassets */,
@@ -379,10 +402,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B7A56781C10723C00AE56C5 /* AppDelegate.m in Sources */,
+				3B7135A01C16FA780001F321 /* TextField.m in Sources */,
 				3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */,
 				3B7A56751C10723C00AE56C5 /* main.m in Sources */,
+				3B7135901C16F5AC0001F321 /* Survey.m in Sources */,
 				3B71358D1C15E9290001F321 /* CBObjects.m in Sources */,
 				3B7A56811C10723C00AE56C5 /* FieldTripOpen.xcdatamodeld in Sources */,
+				3B7135941C16F6D70001F321 /* Field.m in Sources */,
 				3B7A56B51C11AB8A00AE56C5 /* SurveyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

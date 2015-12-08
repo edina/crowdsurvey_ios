@@ -23,20 +23,76 @@
 
 
 - (void)awakeFromNib{
-   
-    NSString* docID = [self createDocument:CBObjects.sharedInstance.database];
+    [self initialise];
+}
+
+- (void)initialise {
+    
+    // Get survey json from loopback API and store in CouchDB
+    
+    
+    
+    
+    
+    
+    
+    
+    // Dummy data for now
+    NSDictionary *survey = @{
+                             @"name": @"Big Party",
+                             @"location": @"My House"
+                             };
+    
+    
+    
+//    RKObjectMapping* articleMapping = [RKObjectMapping mappingForClass:[Article class]];
+//    [articleMapping addAttributeMappingsFromDictionary:@{
+//                                                         @"title": @"title",
+//                                                         @"body": @"body",
+//                                                         @"author": @"author",
+//                                                         @"publication_date": @"publicationDate"
+//                                                         }];
+
+    
+    
+    
+    NSString* docID = [self createSurveyDocument:survey];
+ 
+    // use survey and convert to XLForm
+    
+    
+    // Dummy update
     [self updateDocument:CBObjects.sharedInstance.database documentId:docID];
     
     [self createOrderedByDateView];
-    [self initializeForm];
 
 }
 
+
+
 # pragma mark - CouchDB
+
+// creates the Document
+- (NSString *)createSurveyDocument: (NSDictionary *)survey {
+    
+    // 1. Create an empty document
+    CBLDocument *doc = [CBObjects.sharedInstance.database createDocument];
+    // 2. Save the ID of the new document
+    NSString *docID = doc.documentID;
+    // 3. Write the document to the database
+    NSError *error;
+    CBLRevision *newRevision = [doc putProperties: survey error:&error];
+    if (newRevision) {
+        NSLog(@"Document created and written to database, ID = %@", docID);
+    }
+    return docID;
+}
+
 - (CBLView *)getView {
     CBLDatabase* database = [CBObjects sharedInstance].database;
     return [database viewNamed:@"byDate"];
 }
+
 - (void) createOrderedByDateView {
     CBLView* orderedByDateView = [self getView];
     [orderedByDateView setMapBlock: MAPBLOCK({
@@ -66,25 +122,6 @@
 }
 
 
-// creates the Document
-- (NSString *)createDocument: (CBLDatabase *)database {
-    // 1. Create an object that contains data for the new document
-    NSDictionary *eventDetails = @{
-                                   @"name": @"Big Party",
-                                   @"location": @"My House"
-                                   };
-    // 2. Create an empty document
-    CBLDocument *doc = [database createDocument];
-    // 3. Save the ID of the new document
-    NSString *docID = doc.documentID;
-    // 4. Write the document to the database
-    NSError *error;
-    CBLRevision *newRevision = [doc putProperties: eventDetails error:&error];
-    if (newRevision) {
-        NSLog(@"Document created and written to database, ID = %@", docID);
-    }
-    return docID;
-}
 
 
 
