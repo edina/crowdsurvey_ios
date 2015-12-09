@@ -19,5 +19,6 @@
 @property (nonatomic, copy) NSString * persistent;
 
 @property (nonatomic, copy) NSMutableDictionary * properties;
+-(void)appendToForm:(XLFormDescriptor *) form;
 
 @end

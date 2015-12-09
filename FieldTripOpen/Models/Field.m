@@ -38,17 +38,19 @@ typedef enum{
 }
 
 
--(void)appendFormElement{
+-(void)appendToForm:(XLFormDescriptor *) form{
     Type myType = (Type)[[[self TypeEnumFromString] objectForKey:self.type]intValue];
 
     switch(myType){
         case TEXT:
             
-            [self appendTextFormElement];
+            [self appendTextFormElementToForm:form];
             
             break;
         case RADIO:
-            NSLog(@"RADIO ");
+            
+            [self appendRadioFormElementToForm:form];
+            
             break;
         case SELECT:
             NSLog(@"SELECT ");
@@ -68,10 +70,29 @@ typedef enum{
     }
 }
 
--(void)appendTextFormElement{
-//    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
-//    [row.cellConfigAtConfigure setObject:@"Title" forKey:@"textField.placeholder"];
-//    row.required = YES;
+-(void)appendTextFormElementToForm:(XLFormDescriptor * )form{
+    
+    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
+    [row.cellConfigAtConfigure setObject:self.label forKey:@"textField.placeholder"];
+    row.required = YES;
+    
+    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+    [section addFormRow:row];
+    [form addFormSection:section];
+}
+
+-(void)appendRadioFormElementToForm:(XLFormDescriptor * )form{
+    
+    XLFormRowDescriptor* hobbyRow = [XLFormRowDescriptor formRowDescriptorWithTag:self.label
+                                                                          rowType:XLFormRowDescriptorTypeMultipleSelector
+                                                                            title:self.label];
+    hobbyRow.selectorOptions = @[@"Sport", @"Music", @"Films"];
+    hobbyRow.value = @[];
+    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+    [section addFormRow:hobbyRow];
+    
+   
+    [form addFormSection:section];
 }
 
 @end
