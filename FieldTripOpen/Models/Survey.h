@@ -17,8 +17,8 @@
 
 @property (nonatomic, copy) NSString * fieldId;
 
-@property (nonatomic, copy) XLFormDescriptor * form;
+//@property (nonatomic, copy) XLFormDescriptor * form;
 
--(XLFormDescriptor *)XLForm;
+-(XLFormDescriptor *)form;
 
 @end

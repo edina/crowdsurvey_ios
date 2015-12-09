@@ -32,6 +32,9 @@
     SurveyFactory *sf = [[SurveyFactory alloc ]init];
     [sf createSurveyFromUrl:url withCompletion:^(Survey *survey) {
         self.survey = survey;
+        
+        // Render XLForm
+        self.form = [self.survey form];
         NSLog(@"Survey object created.");
     }];
 }

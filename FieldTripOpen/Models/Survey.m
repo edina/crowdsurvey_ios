@@ -29,9 +29,13 @@
 //    XLFormRowDescriptor * row;
 }
 
--(XLFormDescriptor *)XLForm{
+-(XLFormDescriptor *)form{
     // return the xlform for rendering
-    return self.form;
+    XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle: self.title];
+    
+    
+    
+    return form;
 }
 
 @end
