@@ -7,6 +7,8 @@
 //
 
 #import "Field.h"
+#import "XLForm.h"
+#import "XLFormViewController.h"
 
 @implementation Field
 
@@ -36,15 +38,14 @@ typedef enum{
 }
 
 
+-(void)appendFormElement{
+    Type myType = (Type)[[[self TypeEnumFromString] objectForKey:self.type]intValue];
 
-- (NSString *)type
-{
-    
-    Type myType = (Type)[[[self TypeEnumFromString] objectForKey:_type]intValue];
-    
     switch(myType){
         case TEXT:
-            NSLog(@"TEXT");
+            
+            [self appendTextFormElement];
+            
             break;
         case RADIO:
             NSLog(@"RADIO ");
@@ -65,9 +66,12 @@ typedef enum{
             NSLog(@"default selected");
             break;
     }
+}
 
-    
-    return _type;
+-(void)appendTextFormElement{
+    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
+    [row.cellConfigAtConfigure setObject:@"Title" forKey:@"textField.placeholder"];
+    row.required = YES;
 }
 
 @end

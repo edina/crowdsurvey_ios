@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XLForm.h"
+#import "XLFormViewController.h"
 
 @interface Field : NSObject
 

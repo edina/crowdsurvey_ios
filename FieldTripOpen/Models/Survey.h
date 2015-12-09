@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "Field.h"
+#import "XLFormDescriptor.h"
 
 @interface Survey : NSObject
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, copy) NSArray * geoms;
 @property (nonatomic, copy) NSArray * fields;
+
+@property (nonatomic, copy) NSString * fieldId;
+
+@property (nonatomic, copy) XLFormDescriptor * form;
+
+-(XLFormDescriptor *)XLForm;
+
 @end
