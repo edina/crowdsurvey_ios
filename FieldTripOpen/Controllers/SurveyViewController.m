@@ -14,7 +14,10 @@
 #import "RKObjectRequestOperation.h"
 #import "Survey.h"
 #import "RKMIMETypeSerialization.h"
+#import "TextField.h"
 #import "RKObjectMappingOperationDataSource.h"
+#import "RKDynamicMapping.h"
+#import "RKRelationshipMapping.h"
 @interface SurveyViewController ()
 
 @end
@@ -33,41 +36,61 @@
 - (void)initialise {
     
     // Get survey json from loopback API and store in CouchDB
-    
-    
-    
-    
-    
-    
-    
-    
-    // Dummy data for now
-    NSDictionary *survey = @{
-                             @"name": @"Big Party",
-                             @"location": @"My House"
-                             };
-    
-    
+
+   
     
     RKObjectMapping* surveyMapping = [RKObjectMapping mappingForClass:[Survey class]];
     
-//    [surveyMapping addAttributeMappingsFromDictionary:@{
-//                                                        @"title": @"title",
-//                                                        @"geoms": @"geoms",
-//                                                        @"field": @"field"
-//                                                        }];
-
     [surveyMapping addAttributeMappingsFromDictionary:@{
                                                         @"title": @"title",
                                                         @"geoms": @"geoms"
                                                         }];
-//    
-//    RKEntityMapping *categoryMapping = [RKEntityMapping mappingForEntityForName:@"Category" inManagedObjectStore:managedObjectStore];
-//    [categoryMapping addAttributeMappingsFromDictionary:@{ "id": "categoryID", @"name": "name" }];
-//    RKEntityMapping *articleMapping = [RKEntityMapping mappingForEntityForName:@"Article" inManagedObjectStore:managedObjectStore];
-//    [articleMapping addAttributeMappingsFromArray:@[@"title", @"author", @"body"]];
-//    [articleMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"categories" toKeyPath:@"categories" withMapping:categoryMapping]];
 
+    
+//    RKObjectMapping* textFieldMapping = [RKObjectMapping mappingForClass:[TextField class]];
+//
+//    [textFieldMapping addAttributeMappingsFromDictionary:@{
+//                                                        @"prefix": @"prefix",
+//                                                        @"placeHolder": @"placeHolder",
+//                                                        @"maxChars": @"maxChars"
+//                                                        }];
+    
+    
+    
+    RKObjectMapping* fieldMapping = [RKObjectMapping mappingForClass:[Field class]];
+    [fieldMapping addAttributeMappingsFromDictionary:@{
+                                                       @"id": @"fieldId",
+                                                       @"type": @"type",
+                                                       @"label": @"label"
+                                                       }];
+    
+    
+    
+    
+    [surveyMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"fields"
+                                                                                   toKeyPath:@"fields"
+                                                                                 withMapping:fieldMapping]];
+
+
+
+    
+//    RKDynamicMapping *mapping = [RKDynamicMapping new];
+//
+//    
+//    [mapping addMatcher:[RKObjectMappingMatcher matcherWithKeyPath:@"fields.type" expectedValue:@"text" objectMapping:textFieldMapping]];
+//
+//    [fieldMapping addConnectionForRelationship:@"properties" connectedBy:@{ @"listId": @"listId" }];
+
+//    [fieldMapping addAttributeMappingToKeyOfRepresentationFromAttribute:@"fields"];
+//    [textFieldMapping addPropertyMapping:[RKPropertyMapping ]]
+    
+    // Define the relationship mapping
+//    [surveyMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"fields"
+//                                                                                   toKeyPath:@"field"
+//                                                                                 withMapping:textFieldMapping]];
+
+    
+    
     
     
     RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:surveyMapping method:RKRequestMethodAny pathPattern:nil keyPath:nil statusCodes:nil];
@@ -79,30 +102,36 @@
     
     
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+       
         Survey *survey = [result firstObject];
         NSLog(@"Mapped the Survey: %@", survey);
-        
-        
-        
-        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
-        RKObjectMappingOperationDataSource *dataSource = [RKObjectMappingOperationDataSource new];
-        RKMappingOperation *op = [[RKMappingOperation alloc] initWithSourceObject:survey
-                                                                       destinationObject:jsonDict
-                                                                                 mapping:[surveyMapping inverseMapping]];
-        op.dataSource = dataSource;
-        
-        NSError *error = nil;
-        [op performMapping:&error];
-        NSData *data = [RKMIMETypeSerialization dataFromObject:jsonDict
-                                                      MIMEType:RKMIMETypeJSON
-                                                         error:&error];
-        
-        
-        NSString *jsonString = [[NSString alloc] initWithData:data
-                                                     encoding:NSUTF8StringEncoding];
- 
-        NSLog(@"Mapped the Survey %@", jsonString );
-        // ******* Todo ****** - test serialising back to json
+        for (Field *field in survey.fields){
+            NSString * t = field.type;
+            NSLog(@"t %@", t);
+            NSString *fid = [field valueForKey:@"id"];
+            NSString *type = [field valueForKey:@"type"];
+            NSLog(@"%@", fid);
+            NSLog(@"%@", type);
+        }
+//        NSMutableDictionary *jsonDict = [NSMutableDictionary dictionary];
+//        RKObjectMappingOperationDataSource *dataSource = [RKObjectMappingOperationDataSource new];
+//        RKMappingOperation *op = [[RKMappingOperation alloc] initWithSourceObject:survey
+//                                                                       destinationObject:jsonDict
+//                                                                                 mapping:[surveyMapping inverseMapping]];
+//        op.dataSource = dataSource;
+//        
+//        NSError *error = nil;
+//        [op performMapping:&error];
+//        NSData *data = [RKMIMETypeSerialization dataFromObject:jsonDict
+//                                                      MIMEType:RKMIMETypeJSON
+//                                                         error:&error];
+//        
+//        
+//        NSString *jsonString = [[NSString alloc] initWithData:data
+//                                                     encoding:NSUTF8StringEncoding];
+// 
+//        NSLog(@"Mapped the Survey %@", jsonString );
+//        // ******* Todo ****** - test serialising back to json
         
         // TODO://Put in couch
 //        [self createSurveyDocument:survey];
@@ -115,15 +144,15 @@
     [operation start];
     
     
-    NSString* docID = [self createSurveyDocument:survey];
- 
-    // use survey and convert to XLForm
-    
-    
-    // Dummy update
-    [self updateDocument:CBObjects.sharedInstance.database documentId:docID];
-    
-    [self createOrderedByDateView];
+//    NSString* docID = [self createSurveyDocument:survey];
+// 
+//    // use survey and convert to XLForm
+//    
+//    
+//    // Dummy update
+//    [self updateDocument:CBObjects.sharedInstance.database documentId:docID];
+//    
+//    [self createOrderedByDateView];
 
 }
 

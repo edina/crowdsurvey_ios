@@ -12,5 +12,5 @@
 @interface Survey : NSObject
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, copy) NSArray * geoms;
-//@property (nonatomic, copy) NSArray * Field;
+@property (nonatomic, copy) NSArray * fields;
 @end
