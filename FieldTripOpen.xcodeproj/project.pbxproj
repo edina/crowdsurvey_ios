@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B7135801C15E1720001F321 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B71357F1C15E1720001F321 /* CouchbaseLite.framework */; settings = {ASSET_TAGS = (); }; };
+		3B7135801C15E1720001F321 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B71357F1C15E1720001F321 /* CouchbaseLite.framework */; };
 		3B7135821C15E1FB0001F321 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135811C15E1FB0001F321 /* CFNetwork.framework */; };
 		3B7135841C15E2030001F321 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135831C15E2030001F321 /* Security.framework */; };
 		3B7135861C15E2100001F321 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135851C15E2100001F321 /* SystemConfiguration.framework */; };
 		3B7135881C15E2320001F321 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135871C15E2320001F321 /* libz.tbd */; };
 		3B71358A1C15E23B0001F321 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7135891C15E23B0001F321 /* libsqlite3.tbd */; };
-		3B71358D1C15E9290001F321 /* CBObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358C1C15E9290001F321 /* CBObjects.m */; settings = {ASSET_TAGS = (); }; };
-		3B7135901C16F5AC0001F321 /* Survey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358F1C16F5AC0001F321 /* Survey.m */; settings = {ASSET_TAGS = (); }; };
-		3B7135941C16F6D70001F321 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7135931C16F6D70001F321 /* Field.m */; settings = {ASSET_TAGS = (); }; };
-		3B7135A31C1844630001F321 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7135A21C1844630001F321 /* Record.m */; settings = {ASSET_TAGS = (); }; };
+		3B71358D1C15E9290001F321 /* CBObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358C1C15E9290001F321 /* CBObjects.m */; };
+		3B7135901C16F5AC0001F321 /* Survey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B71358F1C16F5AC0001F321 /* Survey.m */; };
+		3B7135941C16F6D70001F321 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7135931C16F6D70001F321 /* Field.m */; };
+		3B7135A31C1844630001F321 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7135A21C1844630001F321 /* Record.m */; };
 		3B7A56751C10723C00AE56C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56741C10723C00AE56C5 /* main.m */; };
 		3B7A56781C10723C00AE56C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56771C10723C00AE56C5 /* AppDelegate.m */; };
 		3B7A567E1C10723C00AE56C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7A567C1C10723C00AE56C5 /* Main.storyboard */; };
@@ -25,9 +25,10 @@
 		3B7A56861C10723C00AE56C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7A56841C10723C00AE56C5 /* LaunchScreen.storyboard */; };
 		3B7A56911C10723C00AE56C5 /* FieldTripOpenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56901C10723C00AE56C5 /* FieldTripOpenTests.m */; };
 		3B7A569C1C10723C00AE56C5 /* FieldTripOpenUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A569B1C10723C00AE56C5 /* FieldTripOpenUITests.m */; };
-		3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56AF1C119A7B00AE56C5 /* MapViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56AF1C119A7B00AE56C5 /* MapViewController.m */; };
 		3B7A56B21C119D8700AE56C5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7A56B11C119D8700AE56C5 /* MapKit.framework */; };
-		3B7A56B51C11AB8A00AE56C5 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3B7A56B51C11AB8A00AE56C5 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */; };
+		3C1CB7D21C1873C400DBFE9A /* SurveyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1CB7D11C1873C400DBFE9A /* SurveyFactory.m */; };
 		FCE642F260F66A0683032FE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14B002C113257FA7B8652E8D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		3B7A56B11C119D8700AE56C5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B7A56B31C11AB8A00AE56C5 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SurveyViewController.h; path = Controllers/SurveyViewController.h; sourceTree = "<group>"; };
 		3B7A56B41C11AB8A00AE56C5 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SurveyViewController.m; path = Controllers/SurveyViewController.m; sourceTree = "<group>"; };
+		3C1CB7D01C1873C400DBFE9A /* SurveyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyFactory.h; sourceTree = "<group>"; };
+		3C1CB7D11C1873C400DBFE9A /* SurveyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyFactory.m; sourceTree = "<group>"; };
 		9AB20D90DB72496E198A6BE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BBFB19FFFE83C8F4F12ECADE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +182,8 @@
 		3B7A56731C10723C00AE56C5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3C1CB7D01C1873C400DBFE9A /* SurveyFactory.h */,
+				3C1CB7D11C1873C400DBFE9A /* SurveyFactory.m */,
 				3B7A56741C10723C00AE56C5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -405,6 +410,7 @@
 				3B7135A31C1844630001F321 /* Record.m in Sources */,
 				3B7A56B01C119A7B00AE56C5 /* MapViewController.m in Sources */,
 				3B7A56751C10723C00AE56C5 /* main.m in Sources */,
+				3C1CB7D21C1873C400DBFE9A /* SurveyFactory.m in Sources */,
 				3B7135901C16F5AC0001F321 /* Survey.m in Sources */,
 				3B71358D1C15E9290001F321 /* CBObjects.m in Sources */,
 				3B7A56811C10723C00AE56C5 /* FieldTripOpen.xcdatamodeld in Sources */,
