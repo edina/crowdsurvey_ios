@@ -7,16 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONModel.h"
 #import "XLForm.h"
 #import "XLFormViewController.h"
 
-@interface Field : NSObject
+@protocol Field
+@end
 
-@property (nonatomic, copy) NSString * fieldId;
+@interface Field : JSONModel
+
+@property (nonatomic, copy) NSString * id;
 @property (nonatomic, copy) NSString * type;
 @property (nonatomic, copy) NSString * label;
-@property (nonatomic) bool  required;
-@property (nonatomic, copy) NSString * persistent;
+@property (nonatomic) BOOL required;
+@property (nonatomic) BOOL persistent;
 
 @property (nonatomic, copy) NSMutableDictionary * properties;
 -(void)appendToForm:(XLFormDescriptor *) form;

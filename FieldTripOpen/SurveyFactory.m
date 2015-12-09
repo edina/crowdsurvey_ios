@@ -87,27 +87,48 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         // create survey in CouchDB
         NSString *documentId = [self createSurveyDocument:JSON];
-        CBLDocument *doc = [CBObjects.sharedInstance.database documentWithID:documentId];
-        NSMutableDictionary *docContent = [doc.properties mutableCopy];
         
-        // convert JSON to NSString
-        NSError *error;
-        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:docContent
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        if (! jsonData) {
-            NSLog(@"Got an error: %@", error);
-        } else {
-            self.jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        // create the survey object
+        self.survey = [self createSurveyFromDatabase: CBObjects.sharedInstance.database withDocumentId: documentId];
+        NSLog(@"Mapped the Survey: %@", self.survey);
+        for (Field *field in self.survey.fields){
+            NSString *fid = field.id;
+            NSString *type = field.type;
+            NSLog(@"%@", fid);
+            NSLog(@"%@", type);
         }
-        
-        NSLog(@"Done");
+        completion(self.survey);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"%ld", (long)[response statusCode]);
         NSLog(@"Failed to get JSON");
     }];
     
     [operation start];
+}
+
+- (Survey *)createSurveyFromDatabase: (CBLDatabase *) database
+                          withDocumentId: (NSString *) documentId
+{
+    CBLDocument *document = [CBObjects.sharedInstance.database documentWithID:documentId];
+    NSMutableDictionary *jsonDict = [document.properties mutableCopy];
+    
+    // convert JSON to NSString
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        self.jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    
+    NSString* json = self.jsonString;
+    NSError* err = nil;
+    Survey* survey = [[Survey alloc] initWithString:json error:&err];
+    
+
+    return survey;
 }
 
 //NSString* docID = [self createSurveyDocument:survey];
@@ -135,13 +156,6 @@
         NSLog(@"Document created and written to database, ID = %@", docID);
     }
     return docID;
-}
-
-- (CBLDocument *)getDocumentFromDatabase: (CBLDatabase *) database
-                              withDocumentId: (NSString *) documentId
-{
-    CBLDocument *document = [database documentWithID: documentId];
-    return document;
 }
 
 //- (CBLView *)getView {

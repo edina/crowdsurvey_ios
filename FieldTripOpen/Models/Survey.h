@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Field.h"
+#import "JSONModel.h"
 #import "XLFormDescriptor.h"
 
-@interface Survey : NSObject
+@interface Survey : JSONModel
+
 @property (nonatomic, copy) NSString * title;
 @property (nonatomic, copy) NSArray * geoms;
-@property (nonatomic, copy) NSArray * fields;
+@property (nonatomic, copy) NSArray<Field> * fields;
 
-@property (nonatomic, copy) NSString * fieldId;
+@property (nonatomic, copy) NSString<Ignore> * fieldId;
 
-//@property (nonatomic, copy) XLFormDescriptor * form;
+@property (nonatomic, copy) XLFormDescriptor<Ignore> * form;
 
 -(XLFormDescriptor *)form;
 
