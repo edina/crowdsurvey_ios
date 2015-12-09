@@ -69,9 +69,9 @@ typedef enum{
 }
 
 -(void)appendTextFormElement{
-    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
-    [row.cellConfigAtConfigure setObject:@"Title" forKey:@"textField.placeholder"];
-    row.required = YES;
+//    XLFormRowDescriptor * row = [XLFormRowDescriptor formRowDescriptorWithTag:@"Title" rowType:XLFormRowDescriptorTypeText];
+//    [row.cellConfigAtConfigure setObject:@"Title" forKey:@"textField.placeholder"];
+//    row.required = YES;
 }
 
 @end

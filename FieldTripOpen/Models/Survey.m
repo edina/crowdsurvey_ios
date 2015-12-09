@@ -23,7 +23,7 @@
 }
 
 -(void)setUpXLForm{
-    self.form = [XLFormDescriptor formDescriptorWithTitle: self.title];
+//    self.form = [XLFormDescriptor formDescriptorWithTitle: self.title];
     
 //    XLFormSectionDescriptor * section;
 //    XLFormRowDescriptor * row;
