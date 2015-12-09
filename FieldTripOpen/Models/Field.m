@@ -62,7 +62,9 @@ typedef enum{
             NSLog(@"WARNING ");
             break;
         case CHECKBOX:
-            NSLog(@"CHECKBOX ");
+            
+            [self appendCheckBoxFormElementToForm:form];
+            
             break;
         default:
             NSLog(@"default selected");
@@ -76,23 +78,34 @@ typedef enum{
     [row.cellConfigAtConfigure setObject:self.label forKey:@"textField.placeholder"];
     row.required = YES;
     
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+    // Add to last section
+    NSMutableArray *sections = [form formSections];
+    XLFormSectionDescriptor *section = [sections lastObject];
     [section addFormRow:row];
-    [form addFormSection:section];
+
 }
 
 -(void)appendRadioFormElementToForm:(XLFormDescriptor * )form{
     
-    XLFormRowDescriptor* hobbyRow = [XLFormRowDescriptor formRowDescriptorWithTag:self.label
+    XLFormRowDescriptor* selectorRow = [XLFormRowDescriptor formRowDescriptorWithTag:self.label
                                                                           rowType:XLFormRowDescriptorTypeMultipleSelector
                                                                             title:self.label];
-    hobbyRow.selectorOptions = @[@"Sport", @"Music", @"Films"];
-    hobbyRow.value = @[];
-    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
-    [section addFormRow:hobbyRow];
+ 
+    selectorRow.selectorOptions = [self.properties valueForKey:@"options"];
+    selectorRow.value = @[];
     
-   
-    [form addFormSection:section];
+    // Add to last section
+    NSMutableArray *sections = [form formSections];
+    XLFormSectionDescriptor *section = [sections lastObject];
+    [section addFormRow:selectorRow];
+    
+}
+
+-(void)appendCheckBoxFormElementToForm:(XLFormDescriptor * )form{
+
+    NSMutableArray *sections = [form formSections];
+    XLFormSectionDescriptor *section = [sections lastObject];
+    [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:@"" rowType:XLFormRowDescriptorTypeBooleanCheck title:self.label]];
 }
 
 @end

@@ -33,6 +33,9 @@
     // return the xlform for rendering
     XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle: self.title];
     
+    XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+    [form addFormSection:section];
+   
     for (Field *field in self.fields){
         [field appendToForm:form];
     }
