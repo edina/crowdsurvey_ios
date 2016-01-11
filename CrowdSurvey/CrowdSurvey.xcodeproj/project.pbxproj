@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107041C43F54000ECA5DB /* AppDelegate.swift */; };
-		3B0107071C43F54100ECA5DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107061C43F54100ECA5DB /* ViewController.swift */; };
 		3B01070A1C43F54100ECA5DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107081C43F54100ECA5DB /* Main.storyboard */; };
 		3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */; };
 		3B01070F1C43F54100ECA5DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B01070E1C43F54100ECA5DB /* Assets.xcassets */; };
 		3B0107121C43F54100ECA5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */; };
 		3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */; };
 		3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */; };
+		3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0107351C44003400ECA5DB /* MapKit.framework */; };
+		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 /* Begin PBXFileReference section */
 		3B0107011C43F54000ECA5DB /* CrowdSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0107041C43F54000ECA5DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B0107061C43F54100ECA5DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B0107091C43F54100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B01070C1C43F54100ECA5DB /* CrowdSurvey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CrowdSurvey.xcdatamodel; sourceTree = "<group>"; };
 		3B01070E1C43F54100ECA5DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		3B0107231C43F54100ECA5DB /* CrowdSurveyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdSurveyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdSurveyUITests.swift; sourceTree = "<group>"; };
 		3B0107291C43F54100ECA5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0107351C44003400ECA5DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3B0107371C44009800ECA5DB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +82,7 @@
 		3B0106F81C43F54000ECA5DB = {
 			isa = PBXGroup;
 			children = (
+				3B0107351C44003400ECA5DB /* MapKit.framework */,
 				3B0107031C43F54000ECA5DB /* CrowdSurvey */,
 				3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */,
 				3B0107261C43F54100ECA5DB /* CrowdSurveyUITests */,
@@ -100,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
-				3B0107061C43F54100ECA5DB /* ViewController.swift */,
 				3B0107081C43F54100ECA5DB /* Main.storyboard */,
+				3B0107391C4400B100ECA5DB /* Controllers */,
 				3B01070E1C43F54100ECA5DB /* Assets.xcassets */,
 				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
 				3B0107131C43F54100ECA5DB /* Info.plist */,
@@ -126,6 +130,14 @@
 				3B0107291C43F54100ECA5DB /* Info.plist */,
 			);
 			path = CrowdSurveyUITests;
+			sourceTree = "<group>";
+		};
+		3B0107391C4400B100ECA5DB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B0107371C44009800ECA5DB /* MapViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B0107071C43F54100ECA5DB /* ViewController.swift in Sources */,
 				3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */,
 				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
+				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +499,7 @@
 				3B01072E1C43F54100ECA5DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B01072F1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +508,7 @@
 				3B0107311C43F54100ECA5DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B0107321C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +517,7 @@
 				3B0107341C43F54100ECA5DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
