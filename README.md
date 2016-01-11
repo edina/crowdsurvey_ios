@@ -1,2 +1,2 @@
-# fieldtrip_lte_ios
-iOS implementation of FieldTrip
+# Crowdsurvey_iOS
+iOS implementation of Crowdsurvey
