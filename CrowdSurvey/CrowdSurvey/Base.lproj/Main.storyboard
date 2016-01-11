@@ -20,29 +20,33 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hWr-0m-Omv">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yjf-jt-xGV">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Location" id="Y4Q-he-FYi"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="y8g-v9-kuT"/>
-                                    <barButtonItem systemItem="action" id="hda-xY-k0e"/>
-                                </items>
-                            </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fF-DN-flO">
                                 <rect key="frame" x="289" y="429" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.1960784314" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.1960784314" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-Lf-IPV">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Location" id="YDr-2C-rp2"/>
+                                    <tabBarItem systemItem="more" id="y9L-kO-fCo"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3g9-l5-fxf"/>
-                            <constraint firstItem="Yjf-jt-xGV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="9Kr-ig-rd5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Yjf-jt-xGV" secondAttribute="trailing" constant="-20" id="FVO-FL-rDq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VqW-Lf-IPV" secondAttribute="bottom" id="CBP-1E-r8j"/>
+                            <constraint firstItem="VqW-Lf-IPV" firstAttribute="top" secondItem="8fF-DN-flO" secondAttribute="bottom" constant="100" id="F8E-XS-unS"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IoG-U8-LwY"/>
-                            <constraint firstItem="Yjf-jt-xGV" firstAttribute="top" secondItem="8fF-DN-flO" secondAttribute="bottom" constant="105" id="M86-pk-CT9"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Yjf-jt-xGV" secondAttribute="bottom" id="NYW-1q-J5c"/>
                             <constraint firstAttribute="trailing" secondItem="hWr-0m-Omv" secondAttribute="trailing" id="PVV-XK-yQF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VqW-Lf-IPV" secondAttribute="trailing" constant="-20" id="YBs-QD-Dhf"/>
+                            <constraint firstItem="VqW-Lf-IPV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dnO-2f-f6j"/>
+                            <constraint firstItem="8fF-DN-flO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="geM-FA-LHR"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xUK-L9-YBb"/>
-                            <constraint firstItem="8fF-DN-flO" firstAttribute="centerX" secondItem="Yjf-jt-xGV" secondAttribute="centerX" id="zGE-dV-h4e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="uC3-5a-jgV"/>
