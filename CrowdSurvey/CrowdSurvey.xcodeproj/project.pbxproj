@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107041C43F54000ECA5DB /* AppDelegate.swift */; };
+		3B0107071C43F54100ECA5DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107061C43F54100ECA5DB /* ViewController.swift */; };
+		3B01070A1C43F54100ECA5DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107081C43F54100ECA5DB /* Main.storyboard */; };
+		3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */; };
+		3B01070F1C43F54100ECA5DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B01070E1C43F54100ECA5DB /* Assets.xcassets */; };
+		3B0107121C43F54100ECA5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */; };
+		3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */; };
+		3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B0107191C43F54100ECA5DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B0106F91C43F54000ECA5DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B0107001C43F54000ECA5DB;
+			remoteInfo = CrowdSurvey;
+		};
+		3B0107241C43F54100ECA5DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B0106F91C43F54000ECA5DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B0107001C43F54000ECA5DB;
+			remoteInfo = CrowdSurvey;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3B0107011C43F54000ECA5DB /* CrowdSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0107041C43F54000ECA5DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3B0107061C43F54100ECA5DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3B0107091C43F54100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B01070C1C43F54100ECA5DB /* CrowdSurvey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CrowdSurvey.xcdatamodel; sourceTree = "<group>"; };
+		3B01070E1C43F54100ECA5DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B0107111C43F54100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B0107131C43F54100ECA5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0107181C43F54100ECA5DB /* CrowdSurveyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdSurveyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdSurveyTests.swift; sourceTree = "<group>"; };
+		3B01071E1C43F54100ECA5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0107231C43F54100ECA5DB /* CrowdSurveyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdSurveyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdSurveyUITests.swift; sourceTree = "<group>"; };
+		3B0107291C43F54100ECA5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B0106FE1C43F54000ECA5DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0107151C43F54100ECA5DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0107201C43F54100ECA5DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B0106F81C43F54000ECA5DB = {
+			isa = PBXGroup;
+			children = (
+				3B0107031C43F54000ECA5DB /* CrowdSurvey */,
+				3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */,
+				3B0107261C43F54100ECA5DB /* CrowdSurveyUITests */,
+				3B0107021C43F54000ECA5DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B0107021C43F54000ECA5DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B0107011C43F54000ECA5DB /* CrowdSurvey.app */,
+				3B0107181C43F54100ECA5DB /* CrowdSurveyTests.xctest */,
+				3B0107231C43F54100ECA5DB /* CrowdSurveyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B0107031C43F54000ECA5DB /* CrowdSurvey */ = {
+			isa = PBXGroup;
+			children = (
+				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
+				3B0107061C43F54100ECA5DB /* ViewController.swift */,
+				3B0107081C43F54100ECA5DB /* Main.storyboard */,
+				3B01070E1C43F54100ECA5DB /* Assets.xcassets */,
+				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
+				3B0107131C43F54100ECA5DB /* Info.plist */,
+				3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */,
+			);
+			path = CrowdSurvey;
+			sourceTree = "<group>";
+		};
+		3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */,
+				3B01071E1C43F54100ECA5DB /* Info.plist */,
+			);
+			path = CrowdSurveyTests;
+			sourceTree = "<group>";
+		};
+		3B0107261C43F54100ECA5DB /* CrowdSurveyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */,
+				3B0107291C43F54100ECA5DB /* Info.plist */,
+			);
+			path = CrowdSurveyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B0107001C43F54000ECA5DB /* CrowdSurvey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B01072C1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurvey" */;
+			buildPhases = (
+				3B0106FD1C43F54000ECA5DB /* Sources */,
+				3B0106FE1C43F54000ECA5DB /* Frameworks */,
+				3B0106FF1C43F54000ECA5DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CrowdSurvey;
+			productName = CrowdSurvey;
+			productReference = 3B0107011C43F54000ECA5DB /* CrowdSurvey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B0107171C43F54100ECA5DB /* CrowdSurveyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B01072F1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyTests" */;
+			buildPhases = (
+				3B0107141C43F54100ECA5DB /* Sources */,
+				3B0107151C43F54100ECA5DB /* Frameworks */,
+				3B0107161C43F54100ECA5DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B01071A1C43F54100ECA5DB /* PBXTargetDependency */,
+			);
+			name = CrowdSurveyTests;
+			productName = CrowdSurveyTests;
+			productReference = 3B0107181C43F54100ECA5DB /* CrowdSurveyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B0107221C43F54100ECA5DB /* CrowdSurveyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B0107321C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyUITests" */;
+			buildPhases = (
+				3B01071F1C43F54100ECA5DB /* Sources */,
+				3B0107201C43F54100ECA5DB /* Frameworks */,
+				3B0107211C43F54100ECA5DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B0107251C43F54100ECA5DB /* PBXTargetDependency */,
+			);
+			name = CrowdSurveyUITests;
+			productName = CrowdSurveyUITests;
+			productReference = 3B0107231C43F54100ECA5DB /* CrowdSurveyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B0106F91C43F54000ECA5DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = Edina;
+				TargetAttributes = {
+					3B0107001C43F54000ECA5DB = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					3B0107171C43F54100ECA5DB = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 3B0107001C43F54000ECA5DB;
+					};
+					3B0107221C43F54100ECA5DB = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 3B0107001C43F54000ECA5DB;
+					};
+				};
+			};
+			buildConfigurationList = 3B0106FC1C43F54000ECA5DB /* Build configuration list for PBXProject "CrowdSurvey" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B0106F81C43F54000ECA5DB;
+			productRefGroup = 3B0107021C43F54000ECA5DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B0107001C43F54000ECA5DB /* CrowdSurvey */,
+				3B0107171C43F54100ECA5DB /* CrowdSurveyTests */,
+				3B0107221C43F54100ECA5DB /* CrowdSurveyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B0106FF1C43F54000ECA5DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B0107121C43F54100ECA5DB /* LaunchScreen.storyboard in Resources */,
+				3B01070F1C43F54100ECA5DB /* Assets.xcassets in Resources */,
+				3B01070A1C43F54100ECA5DB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0107161C43F54100ECA5DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0107211C43F54100ECA5DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B0106FD1C43F54000ECA5DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B0107071C43F54100ECA5DB /* ViewController.swift in Sources */,
+				3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */,
+				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B0107141C43F54100ECA5DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B01071F1C43F54100ECA5DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B01071A1C43F54100ECA5DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B0107001C43F54000ECA5DB /* CrowdSurvey */;
+			targetProxy = 3B0107191C43F54100ECA5DB /* PBXContainerItemProxy */;
+		};
+		3B0107251C43F54100ECA5DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B0107001C43F54000ECA5DB /* CrowdSurvey */;
+			targetProxy = 3B0107241C43F54100ECA5DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B0107081C43F54100ECA5DB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B0107091C43F54100ECA5DB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B0107111C43F54100ECA5DB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B01072A1C43F54100ECA5DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B01072B1C43F54100ECA5DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B01072D1C43F54100ECA5DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrowdSurvey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurvey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3B01072E1C43F54100ECA5DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CrowdSurvey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurvey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3B0107301C43F54100ECA5DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrowdSurveyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurveyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSurvey.app/CrowdSurvey";
+			};
+			name = Debug;
+		};
+		3B0107311C43F54100ECA5DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrowdSurveyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurveyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrowdSurvey.app/CrowdSurvey";
+			};
+			name = Release;
+		};
+		3B0107331C43F54100ECA5DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CrowdSurveyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurveyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CrowdSurvey;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		3B0107341C43F54100ECA5DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CrowdSurveyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurveyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CrowdSurvey;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B0106FC1C43F54000ECA5DB /* Build configuration list for PBXProject "CrowdSurvey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B01072A1C43F54100ECA5DB /* Debug */,
+				3B01072B1C43F54100ECA5DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B01072C1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurvey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B01072D1C43F54100ECA5DB /* Debug */,
+				3B01072E1C43F54100ECA5DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3B01072F1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B0107301C43F54100ECA5DB /* Debug */,
+				3B0107311C43F54100ECA5DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3B0107321C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurveyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B0107331C43F54100ECA5DB /* Debug */,
+				3B0107341C43F54100ECA5DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3B01070C1C43F54100ECA5DB /* CrowdSurvey.xcdatamodel */,
+			);
+			currentVersion = 3B01070C1C43F54100ECA5DB /* CrowdSurvey.xcdatamodel */;
+			path = CrowdSurvey.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3B0106F91C43F54000ECA5DB /* Project object */;
+}
