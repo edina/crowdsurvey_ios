@@ -17,6 +17,8 @@
 		3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0107351C44003400ECA5DB /* MapKit.framework */; };
 		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
+		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		3B0107351C44003400ECA5DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B0107371C44009800ECA5DB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
 		3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
+		3B0107491C45204100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
+		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			children = (
 				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
 				3B0107081C43F54100ECA5DB /* Main.storyboard */,
+				3B0107481C45204100ECA5DB /* Map.storyboard */,
+				3B01074B1C45204E00ECA5DB /* Survey.storyboard */,
 				3B0107391C4400B100ECA5DB /* Controllers */,
 				3B01070E1C43F54100ECA5DB /* Assets.xcassets */,
 				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
@@ -246,8 +252,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */,
 				3B0107121C43F54100ECA5DB /* LaunchScreen.storyboard in Resources */,
 				3B01070F1C43F54100ECA5DB /* Assets.xcassets in Resources */,
+				3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */,
 				3B01070A1C43F54100ECA5DB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +334,22 @@
 				3B0107111C43F54100ECA5DB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3B0107481C45204100ECA5DB /* Map.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B0107491C45204100ECA5DB /* Base */,
+			);
+			name = Map.storyboard;
+			sourceTree = "<group>";
+		};
+		3B01074B1C45204E00ECA5DB /* Survey.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B01074C1C45204F00ECA5DB /* Base */,
+			);
+			name = Survey.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
