@@ -10,4 +10,6 @@
 #define CouchBaseBridgingHeader_h
 
 
+#import <CouchbaseLite/CouchbaseLite.h>
+
 #endif /* CouchBaseBridgingHeader_h */
