@@ -79,7 +79,7 @@
         <!--Survey View Controller-->
         <scene sceneID="DHz-hc-GUA">
             <objects>
-                <viewController id="ede-xc-efg" userLabel="Survey View Controller" customClass="SurveyViewController" sceneMemberID="viewController">
+                <viewController id="ede-xc-efg" userLabel="Survey View Controller" customClass="SurveyViewController" customModule="CrowdSurvey" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LMt-F3-WYX"/>
                         <viewControllerLayoutGuide type="bottom" id="vlI-0q-0Gm"/>
