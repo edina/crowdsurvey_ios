@@ -19,6 +19,7 @@
 		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
 		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; settings = {ASSET_TAGS = (); }; };
+		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		3B0107491C45204100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
+		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */,
 				3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +91,7 @@
 		3B0106F81C43F54000ECA5DB = {
 			isa = PBXGroup;
 			children = (
+				3BECCB881C454956009232D3 /* CoreLocation.framework */,
 				3B0107351C44003400ECA5DB /* MapKit.framework */,
 				3B0107031C43F54000ECA5DB /* CrowdSurvey */,
 				3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */,
