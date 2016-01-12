@@ -21,6 +21,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBOutlet weak var newSurvey: UIButton!{
+        didSet{
+            newSurvey.layer.cornerRadius = 15
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -32,35 +39,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     
     
-    @IBAction func showActionSheet(sender: AnyObject) {
-        // 1
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
-        
-        // 2
-        let deleteAction = UIAlertAction(title: "Delete", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("File Deleted")
-        })
-        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("File Saved")
-        })
-        
-        //
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
-        })
-        
-        
-        // 4
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(saveAction)
-        optionMenu.addAction(cancelAction)
-        
-        // 5
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-    }
+
     
     /*
     // MARK: - Navigation

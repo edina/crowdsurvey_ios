@@ -61,6 +61,7 @@
                     <connections>
                         <outlet property="MapView" destination="hWr-0m-Omv" id="Mb7-yj-JaB"/>
                         <outlet property="mapView" destination="hWr-0m-Omv" id="XRf-NM-wcN"/>
+                        <outlet property="newSurvey" destination="akg-k8-ija" id="1So-Tz-y7P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
