@@ -1,64 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ede-xc-efg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Map-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController title="Map" id="BYZ-38-t0r" customClass="MapViewController" customModule="CrowdSurvey" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hWr-0m-Omv">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                            </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsE-ih-AMQ">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Location" id="kD9-oh-ot8"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zQD-GC-ixk"/>
-                                    <barButtonItem title="Settings" id="CYp-DS-GrU"/>
-                                </items>
-                            </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akg-k8-ija">
-                                <rect key="frame" x="289" y="495" width="22" height="22"/>
-                                <connections>
-                                    <segue destination="ede-xc-efg" kind="show" id="QDd-eO-xXk"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GsE-ih-AMQ" secondAttribute="bottom" id="AU0-61-WLo"/>
-                            <constraint firstItem="akg-k8-ija" firstAttribute="centerX" secondItem="GsE-ih-AMQ" secondAttribute="centerX" id="eJR-oL-g4Q"/>
-                            <constraint firstItem="hWr-0m-Omv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="lOP-3T-eyR"/>
-                            <constraint firstItem="GsE-ih-AMQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="nk8-AF-See"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hWr-0m-Omv" secondAttribute="bottom" constant="44" id="pG2-Ws-m1V"/>
-                            <constraint firstItem="hWr-0m-Omv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="syd-uu-7eE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hWr-0m-Omv" secondAttribute="trailing" constant="-20" id="wVm-GA-kCx"/>
-                            <constraint firstItem="GsE-ih-AMQ" firstAttribute="top" secondItem="akg-k8-ija" secondAttribute="bottom" constant="39" id="ySM-2b-qKp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GsE-ih-AMQ" secondAttribute="trailing" constant="-20" id="zya-24-vo6"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Location" id="uC3-5a-jgV"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="MapView" destination="hWr-0m-Omv" id="Mb7-yj-JaB"/>
-                        <outlet property="mapView" destination="hWr-0m-Omv" id="XRf-NM-wcN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="791" y="392"/>
-        </scene>
         <!--Survey View Controller-->
         <scene sceneID="DHz-hc-GUA">
             <objects>
@@ -82,6 +27,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Survey" id="4SB-zr-Icr"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="un3-39-Ecb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
