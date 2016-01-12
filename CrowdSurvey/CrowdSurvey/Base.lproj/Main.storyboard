@@ -27,24 +27,25 @@
                                     <color key="titleShadowColor" red="0.0" green="0.1960784314" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqW-Lf-IPV">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsE-ih-AMQ">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <tabBarItem title="Location" id="YDr-2C-rp2"/>
-                                    <tabBarItem systemItem="more" id="y9L-kO-fCo"/>
+                                    <barButtonItem title="Location" id="kD9-oh-ot8"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zQD-GC-ixk"/>
+                                    <barButtonItem title="Settings" id="CYp-DS-GrU"/>
                                 </items>
-                            </tabBar>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3g9-l5-fxf"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VqW-Lf-IPV" secondAttribute="bottom" id="CBP-1E-r8j"/>
-                            <constraint firstItem="VqW-Lf-IPV" firstAttribute="top" secondItem="8fF-DN-flO" secondAttribute="bottom" constant="100" id="F8E-XS-unS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GsE-ih-AMQ" secondAttribute="bottom" id="7GC-GC-PRR"/>
+                            <constraint firstItem="GsE-ih-AMQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7Lc-xi-nrD"/>
+                            <constraint firstItem="hWr-0m-Omv" firstAttribute="trailing" secondItem="GsE-ih-AMQ" secondAttribute="trailing" id="7Pv-uq-Vme"/>
+                            <constraint firstItem="8fF-DN-flO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="365" id="Gdi-15-NWO"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IoG-U8-LwY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GsE-ih-AMQ" secondAttribute="trailing" constant="-20" id="LKy-hN-UBD"/>
                             <constraint firstAttribute="trailing" secondItem="hWr-0m-Omv" secondAttribute="trailing" id="PVV-XK-yQF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="VqW-Lf-IPV" secondAttribute="trailing" constant="-20" id="YBs-QD-Dhf"/>
-                            <constraint firstItem="VqW-Lf-IPV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="dnO-2f-f6j"/>
                             <constraint firstItem="8fF-DN-flO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="geM-FA-LHR"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xUK-L9-YBb"/>
                         </constraints>
