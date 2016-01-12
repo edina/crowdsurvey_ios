@@ -16,6 +16,7 @@
 		3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */; };
 		3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0107351C44003400ECA5DB /* MapKit.framework */; };
 		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		3B0107291C43F54100ECA5DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B0107351C44003400ECA5DB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3B0107371C44009800ECA5DB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
+		3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		3B0107391C4400B100ECA5DB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */,
 				3B0107371C44009800ECA5DB /* MapViewController.swift */,
 			);
 			name = Controllers;
@@ -272,6 +275,7 @@
 			files = (
 				3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */,
 				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
+				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
