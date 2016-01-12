@@ -19,6 +19,13 @@
 		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
 		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; settings = {ASSET_TAGS = (); }; };
+		3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009621C4560FA004F248D /* CouchbaseLite.framework */; settings = {ASSET_TAGS = (); }; };
+		3B6009651C456121004F248D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009641C456121004F248D /* Security.framework */; };
+		3B6009671C45612A004F248D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009661C45612A004F248D /* CFNetwork.framework */; };
+		3B6009691C45615F004F248D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009681C45615F004F248D /* SystemConfiguration.framework */; };
+		3B60096C1C45616F004F248D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096A1C45616F004F248D /* libsqlite3.0.tbd */; };
+		3B60096D1C45616F004F248D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096B1C45616F004F248D /* libsqlite3.tbd */; };
+		3B60096F1C45617D004F248D /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096E1C45617D004F248D /* libz.1.1.3.tbd */; };
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +65,15 @@
 		3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		3B0107491C45204100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
+		3B6009621C4560FA004F248D /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		3B6009641C456121004F248D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3B6009661C45612A004F248D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3B6009681C45615F004F248D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3B60096A1C45616F004F248D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		3B60096B1C45616F004F248D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		3B60096E1C45617D004F248D /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +81,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B60096F1C45617D004F248D /* libz.1.1.3.tbd in Frameworks */,
+				3B60096C1C45616F004F248D /* libsqlite3.0.tbd in Frameworks */,
+				3B60096D1C45616F004F248D /* libsqlite3.tbd in Frameworks */,
+				3B6009691C45615F004F248D /* SystemConfiguration.framework in Frameworks */,
+				3B6009671C45612A004F248D /* CFNetwork.framework in Frameworks */,
+				3B6009651C456121004F248D /* Security.framework in Frameworks */,
 				3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */,
+				3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */,
 				3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,12 +113,11 @@
 		3B0106F81C43F54000ECA5DB = {
 			isa = PBXGroup;
 			children = (
-				3BECCB881C454956009232D3 /* CoreLocation.framework */,
-				3B0107351C44003400ECA5DB /* MapKit.framework */,
 				3B0107031C43F54000ECA5DB /* CrowdSurvey */,
 				3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */,
 				3B0107261C43F54100ECA5DB /* CrowdSurveyUITests */,
 				3B0107021C43F54000ECA5DB /* Products */,
+				3BECCB8C1C454FDE009232D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +134,7 @@
 		3B0107031C43F54000ECA5DB /* CrowdSurvey */ = {
 			isa = PBXGroup;
 			children = (
+				3BECCB8E1C4553C5009232D3 /* Supporting Files */,
 				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
 				3B0107081C43F54100ECA5DB /* Main.storyboard */,
 				3B0107481C45204100ECA5DB /* Map.storyboard */,
@@ -151,6 +173,30 @@
 				3B0107371C44009800ECA5DB /* MapViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3BECCB8C1C454FDE009232D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B60096E1C45617D004F248D /* libz.1.1.3.tbd */,
+				3B60096A1C45616F004F248D /* libsqlite3.0.tbd */,
+				3B60096B1C45616F004F248D /* libsqlite3.tbd */,
+				3B6009681C45615F004F248D /* SystemConfiguration.framework */,
+				3B6009661C45612A004F248D /* CFNetwork.framework */,
+				3B6009641C456121004F248D /* Security.framework */,
+				3B6009621C4560FA004F248D /* CouchbaseLite.framework */,
+				3BECCB881C454956009232D3 /* CoreLocation.framework */,
+				3B0107351C44003400ECA5DB /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BECCB8E1C4553C5009232D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,10 +492,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CrowdSurvey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurvey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = CrowdSurvey/CouchBaseBridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -457,6 +508,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = CrowdSurvey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.edina.crowdsurvey.CrowdSurvey;
