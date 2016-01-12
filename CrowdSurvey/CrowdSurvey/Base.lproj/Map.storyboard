@@ -28,8 +28,16 @@
                                     <barButtonItem title="Settings" id="CYp-DS-GrU"/>
                                 </items>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akg-k8-ija">
-                                <rect key="frame" x="289" y="495" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akg-k8-ija">
+                                <rect key="frame" x="285" y="464" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.1960784314" blue="0.37254901959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="IAr-Kr-wiy"/>
+                                    <constraint firstAttribute="height" constant="30" id="h11-Ks-ElL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                <state key="normal" title="+"/>
                                 <connections>
                                     <segue destination="tQL-mZ-wAf" kind="show" id="o2g-VE-9X1"/>
                                 </connections>
@@ -38,13 +46,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GsE-ih-AMQ" secondAttribute="bottom" id="AU0-61-WLo"/>
-                            <constraint firstItem="akg-k8-ija" firstAttribute="centerX" secondItem="GsE-ih-AMQ" secondAttribute="centerX" id="eJR-oL-g4Q"/>
+                            <constraint firstItem="akg-k8-ija" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FqV-SQ-YSx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="akg-k8-ija" secondAttribute="bottom" constant="106" id="JyC-H1-WzH"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="lOP-3T-eyR"/>
                             <constraint firstItem="GsE-ih-AMQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="nk8-AF-See"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hWr-0m-Omv" secondAttribute="bottom" constant="44" id="pG2-Ws-m1V"/>
                             <constraint firstItem="hWr-0m-Omv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="syd-uu-7eE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hWr-0m-Omv" secondAttribute="trailing" constant="-20" id="wVm-GA-kCx"/>
-                            <constraint firstItem="GsE-ih-AMQ" firstAttribute="top" secondItem="akg-k8-ija" secondAttribute="bottom" constant="39" id="ySM-2b-qKp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GsE-ih-AMQ" secondAttribute="trailing" constant="-20" id="zya-24-vo6"/>
                         </constraints>
                     </view>
