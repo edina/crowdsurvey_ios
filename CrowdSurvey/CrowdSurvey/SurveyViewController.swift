@@ -12,11 +12,6 @@ class SurveyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        var manager = CBLManager.sharedInstance()       
-    
-      
-        
     }
 
     

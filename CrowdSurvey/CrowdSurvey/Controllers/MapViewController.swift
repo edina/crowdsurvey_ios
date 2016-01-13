@@ -46,6 +46,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         mapView.showsUserLocation = true
         
+        
+        var manager = CBLManager.sharedInstance()
+        var database: CBLDatabase?
+        
+        // Using try! indicates we don't expect a failure
+        try! database = manager.databaseNamed("crowdsurvey")
+        
+
+        
+        
         super.viewDidLoad()
     }
     
