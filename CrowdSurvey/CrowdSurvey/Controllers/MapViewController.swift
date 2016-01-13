@@ -48,12 +48,47 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.showsUserLocation = true
         
         
-        var manager = CBLManager.sharedInstance()
-        var database: CBLDatabase?
+//        var manager = CBLManager.sharedInstance()
+//        var database: CBLDatabase?
+//        
+//        // Using try! indicates we don't expect a failure
+//        try! database = manager.databaseNamed("crowdsurvey")
+//        
+//        // retrieve JSON representing a survey
+//        // most up to date gist to be found at https://gist.github.com/rgamez/accb2404e7f5ebad105c
+//        let api_url = "https://gist.github.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
+//        
+//        Alamofire.request(.GET, api_url)
+//            .responseJSON { response in
+//                print(response.request)  // original URL request
+//                print(response.response) // URL response
+//                print(response.data)     // server data
+//                print(response.result)   // result of response serialization
+//                
+//                if let JSON = response.result.value {
+//                    print("JSON: \(JSON)")
+//                }
+//        }
+
+        createSurveyDocument()
         
-        // Using try! indicates we don't expect a failure
-        try! database = manager.databaseNamed("crowdsurvey")
+        super.viewDidLoad()
+    }
+    
+    
+    
+    
+    func createSurveyDocument(){
         
+        let manager = CBLManager.sharedInstance()
+        var database: CBLDatabase!
+ 
+        do {
+            try database = manager.databaseNamed("survey")
+        } catch {
+            print("Can't access database")
+        }
+                
         // retrieve JSON representing a survey
         // most up to date gist to be found at https://gist.github.com/rgamez/accb2404e7f5ebad105c
         let api_url = "https://gist.github.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
@@ -67,11 +102,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
+                    
+                    let doc = database.createDocument()
+                    let docId = doc.documentID
+                    
+                    do{
+                        try doc.putProperties(JSON as! [String : AnyObject])
+                        
+                        print("Saved document id ", docId)
+                    }catch{
+                        print("error adding document")
+                    }
                 }
-        }
+                
+                
 
-        super.viewDidLoad()
+                
+        }
+        
+        // Try reading it back
+        //        let d = database.documentWithID(docId)
+        //
+        //        for (prop in d?.properties){
+        //
+        //        }
+        //        let name = d["name"]
+        //        print(name)
     }
+    
     
     // MARK: - MKMapViewDelegate
     
