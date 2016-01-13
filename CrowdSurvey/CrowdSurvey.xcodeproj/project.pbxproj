@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04CF35E55C40CEE1D1A3A9AF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BF2DB1876440AED8514FE9A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107041C43F54000ECA5DB /* AppDelegate.swift */; };
 		3B01070A1C43F54100ECA5DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107081C43F54100ECA5DB /* Main.storyboard */; };
 		3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */; };
@@ -15,11 +16,11 @@
 		3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */; };
 		3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */; };
 		3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0107351C44003400ECA5DB /* MapKit.framework */; };
-		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; settings = {ASSET_TAGS = (); }; };
-		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; settings = {ASSET_TAGS = (); }; };
-		3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009621C4560FA004F248D /* CouchbaseLite.framework */; settings = {ASSET_TAGS = (); }; };
+		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; };
+		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; };
+		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; };
+		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; };
+		3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009621C4560FA004F248D /* CouchbaseLite.framework */; };
 		3B6009651C456121004F248D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009641C456121004F248D /* Security.framework */; };
 		3B6009671C45612A004F248D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009661C45612A004F248D /* CFNetwork.framework */; };
 		3B6009691C45615F004F248D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009681C45615F004F248D /* SystemConfiguration.framework */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BF2DB1876440AED8514FE9A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0107011C43F54000ECA5DB /* CrowdSurvey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrowdSurvey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0107041C43F54000ECA5DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B0107091C43F54100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,8 @@
 		3B60096E1C45617D004F248D /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
+		85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */,
 				3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */,
 				3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */,
+				04CF35E55C40CEE1D1A3A9AF /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A48369129D42FAB9EFF8B57 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */,
+				85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3B0106F81C43F54000ECA5DB = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +130,7 @@
 				3B0107261C43F54100ECA5DB /* CrowdSurveyUITests */,
 				3B0107021C43F54000ECA5DB /* Products */,
 				3BECCB8C1C454FDE009232D3 /* Frameworks */,
+				0A48369129D42FAB9EFF8B57 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +200,7 @@
 				3B6009621C4560FA004F248D /* CouchbaseLite.framework */,
 				3BECCB881C454956009232D3 /* CoreLocation.framework */,
 				3B0107351C44003400ECA5DB /* MapKit.framework */,
+				2BF2DB1876440AED8514FE9A /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,9 +220,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B01072C1C43F54100ECA5DB /* Build configuration list for PBXNativeTarget "CrowdSurvey" */;
 			buildPhases = (
+				DF8036C15281CDD44D58BC35 /* Check Pods Manifest.lock */,
 				3B0106FD1C43F54000ECA5DB /* Sources */,
 				3B0106FE1C43F54000ECA5DB /* Frameworks */,
 				3B0106FF1C43F54000ECA5DB /* Resources */,
+				D7D4640785D913E9F7F7027E /* Embed Pods Frameworks */,
+				ED151D433927AAC3EEBFB1D7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -323,6 +342,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D7D4640785D913E9F7F7027E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF8036C15281CDD44D58BC35 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED151D433927AAC3EEBFB1D7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B0106FD1C43F54000ECA5DB /* Sources */ = {
@@ -488,6 +555,7 @@
 		};
 		3B01072D1C43F54100ECA5DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -505,6 +573,7 @@
 		};
 		3B01072E1C43F54100ECA5DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
