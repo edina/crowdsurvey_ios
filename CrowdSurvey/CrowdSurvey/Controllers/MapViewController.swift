@@ -99,14 +99,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 print(response.data)     // server data
                 print(response.result)   // result of response serialization
                 
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                if let result = response.result.value { // result from loopback is Array containing JSON
+                    let json = result[0]
+                    print("JSON: \(json)")
                     
                     let doc = database.createDocument()
                     let docId = doc.documentID
                     
                     do{
-                        try doc.putProperties(JSON as! [String : AnyObject])
+                        try doc.putProperties(json as! [String : AnyObject])
                         
                         print("Saved document id ", docId)
                     }catch{
