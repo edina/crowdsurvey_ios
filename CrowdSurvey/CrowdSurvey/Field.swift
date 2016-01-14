@@ -17,7 +17,7 @@ class Field {
     var required: Bool
     var persistent: Bool
     
-    init(id: Int, type: String, label: String, properties: Dictionary,required: Bool, persistent: Bool)
+    init(id: Int, type: String, label: String, properties: Dictionary, required: Bool, persistent: Bool)
     {
         self.id = id
         self.label = label
