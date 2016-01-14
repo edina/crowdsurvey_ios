@@ -90,8 +90,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
                 
         // retrieve JSON representing a survey
-        // most up to date gist to be found at https://gist.github.com/rgamez/accb2404e7f5ebad105c
-        let api_url = "https://gist.github.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
+        let api_url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey"
         
         Alamofire.request(.GET, api_url)
             .responseJSON { response in
