@@ -10,12 +10,12 @@ import Foundation
 
 class Survey {
     
-    var id: Int
+    var id: String
     var title: String
     var geoms: Array<String>
     var fields: Array<Field>
     
-    init(id: Int, title: String, geoms: Array<String>, fields: Array<Field>){
+    init(id: String, title: String, geoms: Array<String>, fields: Array<Field>){
         self.id = id
         self.title = title
         self.geoms = geoms
