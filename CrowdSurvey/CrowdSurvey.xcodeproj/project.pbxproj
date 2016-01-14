@@ -27,6 +27,8 @@
 		3B60096D1C45616F004F248D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096B1C45616F004F248D /* libsqlite3.tbd */; };
 		3B60096F1C45617D004F248D /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096E1C45617D004F248D /* libz.1.1.3.tbd */; };
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
+		3C8CCA001C47B8E700389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CC9FF1C47B8E700389A1A /* Field.swift */; };
+		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		3B60096E1C45617D004F248D /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
+		3C8CC9FF1C47B8E700389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,12 +151,13 @@
 		3B0107031C43F54000ECA5DB /* CrowdSurvey */ = {
 			isa = PBXGroup;
 			children = (
-				3BECCB8E1C4553C5009232D3 /* Supporting Files */,
 				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
 				3B0107081C43F54100ECA5DB /* Main.storyboard */,
 				3B0107481C45204100ECA5DB /* Map.storyboard */,
 				3B01074B1C45204E00ECA5DB /* Survey.storyboard */,
 				3B0107391C4400B100ECA5DB /* Controllers */,
+				3C8CC9FE1C47B8AD00389A1A /* Models */,
+				3BECCB8E1C4553C5009232D3 /* Supporting Files */,
 				3B01070E1C43F54100ECA5DB /* Assets.xcassets */,
 				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
 				3B0107131C43F54100ECA5DB /* Info.plist */,
@@ -211,6 +216,15 @@
 				3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C8CC9FE1C47B8AD00389A1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C8CC9FF1C47B8E700389A1A /* Field.swift */,
+				3C8CCA011C47BBE900389A1A /* Survey.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,8 +410,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8CCA001C47B8E700389A1A /* Field.swift in Sources */,
 				3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */,
 				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
+				3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */,
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 			);
