@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Alamofire
+import ObjectMapper
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -47,36 +48,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         mapView.showsUserLocation = true
         
-        
-//        var manager = CBLManager.sharedInstance()
-//        var database: CBLDatabase?
-//        
-//        // Using try! indicates we don't expect a failure
-//        try! database = manager.databaseNamed("crowdsurvey")
-//        
-//        // retrieve JSON representing a survey
-//        // most up to date gist to be found at https://gist.github.com/rgamez/accb2404e7f5ebad105c
-//        let api_url = "https://gist.github.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
-//        
-//        Alamofire.request(.GET, api_url)
-//            .responseJSON { response in
-//                print(response.request)  // original URL request
-//                print(response.response) // URL response
-//                print(response.data)     // server data
-//                print(response.result)   // result of response serialization
-//                
-//                if let JSON = response.result.value {
-//                    print("JSON: \(JSON)")
-//                }
-//        }
-
         createSurveyDocument()
         
         super.viewDidLoad()
     }
-    
-    
-    
     
     func createSurveyDocument(){
         
@@ -113,11 +88,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     }catch{
                         print("error adding document")
                     }
+                    
+                    let survey = Mapper<Survey>().map(json)
+                    print(survey!.id!)
+                    print(survey!.title!)
+                    print(survey!.fields![1].label)
                 }
-                
-                
-
-                
+  
         }
         
         // Try reading it back

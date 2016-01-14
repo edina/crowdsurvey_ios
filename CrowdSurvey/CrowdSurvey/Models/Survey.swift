@@ -7,18 +7,32 @@
 //
 
 import Foundation
+import ObjectMapper	
 
-class Survey {
+class Survey: Mappable, CustomStringConvertible {
     
-    var id: String
-    var title: String
-    var geoms: Array<String>
-    var fields: Array<Field>
+    var id: String?
+    var title: String?
+    var geoms: [String]?
+    var fields: [Field]?
     
-    init(id: String, title: String, geoms: Array<String>, fields: Array<Field>){
-        self.id = id
-        self.title = title
-        self.geoms = geoms
-        self.fields = fields
+    var description: String {
+        get {
+            return Mapper().toJSONString(self, prettyPrint: false)!
+        }
     }
+    
+    // MARK: - ObjectMapper
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        id     <- map["id"]
+        title  <- map["title"]
+        fields <- map ["fields"]
+    }
+    
 }

@@ -7,23 +7,33 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Field {
+class Field: Mappable {
     
-    var id: Int
-    var type: String
-    var label: String
-    var properties: Dictionary<String, AnyObject>
-    var required: Bool
-    var persistent: Bool
+    var id: Int?
+    var type: String?
+    var label: String?
+//    var properties: [String: AnyObject]?
+//    var required: Bool?
+//    var persistent: Bool?
     
-    init(id: Int, type: String, label: String, properties: Dictionary<String, AnyObject>, required: Bool, persistent: Bool)
-    {
-        self.id = id
-        self.label = label
-        self.type = type
-        self.properties = properties
-        self.required = required
-        self.persistent = persistent
+    var description: String {
+        get {
+            return Mapper().toJSONString(self, prettyPrint: false)!
+        }
+    }
+    
+    // MARK: - ObjectMapper
+    
+    required init?(_ map: Map) {
+        
+    }
+    
+    // Mappable
+    func mapping(map: Map) {
+        id    <- map["id"]
+        type  <- map["type"]
+        label <- map ["label"]
     }
 }
