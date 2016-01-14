@@ -13,11 +13,11 @@ class Field {
     var id: Int
     var type: String
     var label: String
-    var properties: Dictionary<String, String>
+    var properties: Dictionary<String, AnyObject>
     var required: Bool
     var persistent: Bool
     
-    init(id: Int, type: String, label: String, properties: Dictionary<String, String>, required: Bool, persistent: Bool)
+    init(id: Int, type: String, label: String, properties: Dictionary<String, AnyObject>, required: Bool, persistent: Bool)
     {
         self.id = id
         self.label = label
