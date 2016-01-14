@@ -152,14 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				3B0107041C43F54000ECA5DB /* AppDelegate.swift */,
-				3B0107081C43F54100ECA5DB /* Main.storyboard */,
-				3B0107481C45204100ECA5DB /* Map.storyboard */,
-				3B01074B1C45204E00ECA5DB /* Survey.storyboard */,
-				3B0107391C4400B100ECA5DB /* Controllers */,
 				3C8CC9FE1C47B8AD00389A1A /* Models */,
+				3C8CCA071C47C4A100389A1A /* Views */,
+				3B0107391C4400B100ECA5DB /* Controllers */,
 				3BECCB8E1C4553C5009232D3 /* Supporting Files */,
 				3B01070E1C43F54100ECA5DB /* Assets.xcassets */,
-				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
 				3B0107131C43F54100ECA5DB /* Info.plist */,
 				3B01070B1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld */,
 			);
@@ -225,6 +222,17 @@
 				3C8CCA011C47BBE900389A1A /* Survey.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		3C8CCA071C47C4A100389A1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3B0107081C43F54100ECA5DB /* Main.storyboard */,
+				3B0107481C45204100ECA5DB /* Map.storyboard */,
+				3B01074B1C45204E00ECA5DB /* Survey.storyboard */,
+				3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
