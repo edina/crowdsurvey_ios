@@ -14,9 +14,9 @@ class Field: Mappable {
     var id: Int?
     var type: String?
     var label: String?
-//    var properties: [String: AnyObject]?
-//    var required: Bool?
-//    var persistent: Bool?
+    var properties: [String: AnyObject]?
+    var required: Bool?
+    var persistent: Bool?
     
     var description: String {
         get {
@@ -32,8 +32,11 @@ class Field: Mappable {
     
     // Mappable
     func mapping(map: Map) {
-        id    <- map["id"]
-        type  <- map["type"]
-        label <- map ["label"]
+        id         <- map["id"]
+        type       <- map["type"]
+        label      <- map["label"]
+        required   <- map["required"]
+        persistent <- map["persistent"]
+        properties <- map["properties"]
     }
 }
