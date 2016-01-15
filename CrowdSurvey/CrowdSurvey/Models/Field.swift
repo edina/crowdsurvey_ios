@@ -12,7 +12,7 @@ import Eureka
 
 class Field: Mappable {
     
-    var id: Int?
+    var id: String?
     var label: String?
     var value: String? = ""
     var type: String?
