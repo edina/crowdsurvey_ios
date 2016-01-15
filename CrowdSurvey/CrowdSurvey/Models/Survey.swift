@@ -17,7 +17,7 @@ class Survey: Mappable, CustomStringConvertible {
     var geoms: [String]?
     var fields: [Field]?
     var layout: [String: AnyObject]?
-    var records: [Record]?
+    var records: [Record]? = []
     
     
     // MARK: - ObjectMapper
