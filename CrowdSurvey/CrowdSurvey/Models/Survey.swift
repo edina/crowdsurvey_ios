@@ -16,6 +16,7 @@ class Survey: Mappable, CustomStringConvertible {
     var title: String?
     var geoms: [String]?
     var fields: [Field]?
+    var layout: [String: AnyObject]?
     
     var description: String {
         get {
@@ -34,6 +35,7 @@ class Survey: Mappable, CustomStringConvertible {
         id     <- map["id"]
         title  <- map["title"]
         fields <- map ["fields"]
+        layout <- map ["layout"]
     }
     
     
