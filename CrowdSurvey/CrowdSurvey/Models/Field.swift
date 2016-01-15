@@ -19,11 +19,6 @@ class Field: Mappable {
     var required: Bool?
     var persistent: Bool?
     
-    var description: String {
-        get {
-            return Mapper().toJSONString(self, prettyPrint: true)!
-        }
-    }
         
     // MARK: - Constants
     
@@ -37,6 +32,7 @@ class Field: Mappable {
         static let Warning = "warning"
         static let Range = "range"
     }
+
     
     // MARK: - ObjectMapper
     
@@ -52,6 +48,12 @@ class Field: Mappable {
         required   <- map["required"]
         persistent <- map["persistent"]
         properties <- map["properties"]
+    }
+    
+    var description: String {
+        get {
+            return Mapper().toJSONString(self, prettyPrint: true)!
+        }
     }
     
     
