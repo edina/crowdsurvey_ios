@@ -17,6 +17,7 @@ class Survey: Mappable, CustomStringConvertible {
     var geoms: [String]?
     var fields: [Field]?
     var layout: [String: AnyObject]?
+    var records: [Record]?
     
     
     func createRecord() -> Record{
@@ -50,7 +51,7 @@ class Survey: Mappable, CustomStringConvertible {
     
     // Returns the generated form for this survey
     func form() -> Form!{
-        
+        self.records!.append(self.createRecord())
         
         var form = Form()
         // Add an empty section initially

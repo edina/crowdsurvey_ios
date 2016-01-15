@@ -23,10 +23,6 @@ class SurveyViewController: FormViewController {
     
     func setupForm(){
         form = survey!.form()
-        
-        // create record for saving survey response
-        let record = survey!.createRecord()
-        print(record.description)
     }
     
     
