@@ -20,12 +20,6 @@ class Survey: Mappable, CustomStringConvertible {
     var records: [Record]?
     
     
-    func createRecord() -> Record{
-        let record = Record(survey: self)
-        return record
-    }
-    
-    
     // MARK: - ObjectMapper
     
     required init?(_ map: Map) {
@@ -51,8 +45,6 @@ class Survey: Mappable, CustomStringConvertible {
     
     // Returns the generated form for this survey
     func form() -> Form!{
-        self.records!.append(self.createRecord())
-        
         var form = Form()
         // Add an empty section initially
         form +++= Section()
@@ -63,7 +55,9 @@ class Survey: Mappable, CustomStringConvertible {
             // Get appropriate form element for this Field
             Field.appendToForm(form)
         }
-        return form
         
+        self.records!.append(Record(survey: self))
+        
+        return form
     } 
 }
