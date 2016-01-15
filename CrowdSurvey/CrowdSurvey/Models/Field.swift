@@ -20,7 +20,7 @@ class Field: Mappable {
     
     var description: String {
         get {
-            return Mapper().toJSONString(self, prettyPrint: false)!
+            return Mapper().toJSONString(self, prettyPrint: true)!
         }
     }
     
