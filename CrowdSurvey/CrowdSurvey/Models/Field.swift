@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import Eureka
 
 class Field: Mappable {
     
@@ -38,5 +39,36 @@ class Field: Mappable {
         required   <- map["required"]
         persistent <- map["persistent"]
         properties <- map["properties"]
+    }
+    
+    
+    // MARK: - Form
+    
+    
+    func appendToForm(var form: Form){
+        
+        switch (type!)
+        {
+        case "text":
+            print("text field")
+            
+            // Create text field
+            form.last!   <<< TextRow () {
+                $0.title = label!
+                $0.placeholder = ""
+            }
+            
+        case "radio":
+            print("radio field")
+            
+        case "checkbox":
+            print("checkbox field")
+            form.last! <<< CheckRow() {
+                $0.title = label!
+                $0.value = false
+            }
+        default:
+            print("default")
+        }
     }
 }

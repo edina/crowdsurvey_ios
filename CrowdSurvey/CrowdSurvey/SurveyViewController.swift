@@ -22,7 +22,7 @@ class SurveyViewController: FormViewController {
 
     
     func setupForm(){
-        form = survey!.form() 
+        form = survey!.form()
     }
     
     
