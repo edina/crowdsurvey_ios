@@ -70,32 +70,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         Alamofire.request(.GET, api_url)
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
                 if let json = response.result.value {
-                    print("JSON: \(json)")
+//                    print("JSON: \(json)")
                     
                     let doc = database.createDocument()
                     let docId = doc.documentID
                     
                     do{
                         try doc.putProperties(json as! [String : AnyObject])
-                        
                         print("Saved document id ", docId)
                     }catch{
                         print("error adding document")
                     }
                     
                     self.survey = Mapper<Survey>().map(json)
-                    print(self.survey!.id!)
-                    print(self.survey!.title!)
-                    print(self.survey!.fields![1].label)
-                    
+//                    print("\n \(self.survey!.description)")
                 }
-  
         }
     }
     
