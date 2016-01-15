@@ -29,6 +29,7 @@
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
 		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 		3C8CCA061C47C28E00389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA051C47C28E00389A1A /* Field.swift */; };
+		3CCA0E9F1C4915670035418D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA0E9E1C4915670035418D /* Record.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
 		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		3C8CCA051C47C28E00389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Models/Field.swift; sourceTree = "<group>"; };
+		3CCA0E9E1C4915670035418D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Models/Record.swift; sourceTree = "<group>"; };
 		85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +220,7 @@
 		3C8CC9FE1C47B8AD00389A1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3CCA0E9E1C4915670035418D /* Record.swift */,
 				3C8CCA051C47C28E00389A1A /* Field.swift */,
 				3C8CCA011C47BBE900389A1A /* Survey.swift */,
 			);
@@ -422,6 +425,7 @@
 				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
 				3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */,
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
+				3CCA0E9F1C4915670035418D /* Record.swift in Sources */,
 				3C8CCA061C47C28E00389A1A /* Field.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 			);

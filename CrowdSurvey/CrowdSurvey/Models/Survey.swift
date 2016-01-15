@@ -22,7 +22,12 @@ class Survey: Mappable, CustomStringConvertible {
         get {
             return Mapper().toJSONString(self, prettyPrint: true)!
         }
+    
+    func createRecord() -> Record{
+        let record = Record(survey: self)
+        return record
     }
+    
     
     // MARK: - ObjectMapper
     
