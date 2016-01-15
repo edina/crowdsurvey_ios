@@ -39,7 +39,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <segue destination="tQL-mZ-wAf" kind="show" id="o2g-VE-9X1"/>
+                                    <segue destination="tQL-mZ-wAf" kind="show" identifier="Show Survey" id="o2g-VE-9X1"/>
                                 </connections>
                             </button>
                         </subviews>

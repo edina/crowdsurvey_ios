@@ -15,6 +15,7 @@ import ObjectMapper
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
+    var survey: Survey?
     
     // MARK: - Outlets
     
@@ -89,22 +90,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         print("error adding document")
                     }
                     
-                    let survey = Mapper<Survey>().map(json)
-                    print(survey!.id!)
-                    print(survey!.title!)
-                    print(survey!.fields![1].label)
+                    self.survey = Mapper<Survey>().map(json)
+                    print(self.survey!.id!)
+                    print(self.survey!.title!)
+                    print(self.survey!.fields![1].label)
+                    
                 }
   
         }
-        
-        // Try reading it back
-        //        let d = database.documentWithID(docId)
-        //
-        //        for (prop in d?.properties){
-        //
-        //        }
-        //        let name = d["name"]
-        //        print(name)
     }
     
     
@@ -121,14 +114,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
 
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Show Survey" {
+            if let destinationVC = segue.destinationViewController as? SurveyViewController {
+                destinationVC.survey = survey
+            }
+   
+        }
     }
-    */
+
 
 }
