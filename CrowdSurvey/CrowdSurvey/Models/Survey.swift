@@ -18,10 +18,6 @@ class Survey: Mappable, CustomStringConvertible {
     var fields: [Field]?
     var layout: [String: AnyObject]?
     
-    var description: String {
-        get {
-            return Mapper().toJSONString(self, prettyPrint: true)!
-        }
     
     func createRecord() -> Record{
         let record = Record(survey: self)
@@ -43,6 +39,12 @@ class Survey: Mappable, CustomStringConvertible {
         layout <- map ["layout"]
     }
     
+    var description: String {
+        get {
+            return Mapper().toJSONString(self, prettyPrint: true)!
+        }
+    }
+    
     
     // MARK: - Form
     
@@ -55,14 +57,12 @@ class Survey: Mappable, CustomStringConvertible {
         form +++= Section()
         
         for Field in fields!{
-            print(Field.description)
+            //print(Field.description)
             
             // Get appropriate form element for this Field
             Field.appendToForm(form)
         }
         return form
         
-    }
-    
-    
+    } 
 }
