@@ -47,6 +47,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
         }
         
+        // Setup alternative tile server
+        let template = "https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
+        let overlay = MKTileOverlay.init(URLTemplate: template)
+        overlay.canReplaceMapContent = true
+        mapView.addOverlay(overlay)
         mapView.showsUserLocation = true
         
         createSurveyDocument()
@@ -91,6 +96,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     // MARK: - MKMapViewDelegate
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        if overlay.isKindOfClass(MKTileOverlay) {
+            return MKTileOverlayRenderer.init(overlay: overlay)
+        }
+        return nil
+    }
     
     // MARK: - CLLocationManager
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
