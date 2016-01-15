@@ -66,7 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
                 
         // retrieve JSON representing a survey
-        let api_url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey"
+        let api_url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
         
         Alamofire.request(.GET, api_url)
             .responseJSON { response in
@@ -75,8 +75,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 print(response.data)     // server data
                 print(response.result)   // result of response serialization
                 
-                if let result = response.result.value { // result from loopback is Array containing JSON
-                    let json = result[0]
+                if let json = response.result.value {
                     print("JSON: \(json)")
                     
                     let doc = database.createDocument()
