@@ -135,43 +135,27 @@ class Field: Mappable {
         
         if let options = properties!["options"] {
             print("The options are \(options).")
-            print( "String(options.dynamicType) -> \(options.dynamicType)")
-            form.last!   <<< ActionSheetRow<String>() {
-                $0.title = ""
-                $0.selectorTitle = ""
-                $0.options = ["Diego Forlán", "Edinson Cavani", "Diego Lugano", "Luis Suarez"]
-                $0.value = ""
-                $0.cell.textLabel?.numberOfLines=0
+
+            // Check if simple string array
+            if let optionsArray = options as? [String] {
+                form.last! <<<
+                    
+                    PushRow<String>() {
+                        $0.title = ""
+                        $0.options = optionsArray
+                        $0.value = ""
+                        $0.selectorTitle = "test title"
+                    }.onChange { row in
+                            
+                            print(row.value)
+                            self.value = row.value!
+                            
+                            // TODO: Need to work out a way of adding to the record model rather than survey
+                    }
+            }else{
+                // TODO: Dictionary
+                
             }
-            
-            
-//            form.last! <<<
-//                
-//                PushRow<String>() {
-//                    $0.title = label!
-//                    $0.options = options as! [String]
-//                    $0.value = 👦🏼
-//                    $0.selectorTitle = "Choose an Emoji!"
-//            }
-            
-            
-            
-//            
-//            PushRow<String>() {
-//                $0.title = "Country"
-//                $0.options = countries
-//                $0.value = user.country
-//                $0.selectorTitle = "Select a country"
-//                }
-//                .cellSetup({ (cell, row) -> () in
-//                    cell.textLabel?.font = font
-//                    cell.detailTextLabel?.font = font
-//                })
-//                .onPresent({ (FormViewController, SelectorViewController) -> () in
-//                    // TODO: Format the selector view
-//                })
-            
-            
             
         }
     }
@@ -186,8 +170,7 @@ class Field: Mappable {
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
-            
-            
+        
         if let options = properties!["options"] {
             print("The options are \(options).")
             print( "String(options.dynamicType) -> \(options.dynamicType)")
@@ -199,9 +182,6 @@ class Field: Mappable {
                 $0.cell.textLabel?.numberOfLines=0
             }
         }
-            
-            
-        
     }
     
     func addImageToForm(var form: Form){
