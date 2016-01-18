@@ -77,6 +77,8 @@ class Field: Mappable {
         case Constants.Image:
             
             print("image field")
+            addImageToForm(form)
+            
         case Constants.Dtree:
             
             print("dtree field")
@@ -101,9 +103,8 @@ class Field: Mappable {
     
     // Add a simple text field
     func addTextToForm(var form: Form){
-        //            form +++= Section(label!)
-        
-        
+//         form +++= Section(label!)
+  
         form +++= LabelRow () {
             $0.title = label!
             $0.value = ""
@@ -111,14 +112,18 @@ class Field: Mappable {
         }
         
         // Create text field
-        form.last!   <<< TextRow () {
+          <<< TextRow () {
             $0.title = ""
             $0.placeholder = ""
-        }
+            }.onChange { row in
+                
+                print(row.value)
+                self.value = row.value!
+            }
     }
     
     func addRadioToForm(var form: Form){
-        //            form +++= Section(label!)
+//        form +++= Section(label!)
         
         form +++= LabelRow () {
             $0.title = label!
@@ -136,15 +141,77 @@ class Field: Mappable {
                 $0.value = ""
                 $0.cell.textLabel?.numberOfLines=0
             }
+            
+            
+//            form.last! <<<
+//                
+//                PushRow<String>() {
+//                    $0.title = label!
+//                    $0.options = options as! [String]
+//                    $0.value = 👦🏼
+//                    $0.selectorTitle = "Choose an Emoji!"
+//            }
+            
+            
+            
+//            
+//            PushRow<String>() {
+//                $0.title = "Country"
+//                $0.options = countries
+//                $0.value = user.country
+//                $0.selectorTitle = "Select a country"
+//                }
+//                .cellSetup({ (cell, row) -> () in
+//                    cell.textLabel?.font = font
+//                    cell.detailTextLabel?.font = font
+//                })
+//                .onPresent({ (FormViewController, SelectorViewController) -> () in
+//                    // TODO: Format the selector view
+//                })
+            
+            
+            
         }
     }
     
+    
+    
     func addCheckBoxToForm(var form: Form){
-        form +++= Section(label!)
-        form.last! <<< CheckRow() {
-            $0.title = ""
-            $0.value = false
+//        form +++= Section(label!)
+        
+        form +++= LabelRow () {
+            $0.title = label!
+            $0.value = ""
+            $0.cell.textLabel?.numberOfLines=0
         }
+            
+            
+        if let options = properties!["options"] {
+            print("The options are \(options).")
+            print( "String(options.dynamicType) -> \(options.dynamicType)")
+            form.last!   <<< ActionSheetRow<String>() {
+                $0.title = ""
+                $0.selectorTitle = ""
+                $0.options = ["Diego Forlán", "Edinson Cavani", "Diego Lugano", "Luis Suarez"]
+                $0.value = ""
+                $0.cell.textLabel?.numberOfLines=0
+            }
+        }
+            
+            
+        
+    }
+    
+    func addImageToForm(var form: Form){
+
+        form +++= LabelRow () {
+            $0.title = label!
+            $0.value = ""
+            $0.cell.textLabel?.numberOfLines=0
+        }
+        <<< ImageRow() {
+            $0.title = ""
+            }
     }
     
 }
