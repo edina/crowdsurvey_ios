@@ -15,17 +15,9 @@ class SurveyViewController: FormViewController {
 
     var survey: Survey? { didSet { setupForm() } }
    
-    @IBAction func save(sender: UIBarButtonItem) {
-        
-        // Create a Record with completed fields
-        print("saving...")
-        survey!.records!.append(Record(survey: survey!))
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     
     func setupForm(){
         form = survey!.form()

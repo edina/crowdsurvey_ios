@@ -14,7 +14,7 @@ class Field: Mappable {
     
     var id: String?
     var label: String?
-    var value: String? = ""
+    var value: AnyObject? // String or [String]
     var type: String?
     var properties: [String: AnyObject]?
     var required: Bool?
@@ -144,7 +144,7 @@ class Field: Mappable {
                         $0.title = ""
                         $0.options = optionsArray
                         $0.value = ""
-                        $0.selectorTitle = "test title"
+                        $0.selectorTitle = ""
                     }.onChange { row in
                             
                             print(row.value)
@@ -171,15 +171,28 @@ class Field: Mappable {
             $0.cell.textLabel?.numberOfLines=0
         }
         
+        
         if let options = properties!["options"] {
             print("The options are \(options).")
-            print( "String(options.dynamicType) -> \(options.dynamicType)")
-            form.last!   <<< ActionSheetRow<String>() {
-                $0.title = ""
-                $0.selectorTitle = ""
-                $0.options = ["Diego Forlán", "Edinson Cavani", "Diego Lugano", "Luis Suarez"]
-                $0.value = ""
-                $0.cell.textLabel?.numberOfLines=0
+            
+            // Check if simple string array
+            if let optionsArray = options as? [String] {
+                form.last! <<<
+                    
+                    MultipleSelectorRow<String>() {
+                        $0.title = ""
+                        $0.options = optionsArray
+                        $0.selectorTitle = ""
+                        }.onChange { row in
+                            
+                            print(row.value)
+                            self.value = row.value!
+                            
+                            // TODO: Need to work out a way of adding to the record model rather than survey
+                }
+            }else{
+                // TODO: Dictionary
+                
             }
         }
     }

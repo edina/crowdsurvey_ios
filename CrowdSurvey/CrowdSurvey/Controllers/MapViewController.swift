@@ -34,6 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
         // Survey has been completed
+        survey!.records!.append(Record(survey: survey!))
         print("Submitted")
     }
     
