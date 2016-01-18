@@ -32,6 +32,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
+        // Survey has been completed
+        print("Submitted")
+    }
+    
     
     override func viewDidLoad() {
         

@@ -45,6 +45,7 @@ class Survey: Mappable, CustomStringConvertible {
     
     // Returns the generated form for this survey
     func form() -> Form!{
+        
         var form = Form()
         // Add an empty section initially
         form +++= Section()
@@ -55,9 +56,7 @@ class Survey: Mappable, CustomStringConvertible {
             // Get appropriate form element for this Field
             Field.appendToForm(form)
         }
-        
-        self.records!.append(Record(survey: self))
-        
+                
         return form
     } 
 }

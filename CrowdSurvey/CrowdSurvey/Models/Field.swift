@@ -119,6 +119,8 @@ class Field: Mappable {
                 
                 print(row.value)
                 self.value = row.value!
+                
+                // TODO: Need to work out a way of adding to the record model rather than survey
             }
     }
     
