@@ -16,24 +16,44 @@ import ObjectMapper
 
 class RecordTest: XCTestCase {
     
-    var recordJson: AnyObject?
-    let url = "http://dlib-rainbow.edina.ac.uk:3000/api/records/566ed9290351d817555158cc"
-    
-    
+    var survey: Survey?
+    var recordFromJson: Record?
+    var recordFromSurvey: Record?
     
     override func setUp() {
         super.setUp()
         
-        let expectation = expectationWithDescription("Alamofire")
+        var surveyJson: AnyObject?
+        let surveyUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
         
-        Alamofire.request(.GET, self.url)
+        var recordJson: AnyObject?
+        let recordUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/records/566ed9290351d817555158cc"
+        
+        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
+        
+        Alamofire.request(.GET, surveyUrl)
             .responseJSON { response in
                 if let json = response.result.value {
-                    self.recordJson = json
-                    expectation.fulfill()
+                    surveyJson = json
+                    surveyExpectation.fulfill()
                 }
         }
+        
+        let recordExpectation = expectationWithDescription("Alamofire Record Request")
+        
+        Alamofire.request(.GET, recordUrl)
+            .responseJSON { response in
+                if let json = response.result.value {
+                    recordJson = json
+                    recordExpectation.fulfill()
+                }
+        }
+        
         waitForExpectationsWithTimeout(5.0, handler: nil)
+        
+        self.survey = Mapper<Survey>().map(surveyJson)
+        self.recordFromJson = Mapper<Record>().map(recordJson)
+        self.recordFromSurvey = Record(survey: self.survey!)
     }
     
     override func tearDown() {
@@ -47,12 +67,11 @@ class RecordTest: XCTestCase {
         let type = "Feature"
         let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
         
-        let record = Mapper<Record>().map(self.recordJson)
-        
-        XCTAssert(record!.id == id)
-        XCTAssert(record!.name == name)
-        XCTAssert(record!.type == type)
-        XCTAssert(record!.editor == editor)
+        XCTAssert(self.recordFromJson!.id == id)
+        XCTAssert(self.recordFromJson!.name == name)
+        XCTAssert(self.recordFromJson!.type == type)
+        XCTAssert(self.recordFromJson!.editor == editor)
+    }
         
     }
 }
