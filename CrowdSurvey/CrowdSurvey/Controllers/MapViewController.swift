@@ -77,7 +77,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
                 
         // retrieve JSON representing a survey
-        let api_url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
+        // TODO: replace with correct url once we have a proxy to dlib-rainbow
+        let api_url = "https://rawgit.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
         
         Alamofire.request(.GET, api_url)
             .responseJSON { response in
