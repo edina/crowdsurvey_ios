@@ -10,6 +10,7 @@ import XCTest
 
 import Alamofire
 import ObjectMapper
+import SwiftyJSON
 
 @testable import CrowdSurvey
 
@@ -84,5 +85,22 @@ class RecordTest: XCTestCase {
         XCTAssert(self.recordFromSurvey!.type == type)
         XCTAssert(self.recordFromSurvey!.editor == editor)
     }
+    
+    func testRecordDescriptionJson() {
+        let id = "566ed9290351d817555158cc"
+        let name = "record (03-11-2015 12h11m44s)"
+        let type = "Feature"
+        let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
+        
+        print(recordFromJson!.description)
+        
+        if let jsonData = self.recordFromJson!.description.dataUsingEncoding(NSUTF8StringEncoding) {
+            let json = JSON(data: jsonData)
+            
+            XCTAssert(json["id"].stringValue == id)
+            XCTAssert(json["name"].stringValue == name)
+            XCTAssert(json["type"].stringValue == type)
+            XCTAssert(json["properties"]["editor"].stringValue == editor)
+        }
     }
 }
