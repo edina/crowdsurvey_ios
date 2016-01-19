@@ -114,7 +114,7 @@ class Field: Mappable {
         // Create text field
           <<< TextRow () {
             $0.title = ""
-            $0.placeholder = ""
+            $0.placeholder = "Enter answer"
             }.onChange { row in
                 
                 print(row.value)
@@ -143,7 +143,7 @@ class Field: Mappable {
                     PushRow<String>() {
                         $0.title = ""
                         $0.options = optionsArray
-                        $0.value = ""
+                        $0.value = "Select"
                         $0.selectorTitle = ""
                     }.onChange { row in
                             
@@ -167,7 +167,7 @@ class Field: Mappable {
         
         form +++= LabelRow () {
             $0.title = label!
-            $0.value = ""
+            $0.value = "Select"
             $0.cell.textLabel?.numberOfLines=0
         }
         
@@ -183,6 +183,7 @@ class Field: Mappable {
                         $0.title = ""
                         $0.options = optionsArray
                         $0.selectorTitle = ""
+                        $0.value = ["Select"]
                         }.onChange { row in
                             
                             print(row.value)
@@ -205,7 +206,7 @@ class Field: Mappable {
             $0.cell.textLabel?.numberOfLines=0
         }
         <<< ImageRow() {
-            $0.title = ""
+            $0.title = "Choose Photo"
             }
     }
     
