@@ -14,7 +14,7 @@ class Record: Mappable, CustomStringConvertible {
     
     var id: String?
     var name: String?
-    var feature: String?
+    var type = "Feature"
     var geometry: [String: AnyObject]?
     
     // properties
@@ -53,6 +53,7 @@ class Record: Mappable, CustomStringConvertible {
         editor    <- map["properties.editor"]
         fields    <- map["properties.fields"]
         timestamp <- (map["properties.timestamp"], ISO8601DateTransform())
+        type      <- map["type"]
     }
     
     var description: String {

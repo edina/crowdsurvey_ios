@@ -27,6 +27,7 @@
 		3B60096D1C45616F004F248D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096B1C45616F004F248D /* libsqlite3.tbd */; };
 		3B60096F1C45617D004F248D /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096E1C45617D004F248D /* libz.1.1.3.tbd */; };
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
+		3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37DCB11C4E505E0016EF0A /* RecordTest.swift */; };
 		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 		3C8CCA061C47C28E00389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA051C47C28E00389A1A /* Field.swift */; };
 		3CCA0E9F1C4915670035418D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA0E9E1C4915670035418D /* Record.swift */; };
@@ -78,6 +79,7 @@
 		3B60096E1C45617D004F248D /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
+		3C37DCB11C4E505E0016EF0A /* RecordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTest.swift; sourceTree = "<group>"; };
 		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		3C8CCA051C47C28E00389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Models/Field.swift; sourceTree = "<group>"; };
 		3CCA0E9E1C4915670035418D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Models/Record.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */ = {
 			isa = PBXGroup;
 			children = (
+				3C37DCB11C4E505E0016EF0A /* RecordTest.swift */,
 				3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */,
 				3B01071E1C43F54100ECA5DB /* Info.plist */,
 			);
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */,
 				3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
