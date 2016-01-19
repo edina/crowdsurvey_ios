@@ -32,6 +32,7 @@ class Field: Mappable {
         static let Dtree = "dtree"
         static let Warning = "warning"
         static let Range = "range"
+        static let SelectPlaceHolder = "Select…"
     }
 
     
@@ -114,7 +115,7 @@ class Field: Mappable {
         // Create text field
           <<< TextRow () {
             $0.title = ""
-            $0.placeholder = "Enter answer"
+            $0.placeholder = "Enter answer…"
             }.onChange { row in
                 
                 print(row.value)
@@ -143,7 +144,7 @@ class Field: Mappable {
                     PushRow<String>() {
                         $0.title = ""
                         $0.options = optionsArray
-                        $0.value = "Select"
+                        $0.value = Constants.SelectPlaceHolder
                         $0.selectorTitle = ""
                     }.onChange { row in
                             
@@ -167,7 +168,7 @@ class Field: Mappable {
         
         form +++= LabelRow () {
             $0.title = label!
-            $0.value = "Select"
+            $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
         
@@ -183,8 +184,11 @@ class Field: Mappable {
                         $0.title = ""
                         $0.options = optionsArray
                         $0.selectorTitle = ""
-                        $0.value = ["Select"]
+                        $0.value = [Constants.SelectPlaceHolder]
                         }.onChange { row in
+                            
+                            // Ensure that the 'Select…' placeholder is removed
+                            row.value?.remove(Constants.SelectPlaceHolder)
                             
                             print(row.value)
                             self.value = row.value!
@@ -199,14 +203,17 @@ class Field: Mappable {
     }
     
     func addImageToForm(var form: Form){
-
+        ImageRow.defaultCellUpdate = { cell, row in
+            cell.accessoryView?.layer.cornerRadius = 17
+            cell.accessoryView?.frame = CGRectMake(0, 0, 34, 34)
+        }
         form +++= LabelRow () {
             $0.title = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
         <<< ImageRow() {
-            $0.title = "Choose Photo"
+            $0.title = "Choose Photo…"
             }
     }
     
