@@ -72,6 +72,17 @@ class RecordTest: XCTestCase {
         XCTAssert(self.recordFromJson!.type == type)
         XCTAssert(self.recordFromJson!.editor == editor)
     }
+    
+    func testCreateRecordFromSurvey() {
+        let id = "SOME_AUTO_GENERATED_ID"
+        let name = "SOME_AUTO_GENERATED_NAME"
+        let type = "Feature"
+        let editor = self.survey!.id
         
+        XCTAssert(self.recordFromSurvey!.id == id)
+        XCTAssert(self.recordFromSurvey!.name == name)
+        XCTAssert(self.recordFromSurvey!.type == type)
+        XCTAssert(self.recordFromSurvey!.editor == editor)
+    }
     }
 }
