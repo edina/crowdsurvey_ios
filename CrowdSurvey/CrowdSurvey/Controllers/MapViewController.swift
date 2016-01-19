@@ -28,7 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
-            newSurvey.layer.cornerRadius = 15
+            newSurvey.layer.cornerRadius = 30
         }
     }
     
