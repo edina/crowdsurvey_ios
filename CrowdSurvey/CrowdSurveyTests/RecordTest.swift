@@ -68,22 +68,29 @@ class RecordTest: XCTestCase {
         let type = "Feature"
         let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
         
-        XCTAssert(self.recordFromJson!.id == id)
-        XCTAssert(self.recordFromJson!.name == name)
-        XCTAssert(self.recordFromJson!.type == type)
-        XCTAssert(self.recordFromJson!.editor == editor)
+        if let record = self.recordFromJson {
+            XCTAssert(record.id == id)
+            XCTAssert(record.name == name)
+            XCTAssert(record.type == type)
+            XCTAssert(record.editor == editor)
+        }
     }
     
     func testCreateRecordFromSurvey() {
         let id = "SOME_AUTO_GENERATED_ID"
         let name = "SOME_AUTO_GENERATED_NAME"
         let type = "Feature"
-        let editor = self.survey!.id
         
-        XCTAssert(self.recordFromSurvey!.id == id)
-        XCTAssert(self.recordFromSurvey!.name == name)
-        XCTAssert(self.recordFromSurvey!.type == type)
-        XCTAssert(self.recordFromSurvey!.editor == editor)
+        if let survey = self.survey {
+            let editor = survey.id
+            
+            if let record = self.recordFromSurvey {
+                XCTAssert(record.id == id)
+                XCTAssert(record.name == name)
+                XCTAssert(record.type == type)
+                XCTAssert(record.editor == editor)
+            }
+        }
     }
     
     func testRecordDescriptionJson() {
@@ -91,8 +98,6 @@ class RecordTest: XCTestCase {
         let name = "record (03-11-2015 12h11m44s)"
         let type = "Feature"
         let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
-        
-        print(recordFromJson!.description)
         
         if let jsonData = self.recordFromJson!.description.dataUsingEncoding(NSUTF8StringEncoding) {
             let json = JSON(data: jsonData)
