@@ -43,7 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
-
+    
+    // MARK:- Url Scheme 
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+        print("url recieved: \(url)");
+        print("scheme: \(url.scheme)");
+        print("query string: \(url.query)");
+        print("host: \(url.host)");
+        
+        // handle the above in the app here
+        
+        return true
+    }
+    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
