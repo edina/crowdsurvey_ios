@@ -31,6 +31,7 @@
 		3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37DCB11C4E505E0016EF0A /* RecordTest.swift */; };
 		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 		3C8CCA061C47C28E00389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA051C47C28E00389A1A /* Field.swift */; };
+		3CC15FB61C4F921F00C3F247 /* FieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC15FB51C4F921F00C3F247 /* FieldTest.swift */; };
 		3CCA0E9F1C4915670035418D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA0E9E1C4915670035418D /* Record.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		3C37DCB11C4E505E0016EF0A /* RecordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTest.swift; sourceTree = "<group>"; };
 		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		3C8CCA051C47C28E00389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Models/Field.swift; sourceTree = "<group>"; };
+		3CC15FB51C4F921F00C3F247 /* FieldTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldTest.swift; sourceTree = "<group>"; };
 		3CCA0E9E1C4915670035418D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Models/Record.swift; sourceTree = "<group>"; };
 		85C091441AE6813ECAF260A3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BB0B083FEDBB7474E26CB4AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		3B01071B1C43F54100ECA5DB /* CrowdSurveyTests */ = {
 			isa = PBXGroup;
 			children = (
+				3CC15FB51C4F921F00C3F247 /* FieldTest.swift */,
 				3C1DAA0F1C4E9B8E00BFA67E /* SurveyTest.swift */,
 				3C37DCB11C4E505E0016EF0A /* RecordTest.swift */,
 				3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */,
@@ -443,6 +446,7 @@
 			files = (
 				3C1DAA101C4E9B8E00BFA67E /* SurveyTest.swift in Sources */,
 				3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */,
+				3CC15FB61C4F921F00C3F247 /* FieldTest.swift in Sources */,
 				3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
