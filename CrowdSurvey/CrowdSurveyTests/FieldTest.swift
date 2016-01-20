@@ -8,11 +8,46 @@
 
 import XCTest
 
+import Alamofire
+import ObjectMapper
+import SwiftyJSON
+
+@testable import CrowdSurvey
+
 class FieldTest: XCTestCase {
+    
+    var field: Field?
+    
+    // Expected field values
+    let id = "form-radio-2"
+    let label = "3. Are you involved in working with trees or forestry?"
+    let type = "radio"
+    let required = true
+    let persistent = true
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        var surveyJson: AnyObject?
+        let surveyUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
+        
+        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
+        
+        Alamofire.request(.GET, surveyUrl)
+            .responseJSON { response in
+                if let json = response.result.value {
+                    surveyJson = json
+                    surveyExpectation.fulfill()
+                }
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
+        
+        if let survey = Mapper<Survey>().map(surveyJson) {
+            if let field = survey.fields?[3] {
+                self.field = field
+            }
+        }
     }
     
     override func tearDown() {
@@ -20,15 +55,25 @@ class FieldTest: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCreateFieldFromJson() {
+        if let field = self.field {
+            XCTAssert(field.id == self.id)
+            XCTAssert(field.label == self.label)
+            XCTAssert(field.type == self.type)
+            XCTAssert(field.required == self.required)
+            XCTAssert(field.persistent == self.persistent)
+        }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testFieldDescriptionJson() {
+        if let jsonData = self.field!.description.dataUsingEncoding(NSUTF8StringEncoding) {
+            let json = JSON(data: jsonData)
+            
+            XCTAssert(json["id"].string == self.id)
+            XCTAssert(json["label"].string == self.label)
+            XCTAssert(json["type"].string == self.type)
+            XCTAssert(json["required"].bool == self.required)
+            XCTAssert(json["persistent"].bool == self.persistent)
         }
     }
     
