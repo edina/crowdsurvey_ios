@@ -104,6 +104,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         var doc: CBLDocument!
         
         if let docId = id {
+            doc = self.database.existingDocumentWithID(docId)
+            if doc == nil {
                 doc = self.database.documentWithID(docId)
                 do{
                     try doc!.putProperties(jsonData as! [String : AnyObject])
@@ -111,6 +113,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }catch{
                     print("Error adding document")
                 }
+            }
         } else {
             self.showAlert("Storage error", message: "The survey you are trying to access can't be saved to your device.")
         }
