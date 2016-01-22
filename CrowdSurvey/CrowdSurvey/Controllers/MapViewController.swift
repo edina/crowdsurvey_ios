@@ -44,6 +44,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.newSurvey.hidden = true
+        self.newSurvey.enabled = false
+
         self.setupMapView()
         self.setupDatabase()
         self.setupSurvey()
@@ -91,6 +94,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     if let jsonData = response.result.value {
                         let doc = self.getOrCreateDocument(jsonData)
                         self.survey = Mapper<Survey>().map(doc.properties)
+                        self.newSurvey.hidden = false
+                        self.newSurvey.enabled = true
                     }
                 } else {
                     self.showAlert("Not found", message: "The survey you are trying to access isn't available.")
