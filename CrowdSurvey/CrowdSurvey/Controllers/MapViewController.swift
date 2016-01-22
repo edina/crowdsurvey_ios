@@ -86,7 +86,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     func setupSurvey(){
         // retrieve JSON representing a survey
         // TODO: replace with correct url once we have a proxy to dlib-rainbow
-        let survey_url = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/e65e1cc390d9809fda6503fc98d9c9b0a12ee7e1/"
+        let survey_url = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/e65e1cc390d9809fda6503fc98d9c9b0a12ee7e1/crowd-survey-survey-record.json"
         
         Alamofire.request(.GET, survey_url)
             .responseJSON { response in
