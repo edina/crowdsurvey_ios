@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 import Eureka
+import Haneke
 
 class Field: Mappable {
     
@@ -215,7 +216,6 @@ class Field: Mappable {
             <<< ImageRow() {
                 $0.title = "Choose Photo…"
                 }.onChange({ row -> () in
-                    
                     // Get image, save in documents and add url to model
                     self.saveImage(row)
                 })
@@ -223,25 +223,17 @@ class Field: Mappable {
     
     
     func saveImage(row: ImageRow ){
+        
+        let cache = Shared.imageCache
+        
         if let image = row.value{
-            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                
-                // Path to user Documents directory
-                let docs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true) [0]
-                
-                let jpGimageData =  NSData(data: UIImageJPEGRepresentation(image, 1.0)!)
-                
-                let now = round(NSDate().timeIntervalSince1970) // seconds
-                
-                let url = "\(docs)/\(now).jpg"
-                
-                if jpGimageData.writeToFile(url, atomically: true){
-                    // Add url to model
-                    self.value = url
-                }
-                
-            }
+            
+            let now = round(NSDate().timeIntervalSince1970) // seconds
+            
+            let url = "\(now).jpg"
+            
+            cache.set(value: image, key: url, success: {image in self.value = url})
+        
         }
         
     }
