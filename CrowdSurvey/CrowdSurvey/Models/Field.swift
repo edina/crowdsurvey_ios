@@ -211,10 +211,42 @@ class Field: Mappable {
             $0.title = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
-        }
-        <<< ImageRow() {
-            $0.title = "Choose Photo…"
             }
+            <<< ImageRow() {
+                $0.title = "Choose Photo…"
+                }.onChange({ row -> () in
+                    
+                    // Get image, save in documents and add url to model
+                    self.saveImage(row)
+                })
     }
+    
+    
+    func saveImage(row: ImageRow ){
+        if let image = row.value{
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                
+                // Path to user Documents directory
+                let docs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true) [0]
+                
+                let jpGimageData =  NSData(data: UIImageJPEGRepresentation(image, 1.0)!)
+                
+                let now = round(NSDate().timeIntervalSince1970) // seconds
+                
+                let url = "\(docs)/\(now).jpg"
+                
+                if jpGimageData.writeToFile(url, atomically: true){
+                    // Add url to model
+                    self.value = url
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+    
     
 }
