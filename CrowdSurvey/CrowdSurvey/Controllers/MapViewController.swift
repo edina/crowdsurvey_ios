@@ -11,10 +11,12 @@ import MapKit
 import CoreLocation
 import Alamofire
 import ObjectMapper
+import SwiftyJSON
 
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
+    var database: CBLDatabase!
     var survey: Survey?
     
     // MARK: - Outlets
@@ -40,7 +42,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         
+        self.setupMapView()
+        self.setupDatabase()
+        self.setupSurvey()
+    }
+    
+    func setupMapView(){
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -59,46 +68,64 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         overlay.canReplaceMapContent = true
         mapView.addOverlay(overlay, level: .AboveLabels)
         mapView.showsUserLocation = true
-        
-        createSurveyDocument()
-        
-        super.viewDidLoad()
     }
     
-    func createSurveyDocument(){
-        
+    func setupDatabase(){
         let manager = CBLManager.sharedInstance()
-        var database: CBLDatabase!
- 
+        
         do {
             try database = manager.databaseNamed("survey")
         } catch {
             print("Can't access database")
         }
-                
+    }
+    
+    func setupSurvey(){
         // retrieve JSON representing a survey
         // TODO: replace with correct url once we have a proxy to dlib-rainbow
-        let api_url = "https://rawgit.com/rgamez/accb2404e7f5ebad105c/raw/b309f8455a80842c24d84f087319ba363d1c4cc9/survey-proposal-arrrays-everywhere.json"
+        let survey_url = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/e65e1cc390d9809fda6503fc98d9c9b0a12ee7e1/"
         
-        Alamofire.request(.GET, api_url)
+        Alamofire.request(.GET, survey_url)
             .responseJSON { response in
-                if let json = response.result.value {
-//                    print("JSON: \(json)")
-                    
-                    let doc = database.createDocument()
-                    let docId = doc.documentID
-                    
-                    do{
-                        try doc.putProperties(json as! [String : AnyObject])
-                        print("Saved document id ", docId)
-                    }catch{
-                        print("error adding document")
+                if response.result.isSuccess {
+                    if let jsonData = response.result.value {
+                        let doc = self.getOrCreateDocument(jsonData)
+                        self.survey = Mapper<Survey>().map(doc.properties)
                     }
-                    
-                    self.survey = Mapper<Survey>().map(json)
-//                    print("\n \(self.survey!.description)")
+                } else {
+                    self.showAlert("Not found", message: "The survey you are trying to access isn't available.")
                 }
         }
+    }
+    
+    func getOrCreateDocument(jsonData: AnyObject) -> CBLDocument {
+        let json = JSON(jsonData)
+        let id = json["id"].string
+        var doc: CBLDocument!
+        
+        if let docId = id {
+                doc = self.database.documentWithID(docId)
+                do{
+                    try doc!.putProperties(jsonData as! [String : AnyObject])
+                    print("Saved document id ", docId)
+                }catch{
+                    print("Error adding document")
+                }
+        } else {
+            self.showAlert("Storage error", message: "The survey you are trying to access can't be saved to your device.")
+        }
+        
+        return doc
+    }
+    
+    func showAlert(title: String, message: String){
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+
     }
     
     
