@@ -118,9 +118,11 @@ class Field: Mappable {
             $0.title = ""
             $0.placeholder = "Enter answer…"
             }.onChange { row in
-                
-                print(row.value)
-                self.value = row.value!
+
+                if let value = row.value{
+                    print(value)
+                    self.value = value
+                }
                 
                 // TODO: Need to work out a way of adding to the record model rather than survey
             }
@@ -148,11 +150,13 @@ class Field: Mappable {
                         $0.value = Constants.SelectPlaceHolder
                         $0.selectorTitle = ""
                     }.onChange { row in
+                        
+                        if let value = row.value{
+                            print(value)
+                            self.value = value
+                        }
                             
-                            print(row.value)
-                            self.value = row.value!
-                            
-                            // TODO: Need to work out a way of adding to the record model rather than survey
+                    // TODO: Need to work out a way of adding to the record model rather than survey
                     }
             }else{
                 // TODO: Dictionary
@@ -188,12 +192,15 @@ class Field: Mappable {
                         $0.value = [Constants.SelectPlaceHolder]
                         }.onChange { row in
                             
-                            // Ensure that the 'Select…' placeholder is removed
-                            row.value?.remove(Constants.SelectPlaceHolder)
                             
-                            print(row.value)
-                            self.value = row.value!
-                            
+                            if let value = row.value{
+                                print(value)
+                                // Ensure that the 'Select…' placeholder is removed
+                                row.value?.remove(Constants.SelectPlaceHolder)
+                                
+                                self.value = value
+                            }
+          
                             // TODO: Need to work out a way of adding to the record model rather than survey
                 }
             }else{
@@ -218,15 +225,16 @@ class Field: Mappable {
                 }.onChange({ row -> () in
                     // Get image, save in documents and add url to model
                     self.saveImage(row)
+                    
                 })
     }
     
     
     func saveImage(row: ImageRow ){
-        
-        let cache = Shared.imageCache
-        
+ 
         if let image = row.value{
+            
+            let cache = Shared.imageCache
             
             let now = round(NSDate().timeIntervalSince1970) // seconds
             
