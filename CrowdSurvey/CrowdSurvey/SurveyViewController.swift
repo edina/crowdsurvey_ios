@@ -23,6 +23,18 @@ class SurveyViewController: FormViewController {
         form = survey!.form()
     }
     
+    @IBAction func save(sender: UIBarButtonItem) {
+        
+        // Perform form validation
+        if survey!.validateFormEntries(){
+            
+            // Append to records
+            survey!.records!.append(Record(survey: survey!))
+        }
+        
+        // All valid so we can unwind to the MapViewController
+        performSegueWithIdentifier("saveSurvey", sender: self)
+    }
     
     /*
     // MARK: - Navigation

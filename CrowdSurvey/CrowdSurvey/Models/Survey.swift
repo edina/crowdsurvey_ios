@@ -58,5 +58,32 @@ class Survey: Mappable, CustomStringConvertible {
         }
                 
         return form
-    } 
+    }
+    
+    // Check all required Fields have been submitted
+    func validateFormEntries() -> Bool{
+        
+        var valid = true
+        
+        if let fields = self.fields {
+            for Field in fields{
+             
+                if Field.required?.boolValue ?? false{
+                    print("required")
+                    
+                    if let value = Field.value{
+                        print("value exists")
+                        print(value)
+                    }else{
+                        // Check required field has been completed
+                        valid = false
+                        break
+                    }
+                    
+                    
+                }
+            }
+        }
+        return valid
+    }
 }
