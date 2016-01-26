@@ -31,6 +31,21 @@ class CrowdSurveyUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.buttons["+"].tap()
+        
+        let cellCount = app.tables.cells.count
+        XCTAssertEqual(cellCount, 26)
+        
+        let tablesQuery = app.tables
+        let cell = tablesQuery.textFields["Enter answer…"]
+        
+        cell.tap()
+  
+        cell.typeText("Some test text")
+        app.toolbars.buttons["Done"].tap()
+        
     }
     
 }
