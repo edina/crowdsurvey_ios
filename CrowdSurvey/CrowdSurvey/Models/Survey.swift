@@ -68,14 +68,14 @@ class Survey: Mappable, CustomStringConvertible {
         if let fields = self.fields {
             for Field in fields{
              
+                // Check required field has been completed
                 if Field.required?.boolValue ?? false{
                     print("required")
                     
                     if let value = Field.value{
                         print("value exists")
-                        print(value)
+                        print(Field.value!)
                     }else{
-                        // Check required field has been completed
                         valid = false
                         break
                     }

@@ -114,18 +114,38 @@ class Field: Mappable {
         }
         
         // Create text field
-          <<< TextRow () {
-            $0.title = ""
-            $0.placeholder = "Enter answer…"
-            }.onChange { row in
+            <<< TextRow () {
+                $0.title = ""
+                $0.placeholder = "Enter answer…"
+                }.onChange {[weak self] row in
+     
+                    if let value = row.value{
+                        print(value)
+                        self?.value = value
+                        
+                        // Make cell green?
+                        row.cell!.backgroundColor = .greenColor()
+                        
+                    }
+                    // TODO: Need to work out a way of adding to the record model rather than survey
+                    
+                } .onCellUnHighlight { [weak self] cell, row  in
+                    
+                    // Note that for onCellUnHighlight to be called we have to also implement onCellHighlight below
+                    if row.value == nil{
+                        if self?.required?.boolValue ?? false{
+                            let myRedColor = UIColor(
+                                red:1,
+                                green:0.1,
+                                blue:0.1,
+                                alpha:0.1)
+                            
+                            row.cell!.backgroundColor = myRedColor
+                        }
+                    }
 
-                if let value = row.value{
-                    print(value)
-                    self.value = value
-                }
-                
-                // TODO: Need to work out a way of adding to the record model rather than survey
-            }
+        }.onCellHighlight { cell, row in
+        }
     }
     
     func addRadioToForm(var form: Form){
@@ -149,11 +169,11 @@ class Field: Mappable {
                         $0.options = optionsArray
                         $0.value = Constants.SelectPlaceHolder
                         $0.selectorTitle = ""
-                    }.onChange { row in
+                    }.onChange { [weak self] row in
                         
                         if let value = row.value{
                             print(value)
-                            self.value = value
+                            self?.value = value
                         }
                             
                     // TODO: Need to work out a way of adding to the record model rather than survey
@@ -190,7 +210,7 @@ class Field: Mappable {
                         $0.options = optionsArray
                         $0.selectorTitle = ""
                         $0.value = [Constants.SelectPlaceHolder]
-                        }.onChange { row in
+                        }.onChange { [weak self] row in
                             
                             
                             if let value = row.value{
@@ -198,7 +218,7 @@ class Field: Mappable {
                                 // Ensure that the 'Select…' placeholder is removed
                                 row.value?.remove(Constants.SelectPlaceHolder)
                                 
-                                self.value = value
+                                self?.value = value
                             }
           
                             // TODO: Need to work out a way of adding to the record model rather than survey
@@ -222,9 +242,9 @@ class Field: Mappable {
             }
             <<< ImageRow() {
                 $0.title = "Choose Photo…"
-                }.onChange({ row -> () in
+                }.onChange({[weak self] row -> () in
                     // Get image, save in documents and add url to model
-                    self.saveImage(row)
+                    self?.saveImage(row)
                     
                 })
     }
