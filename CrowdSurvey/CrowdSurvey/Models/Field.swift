@@ -20,8 +20,19 @@ class Field: Mappable {
     var properties: [String: AnyObject]?
     var required: Bool?
     var persistent: Bool?
+   
+    let requiredRedColour = UIColor(
+        red:1,
+        green:0.1,
+        blue:0.1,
+        alpha:0.1)
     
-        
+    let validGreenColour = UIColor(
+        red:0.1,
+        green:1,
+        blue:0.1,
+        alpha:0.1)
+    
     // MARK: - Constants
     
     private struct Constants {
@@ -123,8 +134,8 @@ class Field: Mappable {
                         print(value)
                         self?.value = value
                         
-                        // Make cell green?
-                        row.cell!.backgroundColor = .greenColor()
+                        // Change cell background to green
+                        row.cell!.backgroundColor = self?.validGreenColour
                         
                     }
                     // TODO: Need to work out a way of adding to the record model rather than survey
@@ -134,18 +145,13 @@ class Field: Mappable {
                     // Note that for onCellUnHighlight to be called we have to also implement onCellHighlight below
                     if row.value == nil{
                         if self?.required?.boolValue ?? false{
-                            let myRedColor = UIColor(
-                                red:1,
-                                green:0.1,
-                                blue:0.1,
-                                alpha:0.1)
-                            
-                            row.cell!.backgroundColor = myRedColor
+                            row.cell!.backgroundColor = self?.requiredRedColour
                         }
                     }
 
-        }.onCellHighlight { cell, row in
-        }
+                }.onCellHighlight { cell, row in
+                    //Has to be implemented so above gets called
+                }
     }
     
     func addRadioToForm(var form: Form){
