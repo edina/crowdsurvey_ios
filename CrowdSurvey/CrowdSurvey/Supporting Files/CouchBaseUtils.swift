@@ -42,26 +42,51 @@ class CouchBaseUtils {
                     print("Error saving document id")
                 }
             }
-            if let document = document {
-                self.setSurveyDocumentToActive(document)
-            }
         }
         
         return document
     }
     
     
-    func setSurveyDocumentToActive(document: CBLDocument){
-        if let isActive = document.propertyForKey("active"){
-            print("Doc active status = \(isActive)")
-        } else {
-            if var updatedProperties = document.properties {
-                updatedProperties["active"] = true
-                do {
-                    try document.putProperties(updatedProperties)
-                } catch {
-                    print("Error updating document")
+    func removeAllActiveFlags(){
+        let query = self.database.createAllDocumentsQuery()
+        query.allDocsMode = CBLAllDocsMode.AllDocs
+        do {
+            let result = try query.run()
+            while let row = result.nextRow() {
+                if let document = row.document {
+                    if let properties = document.properties {
+                        print(properties["active"])
+                    }
+                    removeActiveFlag(document)
                 }
+            }
+        } catch {
+            print("Error retrieving documents")
+        }
+    }
+    
+    
+    func setActiveFlag(document: CBLDocument){
+        self.removeAllActiveFlags()
+        if var updatedProperties = document.properties {
+            updatedProperties["active"] = true
+            do {
+                try document.putProperties(updatedProperties)
+            } catch {
+                print("Error updating document")
+            }
+        }
+    }
+    
+    
+    func removeActiveFlag(document: CBLDocument){
+        if var updatedProperties = document.properties {
+            updatedProperties["active"] = false
+            do {
+                try document.putProperties(updatedProperties)
+            } catch {
+                print("Error updating document")
             }
         }
     }

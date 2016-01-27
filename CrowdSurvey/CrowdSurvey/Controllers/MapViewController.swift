@@ -20,7 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let surveyApiBaseUrl = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/76b67ebff4433ab1f4943be61c635e23ffa49806/"
     let defaultSurveyId = "566ed9b30351d817555158cd"
     
-    var cbu: CouchBaseUtils?
+    var database: CouchBaseUtils?
     var survey: Survey?
     var surveyId: String?
     
@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.newSurvey.enabled = false
 
         self.setupMapView()
-        self.cbu = self.setupDatabase()
+        self.database = self.setupDatabase()
         self.setupSurvey()
     }
     
@@ -99,8 +99,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             .responseJSON { response in
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
-                        if let cbu = self.cbu {
-                            if let doc = cbu.getOrCreateDocument(jsonData) {
+                        if let database = self.database {
+                            if let doc = database.getOrCreateDocument(jsonData) {
+                                database.setActiveFlag(doc)
                                 self.survey = Mapper<Survey>().map(doc.properties)
                             }
                         }
