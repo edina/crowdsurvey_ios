@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CrowdSurvey/Supporting Files/CouchBaseUtils.swift">
+   </FileRef>
+   <FileRef
       location = "group:CrowdSurvey.xcodeproj">
    </FileRef>
    <FileRef

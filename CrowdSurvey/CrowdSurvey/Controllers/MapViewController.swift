@@ -16,7 +16,7 @@ import SwiftyJSON
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
-    var database: CBLDatabase!
+    var cbu: CouchBaseUtils?
     var survey: Survey?
     
     // MARK: - Outlets
@@ -49,7 +49,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.newSurvey.enabled = false
 
         self.setupMapView()
-        self.setupDatabase()
+        self.cbu = self.setupDatabase()
         self.setupSurvey()
     }
     
@@ -74,14 +74,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.showsUserLocation = true
     }
     
-    func setupDatabase(){
-        let manager = CBLManager.sharedInstance()
-        
-        do {
-            try database = manager.databaseNamed("survey")
-        } catch {
-            print("Can't access database")
-        }
+    func setupDatabase() -> CouchBaseUtils {
+        return CouchBaseUtils(databaseName: "survey")
     }
     
     func setupSurvey(){
@@ -93,8 +87,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             .responseJSON { response in
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
-                        let doc = self.getOrCreateDocument(jsonData)
-                        self.survey = Mapper<Survey>().map(doc.properties)
+                        if let cbu = self.cbu {
+                            if let doc = cbu.getOrCreateDocument(jsonData) {
+                                self.survey = Mapper<Survey>().map(doc.properties)
+                            }
+                        }
                         self.newSurvey.hidden = false
                         self.newSurvey.enabled = true
                     }
@@ -102,29 +99,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     self.showAlert("Not found", message: "The survey you are trying to access isn't available.")
                 }
         }
-    }
-    
-    func getOrCreateDocument(jsonData: AnyObject) -> CBLDocument {
-        let json = JSON(jsonData)
-        let id = json["id"].string
-        var doc: CBLDocument!
-        
-        if let docId = id {
-            doc = self.database.existingDocumentWithID(docId)
-            if doc == nil {
-                doc = self.database.documentWithID(docId)
-                do{
-                    try doc!.putProperties(jsonData as! [String : AnyObject])
-                    print("Saved document id ", docId)
-                }catch{
-                    print("Error adding document")
-                }
-            }
-        } else {
-            self.showAlert("Storage error", message: "The survey you are trying to access can't be saved to your device.")
-        }
-        
-        return doc
     }
     
     func showAlert(title: String, message: String){
