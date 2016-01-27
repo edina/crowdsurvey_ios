@@ -35,16 +35,13 @@ class SurveyViewController: FormViewController {
             performSegueWithIdentifier("saveSurvey", sender: self)
         }else{
             
-            let alert = UIAlertController(title: "Survey Incomplete", message: "All required fields have not been completed", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
             
             // add an action (button)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             
             // show the alert
             self.presentViewController(alert, animated: true, completion: nil)
-            
-            
-
         }
         
       
