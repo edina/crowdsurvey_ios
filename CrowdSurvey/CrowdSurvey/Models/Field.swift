@@ -179,12 +179,25 @@ class Field: Mappable {
                         
                         if let value = row.value{
                             print(value)
-                            self?.value = value
-                            // Change cell background to green
-                            row.cell!.backgroundColor = self?.validGreenColour
+                            
+                            if(value == Constants.SelectPlaceHolder){
+                                // required
+                                if self?.required?.boolValue ?? false{
+                                    row.cell!.backgroundColor = self?.requiredRedColour
+                                }
+                            }else{
+                                self?.value = value
+                                // Change cell background to green
+                                row.cell!.backgroundColor = self?.validGreenColour
+                            }
+                            
+                            
                         }else{
                             if self?.required?.boolValue ?? false{
                                 row.cell!.backgroundColor = self?.requiredRedColour
+                                row.value = Constants.SelectPlaceHolder
+                            }else{
+                                row.cell!.backgroundColor = .whiteColor()
                             }
                         }
                             
