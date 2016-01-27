@@ -193,12 +193,13 @@ class Field: Mappable {
                             
                             
                         }else{
+                            // Only highlight if required
                             if self?.required?.boolValue ?? false{
                                 row.cell!.backgroundColor = self?.requiredRedColour
-                                row.value = Constants.SelectPlaceHolder
                             }else{
                                 row.cell!.backgroundColor = .whiteColor()
                             }
+                            row.value = Constants.SelectPlaceHolder
                         }
                             
                     // TODO: Need to work out a way of adding to the record model rather than survey
@@ -297,7 +298,10 @@ class Field: Mappable {
             
             let url = "\(now).jpg"
             
-            cache.set(value: image, key: url, success: {image in self.value = url})
+            cache.set(value: image, key: url, success: {image in
+                self.value = url
+                row.cell!.backgroundColor = self.validGreenColour
+            })
         
         }
         
