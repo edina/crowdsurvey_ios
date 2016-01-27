@@ -29,7 +29,7 @@ class Field: Mappable {
     
     let validGreenColour = UIColor(
         red:0.1,
-        green:1,
+        green:0.8,
         blue:0.1,
         alpha:0.1)
     
@@ -180,10 +180,16 @@ class Field: Mappable {
                         if let value = row.value{
                             print(value)
                             self?.value = value
+                            // Change cell background to green
+                            row.cell!.backgroundColor = self?.validGreenColour
+                        }else{
+                            if self?.required?.boolValue ?? false{
+                                row.cell!.backgroundColor = self?.requiredRedColour
+                            }
                         }
                             
                     // TODO: Need to work out a way of adding to the record model rather than survey
-                    }
+                }
             }else{
                 // TODO: Dictionary
                 
@@ -220,15 +226,27 @@ class Field: Mappable {
                             
                             
                             if let value = row.value{
+                              
                                 print(value)
                                 // Ensure that the 'Select…' placeholder is removed
                                 row.value?.remove(Constants.SelectPlaceHolder)
                                 
                                 self?.value = value
+                                
+                                if value.count == 0{
+                                    row.cell!.backgroundColor = .whiteColor()
+                                    if self?.required?.boolValue ?? false{
+                                        row.cell!.backgroundColor = self?.requiredRedColour
+                                    }
+                                }else{
+                                    // Change cell background to green
+                                    row.cell!.backgroundColor = self?.validGreenColour
+                                }
+                                
                             }
           
                             // TODO: Need to work out a way of adding to the record model rather than survey
-                }
+                        }
             }else{
                 // TODO: Dictionary
                 
