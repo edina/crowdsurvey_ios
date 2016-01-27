@@ -42,9 +42,28 @@ class CouchBaseUtils {
                     print("Error saving document id")
                 }
             }
+            if let document = document {
+                self.setSurveyDocumentToActive(document)
+            }
         }
         
         return document
+    }
+    
+    
+    func setSurveyDocumentToActive(document: CBLDocument){
+        if let isActive = document.propertyForKey("active"){
+            print("Doc active status = \(isActive)")
+        } else {
+            if var updatedProperties = document.properties {
+                updatedProperties["active"] = true
+                do {
+                    try document.putProperties(updatedProperties)
+                } catch {
+                    print("Error updating document")
+                }
+            }
+        }
     }
     
 }
