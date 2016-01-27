@@ -30,10 +30,24 @@ class SurveyViewController: FormViewController {
             
             // Append to records
             survey!.records!.append(Record(survey: survey!))
+            
+            // All valid so we can unwind to the MapViewController
+            performSegueWithIdentifier("saveSurvey", sender: self)
+        }else{
+            
+            let alert = UIAlertController(title: "Survey Incomplete", message: "All required fields have not been completed", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            
+            // show the alert
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            
+
         }
         
-        // All valid so we can unwind to the MapViewController
-        performSegueWithIdentifier("saveSurvey", sender: self)
+      
     }
     
     /*

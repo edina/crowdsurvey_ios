@@ -21,18 +21,6 @@ class Field: Mappable {
     var required: Bool?
     var persistent: Bool?
    
-    let requiredRedColour = UIColor(
-        red:1,
-        green:0.1,
-        blue:0.1,
-        alpha:0.1)
-    
-    let validGreenColour = UIColor(
-        red:0.1,
-        green:0.8,
-        blue:0.1,
-        alpha:0.1)
-    
     // MARK: - Constants
     
     private struct Constants {
@@ -45,6 +33,16 @@ class Field: Mappable {
         static let Warning = "warning"
         static let Range = "range"
         static let SelectPlaceHolder = "Select…"
+        static let validGreenColour = UIColor(
+            red:0.1,
+            green:0.8,
+            blue:0.1,
+            alpha:0.1)
+        static let requiredRedColour = UIColor(
+            red:1,
+            green:0.1,
+            blue:0.1,
+            alpha:0.1)
     }
 
     
@@ -135,7 +133,7 @@ class Field: Mappable {
                         self?.value = value
                         
                         // Change cell background to green
-                        row.cell!.backgroundColor = self?.validGreenColour
+                        row.cell!.backgroundColor = Constants.validGreenColour
                         
                     }
                     // TODO: Need to work out a way of adding to the record model rather than survey
@@ -145,13 +143,17 @@ class Field: Mappable {
                     // Note that for onCellUnHighlight to be called we have to also implement onCellHighlight below
                     if row.value == nil{
                         if self?.required?.boolValue ?? false{
-                            row.cell!.backgroundColor = self?.requiredRedColour
+                            row.cell!.backgroundColor = Constants.requiredRedColour
                         }
                     }
 
                 }.onCellHighlight { cell, row in
                     //Has to be implemented so above gets called
-                }
+                }.cellSetup { [weak self] cell, row in
+                    if self?.required?.boolValue ?? false{
+                        row.cell!.backgroundColor = Constants.requiredRedColour
+                    }
+        }
     }
     
     func addRadioToForm(var form: Form){
@@ -183,19 +185,19 @@ class Field: Mappable {
                             if(value == Constants.SelectPlaceHolder){
                                 // required
                                 if self?.required?.boolValue ?? false{
-                                    row.cell!.backgroundColor = self?.requiredRedColour
+                                    row.cell!.backgroundColor = Constants.requiredRedColour
                                 }
                             }else{
                                 self?.value = value
                                 // Change cell background to green
-                                row.cell!.backgroundColor = self?.validGreenColour
+                                row.cell!.backgroundColor = Constants.validGreenColour
                             }
                             
                             
                         }else{
                             // Only highlight if required
                             if self?.required?.boolValue ?? false{
-                                row.cell!.backgroundColor = self?.requiredRedColour
+                                row.cell!.backgroundColor = Constants.requiredRedColour
                             }else{
                                 row.cell!.backgroundColor = .whiteColor()
                             }
@@ -203,6 +205,10 @@ class Field: Mappable {
                         }
                             
                     // TODO: Need to work out a way of adding to the record model rather than survey
+                        }.cellSetup { [weak self] cell, row in
+                            if self?.required?.boolValue ?? false{
+                                row.cell!.backgroundColor = Constants.requiredRedColour
+                            }
                 }
             }else{
                 // TODO: Dictionary
@@ -250,17 +256,21 @@ class Field: Mappable {
                                 if value.count == 0{
                                     row.cell!.backgroundColor = .whiteColor()
                                     if self?.required?.boolValue ?? false{
-                                        row.cell!.backgroundColor = self?.requiredRedColour
+                                        row.cell!.backgroundColor = Constants.requiredRedColour
                                     }
                                 }else{
                                     // Change cell background to green
-                                    row.cell!.backgroundColor = self?.validGreenColour
+                                    row.cell!.backgroundColor = Constants.validGreenColour
                                 }
                                 
                             }
           
                             // TODO: Need to work out a way of adding to the record model rather than survey
-                        }
+                        }.cellSetup { [weak self] cell, row in
+                            if self?.required?.boolValue ?? false{
+                                row.cell!.backgroundColor = Constants.requiredRedColour
+                            }
+                }
             }else{
                 // TODO: Dictionary
                 
@@ -284,7 +294,12 @@ class Field: Mappable {
                     // Get image, save in documents and add url to model
                     self?.saveImage(row)
                     
-                })
+                    }).cellSetup { [weak self] cell, row in
+                        if self?.required?.boolValue ?? false{
+                            row.cell!.backgroundColor = Constants.requiredRedColour
+                        }
+        }
+        
     }
     
     
@@ -300,7 +315,7 @@ class Field: Mappable {
             
             cache.set(value: image, key: url, success: {image in
                 self.value = url
-                row.cell!.backgroundColor = self.validGreenColour
+                row.cell!.backgroundColor = Constants.validGreenColour
             })
         
         }
