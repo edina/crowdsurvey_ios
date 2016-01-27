@@ -47,13 +47,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK:- Url Scheme 
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        // Handle urlscheme to retrieve survey id and redirect to MapViewController
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Map", bundle: nil)
+        let mapView = mainStoryboard.instantiateViewControllerWithIdentifier("MapView") as! MapViewController
         
-        print("url recieved: \(url)");
-        print("scheme: \(url.scheme)");
-        print("query string: \(url.query)");
-        print("host: \(url.host)");
+        if let queryItems = NSURLComponents(string: url.absoluteString)?.queryItems {
+            for item in queryItems {
+                if item.name == "id" {
+                    print("Survey id : \(item.value)")
+                    mapView.surveyId = item.value
+                }
+            }
+        }
         
-        // handle the above in the app here
+        let rootViewController = self.window!.rootViewController as! UINavigationController
+        rootViewController.setViewControllers([mapView], animated: true)
         
         return true
     }

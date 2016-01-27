@@ -16,8 +16,13 @@ import SwiftyJSON
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
+    // TODO: replace with correct url once we have a proxy to dlib-rainbow
+    let surveyApiBaseUrl = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/76b67ebff4433ab1f4943be61c635e23ffa49806/"
+    let defaultSurveyId = "566ed9b30351d817555158cd"
+    
     var cbu: CouchBaseUtils?
     var survey: Survey?
+    var surveyId: String?
     
     // MARK: - Outlets
     
@@ -79,11 +84,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func setupSurvey(){
-        // retrieve JSON representing a survey
-        // TODO: replace with correct url once we have a proxy to dlib-rainbow
-        let survey_url = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/e65e1cc390d9809fda6503fc98d9c9b0a12ee7e1/crowd-survey-survey-record.json"
+        var surveyUrl: String!
         
-        Alamofire.request(.GET, survey_url)
+        if let surveyId = self.surveyId {
+            surveyUrl = "\(self.surveyApiBaseUrl)\(surveyId).json"
+        } else {
+            // no survey id specified so load default survey
+            self.showAlert("No survey specified", message: "Loading the default survey.")
+            surveyUrl = "\(self.surveyApiBaseUrl)\(self.defaultSurveyId).json"
+        }
+        
+        // retrieve JSON representing a survey
+        Alamofire.request(.GET, surveyUrl)
             .responseJSON { response in
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
