@@ -15,35 +15,22 @@ class Field: Mappable {
     
     var id: String?
     var label: String?
-    var value: AnyObject? // String or [String]
+    
+    
+    var value: AnyObject?{
+        // String or [String]
+        didSet {
+            
+            print("value has changed")
+            // save in couchdb - send notification to survey controller
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+        }
+    }
+    
     var type: String?
     var properties: [String: AnyObject]?
     var required: Bool?
     var persistent: Bool?
-   
-    // MARK: - Constants
-    
-    private struct Constants {
-        static let Text = "text"
-        static let Checkbox = "checkbox"
-        static let Radio = "radio"
-        static let Image = "image"
-        static let Select = "select"
-        static let Dtree = "dtree"
-        static let Warning = "warning"
-        static let Range = "range"
-        static let SelectPlaceHolder = "Select…"
-        static let validGreenColour = UIColor(
-            red:0.1,
-            green:0.8,
-            blue:0.1,
-            alpha:0.1)
-        static let requiredRedColour = UIColor(
-            red:1,
-            green:0.1,
-            blue:0.1,
-            alpha:0.1)
-    }
 
     
     // MARK: - ObjectMapper
@@ -77,32 +64,32 @@ class Field: Mappable {
         
         switch (type!)
         {
-        case Constants.Text:
+        case Constants.Form.Text:
             print("text field")
             addTextToForm(form)
             
-        case Constants.Radio:
+        case Constants.Form.Radio:
             print("radio field")
             addRadioToForm(form)
             
-        case Constants.Image:
+        case Constants.Form.Image:
             
             print("image field")
             addImageToForm(form)
             
-        case Constants.Dtree:
+        case Constants.Form.Dtree:
             
             print("dtree field")
-        case Constants.Warning:
+        case Constants.Form.Warning:
             
             print("warning field")
-        case Constants.Select:
+        case Constants.Form.Select:
             
             print("Select field")
-        case Constants.Range:
+        case Constants.Form.Range:
             
             print("range field")
-        case Constants.Checkbox:
+        case Constants.Form.Checkbox:
             
             print("checkbox field")
             addCheckBoxToForm(form)
@@ -133,7 +120,7 @@ class Field: Mappable {
                         self?.value = value
                         
                         // Change cell background to green
-                        row.cell!.backgroundColor = Constants.validGreenColour
+                        row.cell!.backgroundColor = Constants.Form.validGreenColour
                         
                     }
                     // TODO: Need to work out a way of adding to the record model rather than survey
@@ -143,7 +130,7 @@ class Field: Mappable {
                     // Note that for onCellUnHighlight to be called we have to also implement onCellHighlight below
                     if row.value == nil{
                         if self?.required?.boolValue ?? false{
-                            row.cell!.backgroundColor = Constants.requiredRedColour
+                            row.cell!.backgroundColor = Constants.Form.requiredRedColour
                         }
                     }
 
@@ -151,7 +138,7 @@ class Field: Mappable {
                     //Has to be implemented so above gets called
                 }.cellSetup { [weak self] cell, row in
                     if self?.required?.boolValue ?? false{
-                        row.cell!.backgroundColor = Constants.requiredRedColour
+                        row.cell!.backgroundColor = Constants.Form.requiredRedColour
                     }
         }
     }
@@ -175,39 +162,39 @@ class Field: Mappable {
                     PushRow<String>() {
                         $0.title = ""
                         $0.options = optionsArray
-                        $0.value = Constants.SelectPlaceHolder
+                        $0.value = Constants.Form.SelectPlaceHolder
                         $0.selectorTitle = ""
                     }.onChange { [weak self] row in
                         
                         if let value = row.value{
                             print(value)
                             
-                            if(value == Constants.SelectPlaceHolder){
+                            if(value == Constants.Form.SelectPlaceHolder){
                                 // required
                                 if self?.required?.boolValue ?? false{
-                                    row.cell!.backgroundColor = Constants.requiredRedColour
+                                    row.cell!.backgroundColor = Constants.Form.requiredRedColour
                                 }
                             }else{
                                 self?.value = value
                                 // Change cell background to green
-                                row.cell!.backgroundColor = Constants.validGreenColour
+                                row.cell!.backgroundColor = Constants.Form.validGreenColour
                             }
                             
                             
                         }else{
                             // Only highlight if required
                             if self?.required?.boolValue ?? false{
-                                row.cell!.backgroundColor = Constants.requiredRedColour
+                                row.cell!.backgroundColor = Constants.Form.requiredRedColour
                             }else{
                                 row.cell!.backgroundColor = .whiteColor()
                             }
-                            row.value = Constants.SelectPlaceHolder
+                            row.value = Constants.Form.SelectPlaceHolder
                         }
                             
                     // TODO: Need to work out a way of adding to the record model rather than survey
                         }.cellSetup { [weak self] cell, row in
                             if self?.required?.boolValue ?? false{
-                                row.cell!.backgroundColor = Constants.requiredRedColour
+                                row.cell!.backgroundColor = Constants.Form.requiredRedColour
                             }
                 }
             }else{
@@ -241,7 +228,7 @@ class Field: Mappable {
                         $0.title = ""
                         $0.options = optionsArray
                         $0.selectorTitle = ""
-                        $0.value = [Constants.SelectPlaceHolder]
+                        $0.value = [Constants.Form.SelectPlaceHolder]
                         }.onChange { [weak self] row in
                             
                             
@@ -249,18 +236,18 @@ class Field: Mappable {
                               
                                 print(value)
                                 // Ensure that the 'Select…' placeholder is removed
-                                row.value?.remove(Constants.SelectPlaceHolder)
+                                row.value?.remove(Constants.Form.SelectPlaceHolder)
                                 
                                 self?.value = value
                                 
                                 if value.count == 0{
                                     row.cell!.backgroundColor = .whiteColor()
                                     if self?.required?.boolValue ?? false{
-                                        row.cell!.backgroundColor = Constants.requiredRedColour
+                                        row.cell!.backgroundColor = Constants.Form.requiredRedColour
                                     }
                                 }else{
                                     // Change cell background to green
-                                    row.cell!.backgroundColor = Constants.validGreenColour
+                                    row.cell!.backgroundColor = Constants.Form.validGreenColour
                                 }
                                 
                             }
@@ -268,7 +255,7 @@ class Field: Mappable {
                             // TODO: Need to work out a way of adding to the record model rather than survey
                         }.cellSetup { [weak self] cell, row in
                             if self?.required?.boolValue ?? false{
-                                row.cell!.backgroundColor = Constants.requiredRedColour
+                                row.cell!.backgroundColor = Constants.Form.requiredRedColour
                             }
                 }
             }else{
@@ -296,7 +283,7 @@ class Field: Mappable {
                     
                     }).cellSetup { [weak self] cell, row in
                         if self?.required?.boolValue ?? false{
-                            row.cell!.backgroundColor = Constants.requiredRedColour
+                            row.cell!.backgroundColor = Constants.Form.requiredRedColour
                         }
         }
         
@@ -315,7 +302,7 @@ class Field: Mappable {
             
             cache.set(value: image, key: url, success: {image in
                 self.value = url
-                row.cell!.backgroundColor = Constants.validGreenColour
+                row.cell!.backgroundColor = Constants.Form.validGreenColour
             })
         
         }

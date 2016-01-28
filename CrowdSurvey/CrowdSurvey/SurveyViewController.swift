@@ -17,6 +17,14 @@ class SurveyViewController: FormViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Listen out for Field changing
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "listenForFieldChange:", name:Constants.Notifications.FieldUpdatedNotification, object: nil)
+    }
+    
+    func listenForFieldChange(notification: NSNotification){
+        // A field has changed so the survey should be resaved
+        print("here")
     }
     
     func setupForm(){
