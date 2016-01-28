@@ -24,7 +24,8 @@ class SurveyViewController: FormViewController {
     
     func listenForFieldChange(notification: NSNotification){
         // A field has changed so the survey should be resaved
-        print("here")
+        print("Field change notification")
+        CouchBaseUtils(databaseName: "survey").saveUpdatedSurvey((self.survey?.jsonDict())!)
     }
     
     func setupForm(){

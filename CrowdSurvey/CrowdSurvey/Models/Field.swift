@@ -20,10 +20,9 @@ class Field: Mappable {
     var value: AnyObject?{
         // String or [String]
         didSet {
-            
-            print("value has changed")
+            //            print("value has changed")
             // save in couchdb - send notification to survey controller
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+            //            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
         }
     }
     
@@ -119,6 +118,9 @@ class Field: Mappable {
                         print(value)
                         self?.value = value
                         
+                        // Notify survey controller that a change has to be save to couchDB
+                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+
                         // Change cell background to green
                         row.cell!.backgroundColor = Constants.Form.validGreenColour
                         

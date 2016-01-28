@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 import Eureka	
+import SwiftyJSON
 
 class Survey: Mappable, CustomStringConvertible {
     
@@ -40,6 +41,10 @@ class Survey: Mappable, CustomStringConvertible {
         }
     }
     
+    // Get json representation of object graph
+    func jsonDict() -> [String : AnyObject]  {
+        return Mapper().toJSON(self)
+    }
     
     // MARK: - Form
     
