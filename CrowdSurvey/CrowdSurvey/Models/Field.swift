@@ -15,7 +15,7 @@ class Field: Mappable {
     
     var id: String?
     var label: String?
-    
+    let notificationCentre = NSNotificationCenter.defaultCenter()
     
     var value: AnyObject?{
         // String or [String]
@@ -119,7 +119,7 @@ class Field: Mappable {
                         self?.value = value
                         
                         // Notify survey controller that a change has to be save to couchDB
-                        NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+                        self?.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
 
                         // Change cell background to green
                         row.cell!.backgroundColor = Constants.Form.validGreenColour
@@ -178,6 +178,7 @@ class Field: Mappable {
                                 }
                             }else{
                                 self?.value = value
+                                
                                 // Change cell background to green
                                 row.cell!.backgroundColor = Constants.Form.validGreenColour
                             }
@@ -304,6 +305,10 @@ class Field: Mappable {
             
             cache.set(value: image, key: url, success: {image in
                 self.value = url
+                
+                // Update CouchDb
+                self.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+                
                 row.cell!.backgroundColor = Constants.Form.validGreenColour
             })
         
