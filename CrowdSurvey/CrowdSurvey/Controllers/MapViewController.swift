@@ -17,8 +17,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     let locationManager = CLLocationManager()
     // TODO: replace with correct url once we have a proxy to dlib-rainbow
-    let surveyApiBaseUrl = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/76b67ebff4433ab1f4943be61c635e23ffa49806/"
-    let defaultSurveyId = "566ed9b30351d817555158cd"
+    let surveyApiBaseUrl = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/fb568a1b602963d3af01880c57f0c4caf2053325/"
+    let defaultSurveyId = "566ed9b30351d817555158ce"
     
     var database: CouchBaseUtils?
     var survey: Survey?
