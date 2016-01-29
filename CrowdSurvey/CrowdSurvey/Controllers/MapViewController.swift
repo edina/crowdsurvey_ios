@@ -126,8 +126,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             message: message,
             preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-
+        if let navigationController = self.navigationController {
+            navigationController.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     
