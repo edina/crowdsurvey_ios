@@ -38,7 +38,9 @@ class SurveyViewController: FormViewController {
         if survey!.validateFormEntries(){
             
             // Append to records
-            survey!.records!.append(Record(survey: survey!))
+            let record  = Record(survey: survey!)
+            survey!.records!.append(record)
+            CouchBaseUtils(databaseName: "survey").saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
             
             // All valid so we can unwind to the MapViewController
             performSegueWithIdentifier("saveSurvey", sender: self)

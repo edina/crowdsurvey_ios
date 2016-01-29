@@ -28,13 +28,15 @@ class Record: Mappable, CustomStringConvertible {
         self.id = "SOME_AUTO_GENERATED_ID"
         self.name = "SOME_AUTO_GENERATED_NAME"
         self.editor = survey.id
-        self.fields = survey.fields
-        for field in self.fields! {
-            field.persistent = nil
-            field.properties = nil
-            field.required = nil
-            field.type = nil
+
+        
+        // Create create new field releated to this Record instance
+        self.fields = []
+        
+        for field in survey.fields!{
+            self.fields?.append(Field(id: field.id, value: field.value))
         }
+        
         self.timestamp = NSDate()
         print("Record created")
     }

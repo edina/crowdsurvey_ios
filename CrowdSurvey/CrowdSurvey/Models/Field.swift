@@ -38,6 +38,11 @@ class Field: Mappable {
         
     }
     
+    init(id: String?, value: AnyObject?) {
+        self.id = id
+        self.value = value
+    }
+    
     // Mappable
     func mapping(map: Map) {
         id         <- map["id"]
@@ -118,16 +123,15 @@ class Field: Mappable {
                         print(value)
                         self?.value = value
                         
-                        // Notify survey controller that a change has to be save to couchDB
-                        self?.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
-
                         // Change cell background to green
                         row.cell!.backgroundColor = Constants.Form.validGreenColour
                         
                     }
-                    // TODO: Need to work out a way of adding to the record model rather than survey
                     
                 } .onCellUnHighlight { [weak self] cell, row  in
+                    
+                    // Notify survey controller that a change has to be save to couchDB
+                    self?.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
                     
                     // Note that for onCellUnHighlight to be called we have to also implement onCellHighlight below
                     if row.value == nil{
@@ -196,8 +200,6 @@ class Field: Mappable {
                             }
                             row.value = Constants.Form.SelectPlaceHolder
                         }
-                            
-                    // TODO: Need to work out a way of adding to the record model rather than survey
                         }.cellSetup { [weak self] cell, row in
                             if self?.required?.boolValue ?? false{
                                 row.cell!.backgroundColor = Constants.Form.requiredRedColour
@@ -260,8 +262,6 @@ class Field: Mappable {
                                 }
                                 
                             }
-          
-                            // TODO: Need to work out a way of adding to the record model rather than survey
                         }.cellSetup { [weak self] cell, row in
                             if self?.required?.boolValue ?? false{
                                 row.cell!.backgroundColor = Constants.Form.requiredRedColour

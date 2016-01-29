@@ -112,4 +112,29 @@ class CouchBaseUtils {
         }
     }
     
+    func saveUpdatedSurveyRecords(jsonDict: [String : AnyObject])  {
+        
+        let docId = jsonDict["id"] as! String
+        
+        if let doc = self.database.existingDocumentWithID(docId) {
+            
+            do {
+                try doc.update({ (newSurveyRevision) -> Bool in
+                    print("updating fields")
+                    
+//                    print(JSON(jsonDict))
+                    
+                    newSurveyRevision["records"] = jsonDict["records"]
+                    return true
+                })
+                print("Saved document id ", docId)
+            } catch {
+                print("Error saving document id")
+            }
+        }else{
+            print("Error trying to update survey - existing survey not found")
+        }
+    }
+
+    
 }

@@ -33,6 +33,7 @@ class Survey: Mappable, CustomStringConvertible {
         title  <- map["title"]
         fields <- map ["fields"]
         layout <- map ["layout"]
+        records <- map ["records"]
     }
     
     var description: String {
@@ -78,7 +79,6 @@ class Survey: Mappable, CustomStringConvertible {
                     print("required")
                     
                     if let value = Field.value{
-                        print("value exists")
                         print(Field.value!)
                     }else{
                         valid = false
