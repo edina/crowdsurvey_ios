@@ -179,6 +179,9 @@ class Field: Mappable {
                             }else{
                                 self?.value = value
                                 
+                                // Update CouchDb
+                                self?.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
+                                
                                 // Change cell background to green
                                 row.cell!.backgroundColor = Constants.Form.validGreenColour
                             }
@@ -242,6 +245,9 @@ class Field: Mappable {
                                 row.value?.remove(Constants.Form.SelectPlaceHolder)
                                 
                                 self?.value = value
+                                
+                                // Update CouchDb
+                                self?.notificationCentre.postNotificationName(Constants.Notifications.FieldUpdatedNotification, object: nil)
                                 
                                 if value.count == 0{
                                     row.cell!.backgroundColor = .whiteColor()
