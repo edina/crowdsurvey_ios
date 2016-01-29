@@ -140,6 +140,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "Show Survey" {
             if let destinationVC = segue.destinationViewController as? SurveyViewController {
                 destinationVC.survey = survey
+                destinationVC.database = self.database!
             }
    
         }

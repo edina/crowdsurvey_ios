@@ -14,7 +14,8 @@ import Eureka
 class SurveyViewController: FormViewController {
 
     var survey: Survey? { didSet { setupForm() } }
-   
+    var database: CouchBaseUtils?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +26,7 @@ class SurveyViewController: FormViewController {
     func listenForFieldChange(notification: NSNotification){
         // A field has changed so the survey should be resaved
         print("Field change notification")
-        CouchBaseUtils(databaseName: "survey").saveUpdatedSurvey((self.survey?.jsonDict())!)
+        self.database!.saveUpdatedSurvey((self.survey?.jsonDict())!)
     }
     
     func setupForm(){
@@ -40,7 +41,8 @@ class SurveyViewController: FormViewController {
             // Append to records
             let record  = Record(survey: survey!)
             survey!.records!.append(record)
-            CouchBaseUtils(databaseName: "survey").saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
+            
+            self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
             
             // All valid so we can unwind to the MapViewController
             performSegueWithIdentifier("saveSurvey", sender: self)
