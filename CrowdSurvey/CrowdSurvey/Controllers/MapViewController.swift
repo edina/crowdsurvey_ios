@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import MapKit
 import CoreLocation
 import Alamofire
 import ObjectMapper
+import Mapbox
 import SwiftyJSON
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
     // TODO: replace with correct url once we have a proxy to dlib-rainbow
@@ -21,23 +21,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let defaultSurveyId = "566ed9b30351d817555158ce"
     
     var database: CouchBaseUtils?
+    var mapView: MGLMapView?
     var survey: Survey?
     var surveyId: String?
     
     // MARK: - Outlets
-    
-    @IBOutlet weak var mapView: MKMapView! {
-        didSet {
-            // Set delegate for Map
-            mapView.delegate = self
-        }
-    }
     
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
             newSurvey.layer.cornerRadius = 30
         }
     }
+    
+    @IBOutlet weak var toolbar: UIToolbar!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
 
@@ -52,7 +48,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         self.newSurvey.hidden = true
         self.newSurvey.enabled = false
-
+        
         self.setupMapView()
         self.database = self.setupDatabase()
         self.setupSurvey()
@@ -71,12 +67,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             locationManager.startUpdatingLocation()
         }
         
-        // Setup alternative tile server
-        let template = "https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
-        let overlay = MKTileOverlay.init(URLTemplate: template)
-        overlay.canReplaceMapContent = true
-        mapView.addOverlay(overlay, level: .AboveLabels)
-        mapView.showsUserLocation = true
+        let styleURL = NSURL(string: "mapbox://styles/mapbox/streets-v8")
+        
+        let frame = self.view.bounds
+        let edgeInsets = UIEdgeInsetsMake(0, 0, self.toolbar.bounds.height, 0);
+        let insetFrame = UIEdgeInsetsInsetRect(frame, edgeInsets);
+        self.mapView = MGLMapView(frame: insetFrame, styleURL: styleURL)
+        
+        if let mapView = self.mapView {
+            mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: 57.153468223320054,
+                longitude: -3.8228130340576167),
+                zoomLevel: 14, animated: false)
+            mapView.showsUserLocation = true
+            self.view.addSubview(mapView)
+        }
+        self.view.bringSubviewToFront(self.newSurvey)
     }
     
     func setupDatabase() -> CouchBaseUtils {
@@ -123,26 +129,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         self.presentViewController(alert, animated: true, completion: nil)
 
     }
-    
-    
-    // MARK: - MKMapViewDelegate
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let tileOverlay = overlay as? MKTileOverlay else {
-            return MKOverlayRenderer()
-        }
-        return MKTileOverlayRenderer(tileOverlay: tileOverlay)
-    }
-    
-    // MARK: - CLLocationManager
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        
-        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.mapView.setRegion(region, animated: true)
-    }
-
     
     
     // MARK: - Navigation
