@@ -43,4 +43,20 @@ class SurveyTest: CrowdSurveyTests {
         }
     }
     
+    func testValidateFormEntries(){
+        
+        // No values added at all so will fail in the first instance
+        XCTAssertFalse(self.survey!.validateFormEntries())
+        
+        // Add test values for all required form fields
+        for field in self.survey!.fields!{
+            if field.required?.boolValue ?? false{
+                field.value = "test required value"
+            }
+        }
+        
+        XCTAssertTrue(self.survey!.validateFormEntries())
+        
+    }
+    
 }
