@@ -7,13 +7,51 @@
 //
 
 import XCTest
+import Alamofire
+import ObjectMapper
+import SwiftyJSON
 @testable import CrowdSurvey
 
 class CrowdSurveyTests: XCTestCase {
     
+    var survey: Survey?
+    
+    // Test Constants
+    struct Constants {
+        struct Survey {
+            static let Id = "566ed9b30351d817555158cd"
+            static let Url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
+            static let Title = "OPAL Tree Health"
+        }
+    }
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        // Set up a survey instance we can use for testing
+        self.testSetupSurvey()
+        
+    }
+    
+    func testSetupSurvey(){
+        
+        var surveyJson: AnyObject?
+             
+        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
+        
+        Alamofire.request(.GET, Constants.Survey.Url)
+            .responseJSON { response in
+                if let json = response.result.value {
+                    surveyJson = json
+                    self.survey = Mapper<Survey>().map(surveyJson)
+                    
+                    XCTAssert(self.survey!.id == Constants.Survey.Id)
+                    surveyExpectation.fulfill()
+                    
+                }
+        }
+        
+        waitForExpectationsWithTimeout(5.0, handler: nil)
     }
     
     override func tearDown() {
@@ -32,5 +70,7 @@ class CrowdSurveyTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+   
     
 }

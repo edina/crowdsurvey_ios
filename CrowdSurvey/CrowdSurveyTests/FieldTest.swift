@@ -14,7 +14,7 @@ import SwiftyJSON
 
 @testable import CrowdSurvey
 
-class FieldTest: XCTestCase {
+class FieldTest: CrowdSurveyTests {
     
     var field: Field?
     
@@ -28,26 +28,10 @@ class FieldTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        var surveyJson: AnyObject?
-        let surveyUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
-        
-        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
-        
-        Alamofire.request(.GET, surveyUrl)
-            .responseJSON { response in
-                if let json = response.result.value {
-                    surveyJson = json
-                    surveyExpectation.fulfill()
-                }
+        if let field = self.survey!.fields?[3] {
+            self.field = field
         }
         
-        waitForExpectationsWithTimeout(5.0, handler: nil)
-        
-        if let survey = Mapper<Survey>().map(surveyJson) {
-            if let field = survey.fields?[3] {
-                self.field = field
-            }
-        }
     }
     
     override func tearDown() {

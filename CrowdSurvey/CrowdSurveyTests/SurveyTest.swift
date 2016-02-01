@@ -14,29 +14,10 @@ import SwiftyJSON
 
 @testable import CrowdSurvey
 
-class SurveyTest: XCTestCase {
-    
-    var survey: Survey?
+class SurveyTest: CrowdSurveyTests {
     
     override func setUp() {
         super.setUp()
-        
-        var surveyJson: AnyObject?
-        let surveyUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
-        
-        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
-        
-        Alamofire.request(.GET, surveyUrl)
-            .responseJSON { response in
-                if let json = response.result.value {
-                    surveyJson = json
-                    surveyExpectation.fulfill()
-                }
-        }
-        
-        waitForExpectationsWithTimeout(5.0, handler: nil)
-        
-        self.survey = Mapper<Survey>().map(surveyJson)
     }
     
     override func tearDown() {
@@ -45,26 +26,20 @@ class SurveyTest: XCTestCase {
     }
     
     func testCreateSurveyFromJson() {
-        let id = "566ed9b30351d817555158cd"
-        let title = "OPAL Tree Health"
         
         if let survey = self.survey {
-            XCTAssert(survey.id == id)
-            XCTAssert(survey.title == title)
+            XCTAssert(survey.id == Constants.Survey.Id)
+            XCTAssert(survey.title == Constants.Survey.Title)
         }
     }
     
     func testSurveyDescriptionJson() {
-        let id = "566ed9b30351d817555158cd"
-        let title = "OPAL Tree Health"
-        
-        // print(survey!.description)
-        
+              
         if let jsonData = self.survey!.description.dataUsingEncoding(NSUTF8StringEncoding) {
             let json = JSON(data: jsonData)
             
-            XCTAssert(json["id"].stringValue == id)
-            XCTAssert(json["title"].stringValue == title)
+            XCTAssert(json["id"].stringValue == Constants.Survey.Id)
+            XCTAssert(json["title"].stringValue == Constants.Survey.Title)
         }
     }
     
