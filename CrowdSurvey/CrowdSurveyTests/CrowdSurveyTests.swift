@@ -23,6 +23,9 @@ class CrowdSurveyTests: XCTestCase {
             static let Url = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
             static let Title = "OPAL Tree Health"
         }
+        struct Record {
+            static let Id = "566ed9290351d817555158cc"
+        }
     }
 
     override func setUp() {

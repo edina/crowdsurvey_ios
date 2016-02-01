@@ -15,30 +15,16 @@ import SwiftyJSON
 @testable import CrowdSurvey
 
 
-class RecordTest: XCTestCase {
+class RecordTest: CrowdSurveyTests {
     
-    var survey: Survey?
     var recordFromJson: Record?
     var recordFromSurvey: Record?
     
     override func setUp() {
         super.setUp()
-        
-        var surveyJson: AnyObject?
-        let surveyUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/survey/566ed9b30351d817555158cd"
-        
+ 
         var recordJson: AnyObject?
         let recordUrl = "http://dlib-rainbow.edina.ac.uk:3000/api/records/566ed9290351d817555158cc"
-        
-        let surveyExpectation = expectationWithDescription("Alamofire Survey Request")
-        
-        Alamofire.request(.GET, surveyUrl)
-            .responseJSON { response in
-                if let json = response.result.value {
-                    surveyJson = json
-                    surveyExpectation.fulfill()
-                }
-        }
         
         let recordExpectation = expectationWithDescription("Alamofire Record Request")
         
@@ -51,8 +37,7 @@ class RecordTest: XCTestCase {
         }
         
         waitForExpectationsWithTimeout(5.0, handler: nil)
-        
-        self.survey = Mapper<Survey>().map(surveyJson)
+
         self.recordFromJson = Mapper<Record>().map(recordJson)
         self.recordFromSurvey = Record(survey: self.survey!)
     }
@@ -63,13 +48,13 @@ class RecordTest: XCTestCase {
     }
     
     func testCreateRecordFromJson() {
-        let id = "566ed9290351d817555158cc"
+     
         let name = "record (03-11-2015 12h11m44s)"
         let type = "Feature"
         let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
         
         if let record = self.recordFromJson {
-            XCTAssert(record.id == id)
+            XCTAssert(record.id == Constants.Record.Id)
             XCTAssert(record.name == name)
             XCTAssert(record.type == type)
             XCTAssert(record.editor == editor)
@@ -94,7 +79,7 @@ class RecordTest: XCTestCase {
     }
     
     func testRecordDescriptionJson() {
-        let id = "566ed9290351d817555158cc"
+        
         let name = "record (03-11-2015 12h11m44s)"
         let type = "Feature"
         let editor = "5106d3aa-99ac-4186-b50d-6fcfdf9946f4.edtr"
@@ -102,7 +87,7 @@ class RecordTest: XCTestCase {
         if let jsonData = self.recordFromJson!.description.dataUsingEncoding(NSUTF8StringEncoding) {
             let json = JSON(data: jsonData)
             
-            XCTAssert(json["id"].stringValue == id)
+            XCTAssert(json["id"].stringValue == Constants.Record.Id)
             XCTAssert(json["name"].stringValue == name)
             XCTAssert(json["type"].stringValue == type)
             XCTAssert(json["properties"]["editor"].stringValue == editor)
