@@ -117,6 +117,7 @@ class Field: Mappable {
         // Create text field
             <<< TextRow () {
                 $0.title = ""
+                $0.tag = label!+"_tag"
                 $0.placeholder = "Enter answer…"
                 }.onChange {[weak self] row in
      
@@ -147,7 +148,7 @@ class Field: Mappable {
                     if self?.required?.boolValue ?? false{
                         row.cell!.backgroundColor = Constants.Form.requiredRedColour
                     }
-        }
+                }
     }
     
     func addRadioToForm(var form: Form){

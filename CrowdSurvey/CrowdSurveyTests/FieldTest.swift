@@ -60,12 +60,45 @@ class FieldTest: CrowdSurveyTests {
     }
     
     func testAddTextToForm(){
-        let form = Form()
-        self.field.addTextToForm(form)
         
-        XCTAssertEqual(form.values(includeHidden: true).count, 1)
+        // First field is a text field
+        if let textField = self.survey!.fields?[0] {
+    
+            let form = Form()
+            
+            // Have to set the form on the SurveyViewController otherwise update and other form element
+            // callbacks will not be called
+            let formVC = SurveyViewController()
 
-        XCTAssertEqual(form.rowByTag(Constants.Form.Question3Label)?.title, Constants.Form.Question3Label)
+            formVC.form  = form
+            
+            // Check this is a textField
+            XCTAssertEqual(textField.type, Constants.Form.TextType)
+            
+            textField.addTextToForm(form)
+            
+            // 2 elements - label and textRow
+            XCTAssertEqual(form.values(includeHidden: true).count, 2)
+            
+            // Check label has right title
+            XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label)
+            
+            // Add a value to the TextRow
+            form.setValues([Constants.Form.Question1TextRowTag: Constants.Form.TestTextFormValue])
+            
+            // Check textField model now has the same value
+            XCTAssertEqual(textField.value! as? String, Constants.Form.TestTextFormValue)
+            
+            // Get the textRow
+            let textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
+            
+            // Now a value has been supplied, background colour should be green
+            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.validGreenColour)
+            
+            // Check value added to form as expected
+            XCTAssertEqual(textRow.value!, Constants.Form.TestTextFormValue)
+    
+        }
     }
     
 }
