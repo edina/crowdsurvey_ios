@@ -11,6 +11,7 @@ import XCTest
 import Alamofire
 import ObjectMapper
 import SwiftyJSON
+import Eureka
 
 @testable import CrowdSurvey
 
@@ -59,4 +60,17 @@ class SurveyTest: CrowdSurveyTests {
         
     }
     
+    
+    func testValidateForm(){
+        
+        // Check the form is generated correctly
+        let form = self.survey!.form()
+   
+        XCTAssertEqual(form.rowByTag(Constants.Form.TakePhotoLabel)?.title, Constants.Form.TakePhotoLabel)
+        XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label)
+        XCTAssertEqual(form.rowByTag(Constants.Form.Question2Label)?.title, Constants.Form.Question2Label)
+        XCTAssertEqual(form.rowByTag(Constants.Form.Question3Label)?.title, Constants.Form.Question3Label)       
+        
+        XCTAssertEqual(form.count, 19)
+    }
 }

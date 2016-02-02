@@ -109,6 +109,7 @@ class Field: Mappable {
   
         form +++= LabelRow () {
             $0.title = label!
+            $0.tag = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
@@ -154,6 +155,7 @@ class Field: Mappable {
         
         form +++= LabelRow () {
             $0.title = label!
+            $0.tag = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
@@ -220,6 +222,7 @@ class Field: Mappable {
         
         form +++= LabelRow () {
             $0.title = label!
+            $0.tag = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
         }
@@ -281,6 +284,7 @@ class Field: Mappable {
         }
         form +++= LabelRow () {
             $0.title = label!
+            $0.tag = label!
             $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
             }

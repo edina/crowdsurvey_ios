@@ -26,6 +26,13 @@ class CrowdSurveyTests: XCTestCase {
         struct Record {
             static let Id = "566ed9290351d817555158cc"
         }
+        struct Form{
+            static let TakePhotoLabel = "Take a photo"
+            static let Question1Label = "1. Date of survey"
+            static let Question2Label = "2. Who are you doing the Tree Health Survey with today?"
+            static let Question3Label = "3. Are you involved in working with trees or forestry?"
+        }
+        
     }
 
     override func setUp() {
