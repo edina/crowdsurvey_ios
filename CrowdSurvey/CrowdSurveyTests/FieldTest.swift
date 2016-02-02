@@ -83,14 +83,19 @@ class FieldTest: CrowdSurveyTests {
             // Check label has right title
             XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label)
             
+            // Get the textRow
+            let textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
+            
+            // Check if row is required - should have a red background if so
+            XCTAssertEqual(textField.required, true)
+
+            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.requiredRedColour)
+            
             // Add a value to the TextRow
             form.setValues([Constants.Form.Question1TextRowTag: Constants.Form.TestTextFormValue])
             
             // Check textField model now has the same value
             XCTAssertEqual(textField.value! as? String, Constants.Form.TestTextFormValue)
-            
-            // Get the textRow
-            let textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
             
             // Now a value has been supplied, background colour should be green
             XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.validGreenColour)

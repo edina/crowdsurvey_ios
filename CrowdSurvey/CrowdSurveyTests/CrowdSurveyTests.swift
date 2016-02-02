@@ -42,6 +42,11 @@ class CrowdSurveyTests: XCTestCase {
                 green:0.8,
                 blue:0.1,
                 alpha:0.1)
+            static let requiredRedColour = UIColor(
+                red:1,
+                green:0.1,
+                blue:0.1,
+                alpha:0.1)
         }
         
     }
