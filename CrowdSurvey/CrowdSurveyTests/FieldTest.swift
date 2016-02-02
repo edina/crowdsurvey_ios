@@ -19,9 +19,6 @@ class FieldTest: CrowdSurveyTests {
     var field: Field?
     
     // Expected field values
-    let id = "form-radio-2"
-    let label = "3. Are you involved in working with trees or forestry?"
-    let type = "radio"
     let required = true
     let persistent = true
     
@@ -41,9 +38,9 @@ class FieldTest: CrowdSurveyTests {
     
     func testCreateFieldFromJson() {
         if let field = self.field {
-            XCTAssert(field.id == self.id)
-            XCTAssert(field.label == self.label)
-            XCTAssert(field.type == self.type)
+            XCTAssert(field.id == Constants.Form.Question3Id)
+            XCTAssert(field.label == Constants.Form.Question3Label)
+            XCTAssert(field.type == Constants.Form.Question3Type)
             XCTAssert(field.required == self.required)
             XCTAssert(field.persistent == self.persistent)
         }
@@ -53,9 +50,9 @@ class FieldTest: CrowdSurveyTests {
         if let jsonData = self.field!.description.dataUsingEncoding(NSUTF8StringEncoding) {
             let json = JSON(data: jsonData)
             
-            XCTAssert(json["id"].string == self.id)
-            XCTAssert(json["label"].string == self.label)
-            XCTAssert(json["type"].string == self.type)
+            XCTAssert(json["id"].string == Constants.Form.Question3Id)
+            XCTAssert(json["label"].string == Constants.Form.Question3Label)
+            XCTAssert(json["type"].string == Constants.Form.Question3Type)
             XCTAssert(json["required"].bool == self.required)
             XCTAssert(json["persistent"].bool == self.persistent)
         }

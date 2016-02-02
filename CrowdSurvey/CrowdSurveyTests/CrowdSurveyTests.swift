@@ -31,6 +31,8 @@ class CrowdSurveyTests: XCTestCase {
             static let Question1Label = "1. Date of survey"
             static let Question2Label = "2. Who are you doing the Tree Health Survey with today?"
             static let Question3Label = "3. Are you involved in working with trees or forestry?"
+            static let Question3Id = "form-radio-2"
+            static let Question3Type = "radio"
         }
         
     }
