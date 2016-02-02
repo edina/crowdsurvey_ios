@@ -71,6 +71,6 @@ class SurveyTest: CrowdSurveyTests {
         XCTAssertEqual(form.rowByTag(Constants.Form.Question2Label)?.title, Constants.Form.Question2Label)
         XCTAssertEqual(form.rowByTag(Constants.Form.Question3Label)?.title, Constants.Form.Question3Label)       
         
-        XCTAssertEqual(form.count, 19)
+        XCTAssertEqual(form.count, 18)
     }
 }

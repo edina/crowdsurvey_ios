@@ -52,9 +52,7 @@ class Survey: Mappable, CustomStringConvertible {
     // Returns the generated form for this survey
     func form() -> Form!{
         
-        var form = Form()
-        // Add an empty section initially
-        form +++= Section()
+        let form = Form()
         
         for Field in fields!{
             //print(Field.description)
