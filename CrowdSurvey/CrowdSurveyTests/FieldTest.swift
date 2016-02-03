@@ -12,6 +12,7 @@ import Alamofire
 import ObjectMapper
 import SwiftyJSON
 import Eureka
+import Haneke
 
 @testable import CrowdSurvey
 
@@ -130,8 +131,66 @@ class FieldTest: CrowdSurveyTests {
             XCTAssertEqual(textRow.cell.backgroundColor, nil, "Background colour should be green now value has been supplied")
   
         }
-        
-     
     }
+    
+    func testAddImageToForm(){
+        
+        // Second field is an image field
+        if let imageField = self.survey!.fields?[1] {
+            
+            let form = Form()
+            
+            // Have to set the form on the SurveyViewController otherwise update and other form element
+            // callbacks will not be called
+            let formVC = SurveyViewController()
+            
+            formVC.form  = form
+            
+            // Check this is a textField
+            XCTAssertEqual(imageField.type, Constants.Form.ImageType, "Form type us not image as expected")
+            
+            imageField.addImageToForm(form)
+            
+            // 2 elements - label and textRow
+            XCTAssertEqual(form.values(includeHidden: true).count, 2, "2 form elements not found")
+        
+            // Check label has right title
+            XCTAssertEqual(form.rowByTag(Constants.Form.ImageQuestionLabel)?.title, Constants.Form.ImageQuestionLabel, "Form label title not as expected")
 
+            // Get the ImageRow
+            var imageRow = form.rowByTag(Constants.Form.ImageQuestionImageRowTag) as! ImageRow
+           
+            // Check if row is required - should have a red background if so
+            XCTAssertEqual(imageField.required, true, "Expected required")
+            
+            XCTAssertEqual(imageRow.cell.backgroundColor, Constants.Form.requiredRedColour, "Background for a required field should have been red")
+
+            
+            let redImage = UIImage(color: UIColor.redColor())
+            
+            // Add a value to the TextRow
+            form.setValues([Constants.Form.ImageQuestionImageRowTag: redImage])
+            
+            // Now a value has been supplied, background colour should be green
+//            XCTAssertEqual(imageRow.cell.backgroundColor, Constants.Form.validGreenColour, "Background colour should be green now value has been supplied")
+       
+        }
+
+    }
+    
+    
+
+}
+
+
+public extension UIImage {
+    convenience init(color: UIColor, size: CGSize = CGSizeMake(50, 50)) {
+        let rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(CGImage: image.CGImage!)
+    }  
 }

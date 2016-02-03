@@ -29,14 +29,18 @@ class CrowdSurveyTests: XCTestCase {
         struct Form{
             static let TakePhotoLabel = "Take a photo"
             static let Question1Label = "1. Date of survey"
-            static let Question1TextRowTag = "1. Date of survey_tag"
+            static let Question1TextRowTag = Question1Label + "_tag"
             static let Question2Label = "2. Who are you doing the Tree Health Survey with today?"
             static let Question3Label = "3. Are you involved in working with trees or forestry?"
             static let Question3TextRowTag = "3. Are you involved in working with trees or forestry?_tag"
             static let Question3Id = "form-radio-2"
             static let Question3Type = "radio"
+            static let ImageQuestionLabel = "Take a photo"
+            static let ImageQuestionImageRowTag = ImageQuestionLabel + "_imageTag"
+            
             static let TestTextFormValue = "test text value"
             static let TextType = "text"
+            static let ImageType = "image"
             static let validGreenColour = UIColor(
                 red:0.1,
                 green:0.8,

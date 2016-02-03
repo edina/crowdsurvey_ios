@@ -295,6 +295,7 @@ class Field: Mappable {
             }
             <<< ImageRow() {
                 $0.title = "Choose Photo…"
+                $0.tag = label! + "_imageTag"
                 }.onChange({[weak self] row -> () in
                     // Get image, save in documents and add url to model
                     self?.saveImage(row)
