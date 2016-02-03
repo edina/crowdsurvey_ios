@@ -64,7 +64,7 @@ class FieldTest: CrowdSurveyTests {
         // First field is a text field
         if let textField = self.survey!.fields?[0] {
     
-            let form = Form()
+            var form = Form()
             
             // Have to set the form on the SurveyViewController otherwise update and other form element
             // callbacks will not be called
@@ -84,7 +84,7 @@ class FieldTest: CrowdSurveyTests {
             XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label, "Form label title not as expected")
             
             // Get the textRow
-            let textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
+            var textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
             
             // Check if row is required - should have a red background if so
             XCTAssertEqual(textField.required, true, "Expected required")
@@ -111,6 +111,23 @@ class FieldTest: CrowdSurveyTests {
             textRow.unhighlightCell()
 
             XCTAssertEqual(mockNotification.postCount, 1, "a notification should have been posted")
+  
+            
+            
+            // Check behavior with required = false is consistent
+            form = Form()
+          
+            textField.required = false
+            textField.addTextToForm(form)
+            // Get the textRow
+            textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
+           
+            XCTAssertEqual(textRow.cell.backgroundColor, nil, "Background for a field that is not required should be nil")
+            textRow.unhighlightCell()
+            
+            form.setValues([Constants.Form.Question1TextRowTag: Constants.Form.TestTextFormValue])
+            
+            XCTAssertEqual(textRow.cell.backgroundColor, nil, "Background colour should be green now value has been supplied")
   
         }
         
