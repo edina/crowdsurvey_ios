@@ -73,35 +73,35 @@ class FieldTest: CrowdSurveyTests {
             formVC.form  = form
             
             // Check this is a textField
-            XCTAssertEqual(textField.type, Constants.Form.TextType)
+            XCTAssertEqual(textField.type, Constants.Form.TextType, "Form type us not text as expected")
             
             textField.addTextToForm(form)
             
             // 2 elements - label and textRow
-            XCTAssertEqual(form.values(includeHidden: true).count, 2)
+            XCTAssertEqual(form.values(includeHidden: true).count, 2, "2 form elements not found")
             
             // Check label has right title
-            XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label)
+            XCTAssertEqual(form.rowByTag(Constants.Form.Question1Label)?.title, Constants.Form.Question1Label, "Form label title not as expected")
             
             // Get the textRow
             let textRow = form.rowByTag(Constants.Form.Question1TextRowTag) as! TextRow
             
             // Check if row is required - should have a red background if so
-            XCTAssertEqual(textField.required, true)
+            XCTAssertEqual(textField.required, true, "Expected required")
 
-            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.requiredRedColour)
+            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.requiredRedColour, "Background for a required field should have been red")
             
             // Add a value to the TextRow
             form.setValues([Constants.Form.Question1TextRowTag: Constants.Form.TestTextFormValue])
             
             // Check textField model now has the same value
-            XCTAssertEqual(textField.value! as? String, Constants.Form.TestTextFormValue)
+            XCTAssertEqual(textField.value! as? String, Constants.Form.TestTextFormValue, "Field value has not been updated")
             
             // Now a value has been supplied, background colour should be green
-            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.validGreenColour)
+            XCTAssertEqual(textRow.cell.backgroundColor, Constants.Form.validGreenColour, "Background colour should be green now value has been supplied")
             
             // Check value added to form as expected
-            XCTAssertEqual(textRow.value!, Constants.Form.TestTextFormValue)
+            XCTAssertEqual(textRow.value!, Constants.Form.TestTextFormValue, "Value not added to form as expected")
      
             // Setup mockNotificationCentre so we can be sure a notification was sent
             let mockNotification = MockNSNotificationCenter()
