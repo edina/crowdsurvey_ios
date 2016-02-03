@@ -102,8 +102,19 @@ class FieldTest: CrowdSurveyTests {
             
             // Check value added to form as expected
             XCTAssertEqual(textRow.value!, Constants.Form.TestTextFormValue)
-    
+     
+            // Setup mockNotificationCentre so we can be sure a notification was sent
+            let mockNotification = MockNSNotificationCenter()
+            textField.notificationCentre = mockNotification
+        
+            // Ensure notification is posted
+            textRow.unhighlightCell()
+
+            XCTAssertEqual(mockNotification.postCount, 1, "a notification should have been posted")
+  
         }
+        
+     
     }
-    
+
 }

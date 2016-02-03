@@ -15,7 +15,11 @@ class Field: Mappable {
     
     var id: String?
     var label: String?
-    let notificationCentre = NSNotificationCenter.defaultCenter()
+    
+    // Lazily instantiate the notificationCenter so we can inject the mockNotificationCentre for testing
+    lazy var notificationCentre = {
+        return NSNotificationCenter.defaultCenter()
+    }()
     
     var value: AnyObject?{
         // String or [String]

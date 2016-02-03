@@ -21,6 +21,7 @@
 		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; };
 		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; };
 		3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D351B1C5A3831002AED82 /* Constants.swift */; };
+		3B2F1A711C6200E6002D5DBC /* MockNSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */; };
 		3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009621C4560FA004F248D /* CouchbaseLite.framework */; };
 		3B6009651C456121004F248D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009641C456121004F248D /* Security.framework */; };
 		3B6009671C45612A004F248D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009661C45612A004F248D /* CFNetwork.framework */; };
@@ -75,6 +76,7 @@
 		3B0107491C45204100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
 		3B1D351B1C5A3831002AED82 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNSNotificationCenter.swift; sourceTree = "<group>"; };
 		3B6009621C4560FA004F248D /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 		3B6009641C456121004F248D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3B6009661C45612A004F248D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -183,6 +185,7 @@
 				3C37DCB11C4E505E0016EF0A /* RecordTest.swift */,
 				3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */,
 				3B01071E1C43F54100ECA5DB /* Info.plist */,
+				3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */,
 			);
 			path = CrowdSurveyTests;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C1DAA101C4E9B8E00BFA67E /* SurveyTest.swift in Sources */,
+				3B2F1A711C6200E6002D5DBC /* MockNSNotificationCenter.swift in Sources */,
 				3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */,
 				3CC15FB61C4F921F00C3F247 /* FieldTest.swift in Sources */,
 				3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */,
