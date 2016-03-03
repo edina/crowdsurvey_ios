@@ -67,7 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
-        let styleURL = NSURL(string: "mapbox://styles/mapbox/streets-v8")
+        let styleURL = NSURL(string: "http://dlib-rainbow.edina.ac.uk:8080/bright-v8.json")
         
         let frame = self.view.bounds
         let edgeInsets = UIEdgeInsetsMake(0, 0, self.toolbar.bounds.height, 0);
@@ -76,9 +76,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         if let mapView = self.mapView {
             mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            mapView.setCenterCoordinate(CLLocationCoordinate2D(latitude: 57.153468223320054,
-                longitude: -3.8228130340576167),
-                zoomLevel: 14, animated: false)
+            mapView.setCenterCoordinate(
+                CLLocationCoordinate2D(latitude: 55.94665,longitude: -3.20106),
+                zoomLevel: 14,
+                animated: false
+            )
             mapView.showsUserLocation = true
             self.view.addSubview(mapView)
         }
