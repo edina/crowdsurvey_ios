@@ -25,8 +25,8 @@ class CouchBaseUtils {
     }
     
     
-    func getOrCreateDocument(jsonData: AnyObject) -> CBLDocument? {
-        let json = JSON(jsonData)
+    func getOrCreateDocument(json: JSON) -> CBLDocument? {
+  
         let id = json["id"].string
         var document: CBLDocument?
         
@@ -36,7 +36,7 @@ class CouchBaseUtils {
             } else {
                 document = self.database.documentWithID(docId)
                 do {
-                    try document!.putProperties(jsonData as! [String : AnyObject])
+                    try document!.putProperties(json.dictionaryObject!)
                     print("Saved document id ", docId)
                 } catch {
                     print("Error saving document id")

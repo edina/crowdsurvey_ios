@@ -61,44 +61,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         // TODO: Add map pin?
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Get survey resource
         surveysResource = crowdSurveyAPI.surveys
-        
-        
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+  
         self.newSurvey.hidden = true
         self.newSurvey.enabled = false
         
         self.setupMapView()
         self.database = self.setupDatabase()
-        self.setupSurvey()
     }
     
     
     // Listen for SurveysResource changing.
     func resourceChanged(resource: Resource, event: ResourceEvent) {
         
-        
+        // Only do stuff if there is new data
         if case .NewData = event {
-            // Do expensive update
-            if let surveys = resource.latestData?.content{
-                
-                for (index, surveyJson):(String, JSON) in (surveys as! JSON) {
-                    
-                    print(surveyJson)
-                    print(surveyJson["id"].stringValue)
-                    
-                    /*if let database = self.database {
-                    if let doc = database.getOrCreateDocument(surveyJson) {
-                    database.setActiveFlag(doc)
-                    self.survey = Mapper<Survey>().map(doc.properties)
-                    }
-                    }*/
-                }
-            }
+            setupSurvey()
         }
     }
 
@@ -140,7 +127,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     }
     
     func setupSurvey(){
-        var surveyUrl: String!
+        
+        if let surveys = surveysResource?.latestData?.content{
+            
+            for (index, surveyJson):(String, JSON) in (surveys as! JSON) {
+                
+                print(surveyJson)
+                print(surveyJson["id"].stringValue)
+                
+                if let database = self.database {
+                    if let doc = database.getOrCreateDocument(surveyJson) {
+                        database.setActiveFlag(doc)
+                        
+//                        if let surveyId = self.surveyId {
+//                            if surveyId == surveyJson["id"].stringValue{
+                                self.survey = Mapper<Survey>().map(doc.properties)
+//                            }
+//                        }
+                    }
+                }
+                self.newSurvey.hidden = false
+                self.newSurvey.enabled = true
+            }
+        }
+        
+        
+        
+        /*var surveyUrl: String!
         
         if let surveyId = self.surveyId {
             surveyUrl = "\(self.surveyApiBaseUrl)\(surveyId).json"
@@ -148,15 +161,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             // no survey id specified so load default survey
             self.showAlert("No survey specified", message: "Loading the default survey.")
             surveyUrl = "\(self.surveyApiBaseUrl)\(self.defaultSurveyId).json"
-        }
+        }*/
         
         // retrieve JSON representing a survey
-        Alamofire.request(.GET, surveyUrl)
+        /*Alamofire.request(.GET, surveyUrl)
             .responseJSON { response in
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
                         if let database = self.database {
-                            if let doc = database.getOrCreateDocument(jsonData) {
+                            if let doc = database.getOrCreateDocument(JSON(jsonData)) {
                                 database.setActiveFlag(doc)
                                 self.survey = Mapper<Survey>().map(doc.properties)
                             }
@@ -167,7 +180,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 } else {
                     self.showAlert("Not found", message: "The survey you are trying to access isn't available.")
                 }
-        }
+        }*/
     }
     
     func showAlert(title: String, message: String){
