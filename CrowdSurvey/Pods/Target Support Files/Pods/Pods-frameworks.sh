@@ -90,6 +90,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Haneke.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_framework "Pods/ObjectMapper.framework"
+  install_framework "Pods/Siesta.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -99,5 +100,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Haneke.framework"
   install_framework "${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework"
   install_framework "Pods/ObjectMapper.framework"
+  install_framework "Pods/Siesta.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi

@@ -22,6 +22,8 @@
 		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; };
 		3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D351B1C5A3831002AED82 /* Constants.swift */; };
 		3B2F1A711C6200E6002D5DBC /* MockNSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */; };
+		3B55DBE81C88601700356648 /* Networking-Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55DBE71C88601700356648 /* Networking-Alamofire.swift */; };
+		3B55DBEA1C887ECA00356648 /* CrowdSurveyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55DBE91C887ECA00356648 /* CrowdSurveyAPI.swift */; };
 		3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009621C4560FA004F248D /* CouchbaseLite.framework */; };
 		3B6009651C456121004F248D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009641C456121004F248D /* Security.framework */; };
 		3B6009671C45612A004F248D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6009661C45612A004F248D /* CFNetwork.framework */; };
@@ -77,6 +79,8 @@
 		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
 		3B1D351B1C5A3831002AED82 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNSNotificationCenter.swift; sourceTree = "<group>"; };
+		3B55DBE71C88601700356648 /* Networking-Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking-Alamofire.swift"; sourceTree = "<group>"; };
+		3B55DBE91C887ECA00356648 /* CrowdSurveyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdSurveyAPI.swift; sourceTree = "<group>"; };
 		3B6009621C4560FA004F248D /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 		3B6009641C456121004F248D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3B6009661C45612A004F248D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -231,6 +235,8 @@
 				3CD7DA411C578BA200B7A8D6 /* CouchBaseUtils.swift */,
 				3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */,
 				3B1D351B1C5A3831002AED82 /* Constants.swift */,
+				3B55DBE71C88601700356648 /* Networking-Alamofire.swift */,
+				3B55DBE91C887ECA00356648 /* CrowdSurveyAPI.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -445,9 +451,11 @@
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3CCA0E9F1C4915670035418D /* Record.swift in Sources */,
 				3CD7DA421C578BA200B7A8D6 /* CouchBaseUtils.swift in Sources */,
+				3B55DBE81C88601700356648 /* Networking-Alamofire.swift in Sources */,
 				3C8CCA061C47C28E00389A1A /* Field.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 				3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */,
+				3B55DBEA1C887ECA00356648 /* CrowdSurveyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,8 +12,9 @@ import Alamofire
 import ObjectMapper
 import Mapbox
 import SwiftyJSON
+import Siesta
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceObserver {
 
     let locationManager = CLLocationManager()
     // TODO: replace with correct url once we have a proxy to dlib-rainbow
@@ -25,6 +26,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var survey: Survey?
     var surveyId: String?
     
+    
+    
+    var surveysResource: Resource? {
+        didSet {
+            // One call to removeObservers() removes both self and statusOverlay as observers of the old resource,
+            // since both observers are owned by self (see below).
+            
+//            oldValue?.removeObservers(ownedBy: self)
+//            oldValue?.cancelLoadIfUnobserved(afterDelay: 0.1)
+            
+            // Adding ourselves as an observer triggers an immediate call to resourceChanged().
+            
+            surveysResource?.addObserver(self)
+//                .addObserver(statusOverlay, owner: self)
+                .loadIfNeeded()
+        }
+    }
+ 
     // MARK: - Outlets
     
     @IBOutlet weak var newSurvey: UIButton!{
@@ -46,6 +65,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get survey resource
+        surveysResource = crowdSurveyAPI.surveys
+        
+        
         self.newSurvey.hidden = true
         self.newSurvey.enabled = false
         
@@ -54,6 +77,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.setupSurvey()
     }
     
+    
+    // Listen for SurveysResource changing.
+    func resourceChanged(resource: Resource, event: ResourceEvent) {
+        
+        
+        if case .NewData = event {
+            // Do expensive update
+            if let surveys = resource.latestData?.content{
+                
+                for (index, surveyJson):(String, JSON) in (surveys as! JSON) {
+                    
+                    print(surveyJson)
+                    print(surveyJson["id"].stringValue)
+                    
+                    /*if let database = self.database {
+                    if let doc = database.getOrCreateDocument(surveyJson) {
+                    database.setActiveFlag(doc)
+                    self.survey = Mapper<Survey>().map(doc.properties)
+                    }
+                    }*/
+                }
+            }
+        }
+    }
+
     func setupMapView(){
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -108,7 +156,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
                         if let database = self.database {
-                            if let doc = database.getOrCreateDocument(jsonData) {
+                            if let doc = database.getOrCreateDocument(JSON(jsonData)) {
                                 database.setActiveFlag(doc)
                                 self.survey = Mapper<Survey>().map(doc.properties)
                             }
