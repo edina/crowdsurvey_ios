@@ -156,7 +156,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 if response.result.isSuccess {
                     if let jsonData = response.result.value {
                         if let database = self.database {
-                            if let doc = database.getOrCreateDocument(JSON(jsonData)) {
+                            if let doc = database.getOrCreateDocument(jsonData) {
                                 database.setActiveFlag(doc)
                                 self.survey = Mapper<Survey>().map(doc.properties)
                             }
