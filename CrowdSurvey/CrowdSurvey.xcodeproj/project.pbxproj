@@ -15,7 +15,6 @@
 		3B0107121C43F54100ECA5DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107101C43F54100ECA5DB /* LaunchScreen.storyboard */; };
 		3B01071D1C43F54100ECA5DB /* CrowdSurveyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01071C1C43F54100ECA5DB /* CrowdSurveyTests.swift */; };
 		3B0107281C43F54100ECA5DB /* CrowdSurveyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107271C43F54100ECA5DB /* CrowdSurveyUITests.swift */; };
-		3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0107351C44003400ECA5DB /* MapKit.framework */; };
 		3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0107371C44009800ECA5DB /* MapViewController.swift */; };
 		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; };
 		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; };
@@ -113,7 +112,6 @@
 				3B6009651C456121004F248D /* Security.framework in Frameworks */,
 				3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */,
 				3B6009631C4560FA004F248D /* CouchbaseLite.framework in Frameworks */,
-				3B0107361C44003400ECA5DB /* MapKit.framework in Frameworks */,
 				04CF35E55C40CEE1D1A3A9AF /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
