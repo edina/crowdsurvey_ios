@@ -77,7 +77,7 @@ class Survey: Mappable, CustomStringConvertible {
                     print("required")
                     
                     if let value = Field.value{
-                        print(Field.value!)
+                        print(value)
                     }else{
                         valid = false
                         break
