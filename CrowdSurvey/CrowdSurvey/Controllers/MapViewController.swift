@@ -22,7 +22,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     let defaultSurveyId = "566ed9b30351d817555158ce"
     
     var database: CouchBaseUtils?
-    var mapView: MGLMapView?
     var survey: Survey?
     var surveyId: String?
     
@@ -45,14 +44,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     }
  
     // MARK: - Outlets
-    
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
             newSurvey.layer.cornerRadius = 30
         }
     }
+    @IBOutlet weak var mapView: MGLMapView!
     
-    @IBOutlet weak var toolbar: UIToolbar!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
 
@@ -101,24 +99,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        mapView.showsUserLocation = true
         
-        let styleURL = NSURL(string: "http://dlib-rainbow.edina.ac.uk:8080/bright-v8-3.json")
-        
-        let frame = self.view.bounds
-        let edgeInsets = UIEdgeInsetsMake(0, 0, self.toolbar.bounds.height, 0);
-        let insetFrame = UIEdgeInsetsInsetRect(frame, edgeInsets);
-        self.mapView = MGLMapView(frame: insetFrame, styleURL: styleURL)
-        
-        if let mapView = self.mapView {
-            mapView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            mapView.setCenterCoordinate(
-                CLLocationCoordinate2D(latitude: 55.6099, longitude: -3.0588),
-                zoomLevel: 13,
-                animated: false
-            )
-            mapView.showsUserLocation = true
-            self.view.addSubview(mapView)
-        }
         self.view.bringSubviewToFront(self.newSurvey)
     }
     
