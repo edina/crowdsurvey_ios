@@ -192,12 +192,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         if segue.identifier == "Show Survey" {
-            print("Lat: \(mapView.centerCoordinate.latitude)\nLon \(mapView.centerCoordinate.longitude)")
             if let destinationVC = segue.destinationViewController as? SurveyViewController {
                 destinationVC.survey = survey
+                if let s = destinationVC.survey {
+                    s.location = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+                }
                 destinationVC.database = self.database!
             }
-   
         }
     }
 

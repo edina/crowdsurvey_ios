@@ -114,7 +114,11 @@ class Field: Mappable {
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
-            $0.value = ""
+            if let value = self.value {
+                $0.value = "\(value)"
+            } else {
+                $0.value = ""
+            }
             $0.cell.textLabel?.numberOfLines=0
         }
         

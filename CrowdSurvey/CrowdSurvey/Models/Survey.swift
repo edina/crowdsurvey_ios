@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import ObjectMapper
 import Eureka	
 import SwiftyJSON
@@ -19,6 +20,7 @@ class Survey: Mappable, CustomStringConvertible {
     var fields: [Field]?
     var layout: [String: AnyObject]?
     var records: [Record]? = []
+    var location: CLLocation? // used to store user's selected location from MapView
     
     
     // MARK: - ObjectMapper
@@ -52,7 +54,25 @@ class Survey: Mappable, CustomStringConvertible {
     // Returns the generated form for this survey
     func form() -> Form!{
         
+        // TODO Currently Fields can be create from a Survey and then rendered as form 
+        // elements or created as part of a Record to store a users response. This should
+        // be changed so that Fields are only created as part of a Record and should
+        // encapsulate all the necessary information required to display a Form element
+        // and any user's response. A Record (either new  or existing) can then be used
+        // as the building block for rendering a Form, i.e. this form() method would be 
+        // moved into Record.swift and refactored to work as above.
+        
         let form = Form()
+        
+        // Add location form element
+        if let location = self.location {
+            let locationValue = "\(round(location.coordinate.latitude*10000)/10000), \(round(location.coordinate.longitude*10000)/10000)"
+            let locationField = Field(id: Constants.Form.Location, value: locationValue)
+            locationField.label = Constants.Form.Location.capitalizedString
+            locationField.type = Constants.Form.Text
+            locationField.required = true
+            locationField.appendToForm(form)
+        }
         
         for Field in fields!{
             //print(Field.description)

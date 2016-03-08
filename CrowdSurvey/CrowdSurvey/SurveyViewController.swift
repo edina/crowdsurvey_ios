@@ -13,11 +13,12 @@ import Eureka
 
 class SurveyViewController: FormViewController {
 
-    var survey: Survey? { didSet { setupForm() } }
+    var survey: Survey?
     var database: CouchBaseUtils?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupForm()
         
         // Listen out for Field changing
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "listenForFieldChange:", name:Constants.Notifications.FieldUpdatedNotification, object: nil)
@@ -30,7 +31,9 @@ class SurveyViewController: FormViewController {
     }
     
     func setupForm(){
-        form = survey!.form()
+        if let s = survey {
+            form = s.form()
+        }
     }
     
     @IBAction func save(sender: UIBarButtonItem) {

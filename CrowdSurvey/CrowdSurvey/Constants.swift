@@ -20,6 +20,7 @@ struct Constants {
         static let Image = "image"
         static let Select = "select"
         static let Dtree = "dtree"
+        static let Location = "location"
         static let Warning = "warning"
         static let Range = "range"
         static let SelectPlaceHolder = "Select…"
