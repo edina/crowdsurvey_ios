@@ -117,28 +117,59 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         return CouchBaseUtils(databaseName: "survey")
     }
     
+    
+    func createActiveSurveyModel(doc : CBLDocument){
+        
+        self.survey = Mapper<Survey>().map(doc.properties)
+        self.database!.setActiveFlag(doc)
+        self.newSurvey.hidden = false
+        self.newSurvey.enabled = true
+    }
+    
     func setupSurvey(){
         
         if let surveys = surveysResource?.latestData?.content{
             
-            for (index, surveyJson):(String, JSON) in (surveys as! JSON) {
-                
-//                print(surveyJson)
-//                print(surveyJson["id"].stringValue)
-                
+            var surveyFound = false
+            let surveysJson = (surveys as! JSON)
+            
+            // Iterate over surveys and add to database if not already added
+            for (index, surveyJson):(String, JSON) in surveysJson {
+   
                 if let database = self.database {
                     if let doc = database.getOrCreateDocument(surveyJson) {
-                        database.setActiveFlag(doc)
                         
-//                        if let surveyId = self.surveyId {
-//                            if surveyId == surveyJson["id"].stringValue{
-                                self.survey = Mapper<Survey>().map(doc.properties)
-//                            }
-//                        }
+                        // Check if we need to load a specific survey
+                        if let surveyId = self.surveyId {
+                            
+                            if surveyId == surveyJson["id"].stringValue{
+                                
+                                surveyFound = true
+                                
+                                createActiveSurveyModel(doc)
+                            }
+                        }
                     }
                 }
-                self.newSurvey.hidden = false
-                self.newSurvey.enabled = true
+            }
+            
+            
+            // If we weren't looking for a specific survey, assume we just load the first one as default
+            if !surveyFound {
+                
+                //load default survey
+                
+                if surveysJson.count > 0{
+                    
+                    let defaultSurveyId = surveysJson[0]["id"].stringValue
+                    
+                    // Load survey from db based on this id
+                    if let database = self.database {
+                        if let doc = database.getDocumentById(defaultSurveyId) {
+                           createActiveSurveyModel(doc)
+                        }
+                    }
+                }
             }
         }
         

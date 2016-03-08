@@ -47,6 +47,16 @@ class CouchBaseUtils {
         return document
     }
     
+    func getDocumentById(id: String) -> CBLDocument? {
+        
+        var document: CBLDocument?
+        
+        if let doc = self.database.existingDocumentWithID(id) {
+            document = doc
+        }
+        
+        return document
+    }
     
     func removeAllActiveFlags(){
         let query = self.database.createAllDocumentsQuery()
