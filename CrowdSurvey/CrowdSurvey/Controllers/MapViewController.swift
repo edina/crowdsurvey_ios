@@ -17,8 +17,8 @@ import Siesta
 class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceObserver {
 
     let locationManager = CLLocationManager()
-    // TODO: replace with correct url once we have a proxy to dlib-rainbow
-    let surveyApiBaseUrl = "https://rawgit.com/ianfieldhouse/4c324db48e0126fdcb8f/raw/fb568a1b602963d3af01880c57f0c4caf2053325/"
+ 
+    // Simple default survey to be loaded if no other id explicitly specified 
     let defaultSurveyId = "566ed9b30351d817555158ce"
     
     var database: CouchBaseUtils?
@@ -160,16 +160,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             if !surveyFound {
                 
                 //load default survey
-                
-                if surveysJson.count > 0{
-                    
-                    let defaultSurveyId = surveysJson[0]["id"].stringValue
-                    
-                    // Load survey from db based on this id
-                    if let database = self.database {
-                        if let doc = database.getDocumentById(defaultSurveyId) {
-                           createActiveSurveyModel(doc)
-                        }
+                if let database = self.database {
+                    if let doc = database.getDocumentById(defaultSurveyId) {
+                        createActiveSurveyModel(doc)
                     }
                 }
             }
