@@ -24,25 +24,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     var database: CouchBaseUtils?
     var survey: Survey?
     var surveyId: String?
+
+    let statusOverlay = ResourceStatusOverlay()
     
-    
-    
+
     var surveysResource: Resource? {
         didSet {
             // One call to removeObservers() removes both self and statusOverlay as observers of the old resource,
             // since both observers are owned by self (see below).
-            
-//            oldValue?.removeObservers(ownedBy: self)
-//            oldValue?.cancelLoadIfUnobserved(afterDelay: 0.1)
+            oldValue?.removeObservers(ownedBy: self)
+            oldValue?.cancelLoadIfUnobserved(afterDelay: 0.1)
             
             // Adding ourselves as an observer triggers an immediate call to resourceChanged().
             
             surveysResource?.addObserver(self)
-//                .addObserver(statusOverlay, owner: self)
+                .addObserver(statusOverlay, owner: self)
                 .loadIfNeeded()
         }
     }
  
+    override func viewDidLayoutSubviews() {
+        statusOverlay.positionToCoverParent()
+    }
+    
+    
     // MARK: - Outlets
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
@@ -62,6 +67,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        statusOverlay.embedIn(self)
+        
         // Get survey resource
         surveysResource = crowdSurveyAPI.surveys
     }
@@ -77,7 +84,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         self.database = self.setupDatabase()
     }
     
-    
+    // MARK: - Siesta Delegate
     // Listen for SurveysResource changing.
     func resourceChanged(resource: Resource, event: ResourceEvent) {
         
@@ -87,6 +94,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         }
     }
 
+    
+     // MARK: - Setup
     func setupMapView(){
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -114,8 +123,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             
             for (index, surveyJson):(String, JSON) in (surveys as! JSON) {
                 
-                print(surveyJson)
-                print(surveyJson["id"].stringValue)
+//                print(surveyJson)
+//                print(surveyJson["id"].stringValue)
                 
                 if let database = self.database {
                     if let doc = database.getOrCreateDocument(surveyJson) {
