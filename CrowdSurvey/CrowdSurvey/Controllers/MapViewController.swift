@@ -56,6 +56,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     }
     @IBOutlet weak var mapView: MGLMapView!
     
+    @IBOutlet weak var navbarTitle: UINavigationItem!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
 
@@ -124,6 +125,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         self.database!.setActiveFlag(doc)
         self.newSurvey.hidden = false
         self.newSurvey.enabled = true
+        navbarTitle.title = self.survey?.title
     }
     
     func setupSurvey(){
