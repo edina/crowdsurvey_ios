@@ -61,21 +61,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     @IBOutlet weak var navbarTitle: UINavigationItem!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
-
         print("Submitted")
-        
-        let pin = MGLPointAnnotation()
         if let record = self.survey?.records?.last {
-            if let location = record.location {
-                let centerCoordinate = CLLocationCoordinate2D(
-                    latitude: location.coordinate.latitude,
-                    longitude: location.coordinate.longitude
-                )
-                pin.coordinate = centerCoordinate
-                mapView.addAnnotation(pin)
-            }
+            addAnnotationToMap(record)
         }
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -176,6 +165,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                     createActiveSurveyModelForID(defaultSurveyId)
                 }
             }
+            
+            // Add annotations to map for any existing survey responses 
+            for record: Record in (survey?.records)! {
+                addAnnotationToMap(record)
+            }
+        }
+    }
+    
+    // MARK: - Utility
+    
+    func addAnnotationToMap(record: Record){
+        let pin = MGLPointAnnotation()
+        let recordJSON = record.description
+        if let dataFromString = recordJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            let json = JSON(data: dataFromString)
+            let lat = json["geometry"]["coordinates"][1].double
+            let lon = json["geometry"]["coordinates"][0].double
+            if let lat = lat, lon = lon {
+                pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            }
+            mapView.addAnnotation(pin)
         }
     }
     
