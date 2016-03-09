@@ -167,37 +167,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 }
             }
         }
-        
-        
-        
-        /*var surveyUrl: String!
-        
-        if let surveyId = self.surveyId {
-            surveyUrl = "\(self.surveyApiBaseUrl)\(surveyId).json"
-        } else {
-            // no survey id specified so load default survey
-            self.showAlert("No survey specified", message: "Loading the default survey.")
-            surveyUrl = "\(self.surveyApiBaseUrl)\(self.defaultSurveyId).json"
-        }*/
-        
-        // retrieve JSON representing a survey
-        /*Alamofire.request(.GET, surveyUrl)
-            .responseJSON { response in
-                if response.result.isSuccess {
-                    if let jsonData = response.result.value {
-                        if let database = self.database {
-                            if let doc = database.getOrCreateDocument(JSON(jsonData)) {
-                                database.setActiveFlag(doc)
-                                self.survey = Mapper<Survey>().map(doc.properties)
-                            }
-                        }
-                        self.newSurvey.hidden = false
-                        self.newSurvey.enabled = true
-                    }
-                } else {
-                    self.showAlert("Not found", message: "The survey you are trying to access isn't available.")
-                }
-        }*/
     }
     
     func showAlert(title: String, message: String){
@@ -229,6 +198,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 }
                 surveyVC.database = self.database!
             }
+        }else if segue.identifier == "Show Survey List"{
+         
+            // Set survey list
+//            if let surveyListVC = segue.destinationViewController as? SurveyListTableViewController {
+//                if let survey = survey {
+//                    surveyListVC.survey = survey
+//                    
+//            
+//                }
+//                surveyListVC.database = self.database!
+//            }
         }
     }
 
