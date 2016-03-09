@@ -11,7 +11,7 @@ import UIKit
 class SurveyListTableViewController: UITableViewController {
 
    
-    var surveys: [Survey?] = []
+    var surveys: [Survey] = []
     
     @IBOutlet var tableViewController: UITableView!
     
@@ -38,7 +38,7 @@ class SurveyListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(surveyCellIdentifier, forIndexPath: indexPath)
         
         let row = indexPath.row
-        cell.textLabel?.text = surveys[row]?.title
+        cell.textLabel?.text = surveys[row].title
         
         return cell
     }

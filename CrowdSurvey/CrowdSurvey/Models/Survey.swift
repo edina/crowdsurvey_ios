@@ -10,7 +10,10 @@ import Foundation
 import ObjectMapper
 import SwiftyJSON
 
-class Survey: Mappable, CustomStringConvertible {
+
+
+
+class Survey: NSObject, Mappable {
     
     var id: String?
     var title: String?
@@ -35,7 +38,7 @@ class Survey: Mappable, CustomStringConvertible {
         records <- map ["records"]
     }
     
-    var description: String {
+    override var description: String {
         get {
             return Mapper().toJSONString(self, prettyPrint: true)!
         }
@@ -45,4 +48,9 @@ class Survey: Mappable, CustomStringConvertible {
     func jsonDict() -> [String : AnyObject]  {
         return Mapper().toJSON(self)
     }
+}
+
+// Need to implement this so we can call [Survey].contains im MapViewController
+func ==(lhs: Survey, rhs: Survey) -> Bool {
+    return lhs.id == rhs.id
 }

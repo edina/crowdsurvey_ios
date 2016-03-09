@@ -25,7 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     var survey: Survey?
     var surveyId: String?
 
-    var surveys: [Survey?] = []
+    var surveys: [Survey] = []
     
     let statusOverlay = ResourceStatusOverlay()
     
@@ -142,9 +142,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
    
                 if let database = self.database {
                     if let doc = database.getOrCreateDocument(surveyJson) {
-           
-                        self.surveys.append(Mapper<Survey>().map(doc.properties))
                         
+                        let survey = Mapper<Survey>().map(doc.properties)!
+                        
+                        // Only add survey to array if not already there
+                        if(!self.surveys.contains(survey)){
+                            self.surveys.append(survey)
+                        }
+                    
                         // Check if we need to load a specific survey
                         if let surveyId = self.surveyId {
                             
