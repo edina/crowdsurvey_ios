@@ -14,7 +14,6 @@ import Mapbox
 import SwiftyJSON
 import Siesta
 
-//class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver {
 class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceObserver {
 
     let locationManager = CLLocationManager()
@@ -112,9 +111,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     
      // MARK: - Setup
     func setupMapView(){
-        // Set the map view‘s delegate property
-        //mapView.delegate = self
-        
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -130,21 +126,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         
         self.view.bringSubviewToFront(self.newSurvey)
     }
-    
-//    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
-//        var annotationImage: MGLAnnotationImage?
-//        let image = UIImage(named: "map_pin")!
-//        
-//        // Initialize the ‘map pin’ annotation image with the UIImage we just loaded
-//        annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: "Map Pin")
-//        
-//        return annotationImage
-//    }
-//    
-//    func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-//        // Always allow callouts to popup when annotations are tapped
-//        return true
-//    }
     
     func setupDatabase() -> CouchBaseUtils {
         return CouchBaseUtils(databaseName: "survey")
