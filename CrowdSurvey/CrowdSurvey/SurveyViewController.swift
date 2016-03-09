@@ -10,7 +10,6 @@ import UIKit
 import Eureka
 
 
-
 class SurveyViewController: FormViewController {
 
     var survey: Survey?
@@ -31,36 +30,34 @@ class SurveyViewController: FormViewController {
     }
     
     func setupForm(){
-        if let s = survey {
-            form = s.form()
+        let currentRecord = survey?.records?.last
+        if  let record = currentRecord {
+            form = record.form()
         }
     }
     
     @IBAction func save(sender: UIBarButtonItem) {
         
         // Perform form validation
-        if survey!.validateFormEntries(){
-            
-            // Append to records
-            let record  = Record(survey: survey!)
-            survey!.records!.append(record)
-            
-            self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
-            
-            // All valid so we can unwind to the MapViewController
-            performSegueWithIdentifier("saveSurvey", sender: self)
-        }else{
-            
-            let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            
-            // show the alert
-            self.presentViewController(alert, animated: true, completion: nil)
+        let currentRecord = survey?.records?.last
+        if  let record = currentRecord {
+            if record.validateFormEntries(){
+                
+                self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
+                
+                // All valid so we can unwind to the MapViewController
+                performSegueWithIdentifier("saveSurvey", sender: self)
+            }else{
+                
+                let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                // show the alert
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
         }
-        
-      
     }
     
     /*
