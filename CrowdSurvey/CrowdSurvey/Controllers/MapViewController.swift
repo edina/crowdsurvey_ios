@@ -120,11 +120,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         return CouchBaseUtils(databaseName: "survey")
     }
     
-    
-    func createActiveSurveyModel(doc : CBLDocument){
-        
-        self.survey = Mapper<Survey>().map(doc.properties)
-        self.database!.setActiveFlag(doc)
+    func createActiveSurveyModelForID(id : String){
+        self.database!.setActiveFlagForId(id)
         self.newSurvey.hidden = false
         self.newSurvey.enabled = true
         navbarTitle.title = self.survey?.title
@@ -143,11 +140,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 if let database = self.database {
                     if let doc = database.getOrCreateDocument(surveyJson) {
                         
-                        let survey = Mapper<Survey>().map(doc.properties)!
+                        let newSurvey = Mapper<Survey>().map(doc.properties)!
                         
                         // Only add survey to array if not already there
-                        if(!self.surveys.contains(survey)){
-                            self.surveys.append(survey)
+                        if(!self.surveys.contains(newSurvey)){
+                            self.surveys.append(newSurvey)
                         }
                     
                         // Check if we need to load a specific survey
@@ -156,8 +153,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                             if surveyId == surveyJson["id"].stringValue{
                                 
                                 surveyFound = true
-                                
-                                createActiveSurveyModel(doc)
+                                self.survey = newSurvey
+                                createActiveSurveyModelForID(surveyId)
                             }
                         }
                     }
@@ -168,11 +165,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             // If we weren't looking for a specific survey, assume we just load the first one as default
             if !surveyFound {
                 
-                //load default survey
-                if let database = self.database {
-                    if let doc = database.getDocumentById(defaultSurveyId) {
-                        createActiveSurveyModel(doc)
-                    }
+                // Get the default survey
+                if let defaultSurvey = self.surveys.filter({$0.id == defaultSurveyId}).first {
+                    self.survey = defaultSurvey
+                    createActiveSurveyModelForID(defaultSurveyId)
                 }
             }
         }

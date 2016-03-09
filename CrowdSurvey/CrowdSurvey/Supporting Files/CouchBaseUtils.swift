@@ -77,6 +77,12 @@ class CouchBaseUtils {
     }
     
     
+    func setActiveFlagForId(id: String){
+        let doc = self.getDocumentById(id)
+        self.setActiveFlag(doc!)
+    }
+    
+    
     func setActiveFlag(document: CBLDocument){
         self.removeAllActiveFlags()
         if var updatedProperties = document.properties {
