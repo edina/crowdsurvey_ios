@@ -121,7 +121,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     }
     
     func createActiveSurveyModelForID(id : String){
-        self.database!.setActiveFlagForId(id)
+        self.database?.setActiveFlagForId(id)
         self.newSurvey.hidden = false
         self.newSurvey.enabled = true
         navbarTitle.title = self.survey?.title
@@ -137,26 +137,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
             // Iterate over surveys and add to database if not already added
             for (index, surveyJson):(String, JSON) in surveysJson {
    
-                if let database = self.database {
-                    if let doc = database.getOrCreateDocument(surveyJson) {
-                        
-                        let newSurvey = Mapper<Survey>().map(doc.properties)!
-                        
-                        // Only add survey to array if not already there
-                        if(!self.surveys.contains(newSurvey)){
-                            self.surveys.append(newSurvey)
-                        }
+                if let doc = self.database?.getOrCreateDocument(surveyJson){
+            
+                    let newSurvey = Mapper<Survey>().map(doc.properties)!
                     
-                        // Check if we need to load a specific survey
-                        if let surveyId = self.surveyId {
-                            
-                            if surveyId == surveyJson["id"].stringValue{
-                                
-                                surveyFound = true
-                                self.survey = newSurvey
-                                createActiveSurveyModelForID(surveyId)
-                            }
-                        }
+                    // Only add survey to array if not already there
+                    if(!self.surveys.contains(newSurvey)){
+                        self.surveys.append(newSurvey)
+                    }
+                    
+                    // Check if we need to load a specific survey
+                    if self.surveyId == surveyJson["id"].stringValue{
+                        surveyFound = true
+                        self.survey = newSurvey
+                        createActiveSurveyModelForID(self.surveyId!)
                     }
                 }
             }
