@@ -25,6 +25,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     var survey: Survey?
     var surveyId: String?
 
+    var surveys: [Survey?] = []
+    
     let statusOverlay = ResourceStatusOverlay()
     
 
@@ -140,6 +142,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
    
                 if let database = self.database {
                     if let doc = database.getOrCreateDocument(surveyJson) {
+           
+                        self.surveys.append(Mapper<Survey>().map(doc.properties))
                         
                         // Check if we need to load a specific survey
                         if let surveyId = self.surveyId {
@@ -186,7 +190,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
-        if segue.identifier == "Show Survey" {
+        if segue.identifier == Constants.SegueIDs.ShowSurvey {
             if let surveyVC = segue.destinationViewController as? SurveyViewController {
                 if let survey = survey {
                     surveyVC.survey = survey
@@ -198,17 +202,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 }
                 surveyVC.database = self.database!
             }
-        }else if segue.identifier == "Show Survey List"{
+            
+        }else if segue.identifier == Constants.SegueIDs.ShowSurveyList {
          
-            // Set survey list
-//            if let surveyListVC = segue.destinationViewController as? SurveyListTableViewController {
-//                if let survey = survey {
-//                    surveyListVC.survey = survey
-//                    
-//            
-//                }
-//                surveyListVC.database = self.database!
-//            }
+            // Destination is NavigationViewController - we want the subsequent SurveyListTableViewController
+            if let navVC = segue.destinationViewController as? UINavigationController{
+                
+                if let surveyListVC = navVC.viewControllers.first as? SurveyListTableViewController {
+                    // Set survey list
+                    surveyListVC.surveys = self.surveys
+                }
+            }
+
+            
+           
         }
     }
 

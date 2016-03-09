@@ -12,7 +12,11 @@ struct Constants {
     struct Notifications {
         static let FieldUpdatedNotification = "Field Updated Notification"
     }
-    
+    struct SegueIDs {
+        static let ShowSurvey = "Show Survey"
+        static let ShowSurveyList = "Show Survey List"
+
+    }
     struct Form {
         static let Text = "text"
         static let Checkbox = "checkbox"
