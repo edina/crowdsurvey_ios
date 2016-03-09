@@ -32,6 +32,8 @@
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
 		3C1DAA101C4E9B8E00BFA67E /* SurveyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1DAA0F1C4E9B8E00BFA67E /* SurveyTest.swift */; };
 		3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37DCB11C4E505E0016EF0A /* RecordTest.swift */; };
+		3C39C8A31C8F2BF10041BDDC /* SurveyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39C8A21C8F2BF10041BDDC /* SurveyField.swift */; };
+		3C39C8A51C8F2C620041BDDC /* RecordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39C8A41C8F2C620041BDDC /* RecordField.swift */; };
 		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 		3C8CCA061C47C28E00389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA051C47C28E00389A1A /* Field.swift */; };
 		3CC15FB61C4F921F00C3F247 /* FieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC15FB51C4F921F00C3F247 /* FieldTest.swift */; };
@@ -91,6 +93,8 @@
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
 		3C1DAA0F1C4E9B8E00BFA67E /* SurveyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTest.swift; sourceTree = "<group>"; };
 		3C37DCB11C4E505E0016EF0A /* RecordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTest.swift; sourceTree = "<group>"; };
+		3C39C8A21C8F2BF10041BDDC /* SurveyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyField.swift; path = Models/SurveyField.swift; sourceTree = "<group>"; };
+		3C39C8A41C8F2C620041BDDC /* RecordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordField.swift; path = Models/RecordField.swift; sourceTree = "<group>"; };
 		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		3C8CCA051C47C28E00389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Models/Field.swift; sourceTree = "<group>"; };
 		3CC15FB51C4F921F00C3F247 /* FieldTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldTest.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 			children = (
 				3CCA0E9E1C4915670035418D /* Record.swift */,
 				3C8CCA051C47C28E00389A1A /* Field.swift */,
+				3C39C8A21C8F2BF10041BDDC /* SurveyField.swift */,
+				3C39C8A41C8F2C620041BDDC /* RecordField.swift */,
 				3C8CCA011C47BBE900389A1A /* Survey.swift */,
 			);
 			name = Models;
@@ -445,6 +451,7 @@
 			files = (
 				3B0107051C43F54000ECA5DB /* AppDelegate.swift in Sources */,
 				3B01070D1C43F54100ECA5DB /* CrowdSurvey.xcdatamodeld in Sources */,
+				3C39C8A51C8F2C620041BDDC /* RecordField.swift in Sources */,
 				3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */,
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3CCA0E9F1C4915670035418D /* Record.swift in Sources */,
@@ -453,6 +460,7 @@
 				3C8CCA061C47C28E00389A1A /* Field.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
 				3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */,
+				3C39C8A31C8F2BF10041BDDC /* SurveyField.swift in Sources */,
 				3B55DBEA1C887ECA00356648 /* CrowdSurveyAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

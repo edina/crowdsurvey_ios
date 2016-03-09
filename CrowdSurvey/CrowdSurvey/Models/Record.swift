@@ -19,7 +19,7 @@ class Record: Mappable, CustomStringConvertible {
     
     // properties
     var editor: String?
-    var fields: [Field]?
+    var fields: [RecordField]?
     var timestamp: NSDate?
     
     

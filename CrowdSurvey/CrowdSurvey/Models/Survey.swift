@@ -17,7 +17,7 @@ class Survey: Mappable, CustomStringConvertible {
     var id: String?
     var title: String?
     var geoms: [String]?
-    var fields: [Field]?
+    var fields: [SurveyField]?
     var layout: [String: AnyObject]?
     var records: [Record]? = []
     var location: CLLocation? // used to store user's selected location from MapView
