@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -20,16 +20,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-jZ-Flc" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_pin" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-TN-Y83">
-                                        <rect key="frame" x="285" y="224" width="30" height="45"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cross Hair" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-TN-Y83">
+                                        <rect key="frame" x="285" y="217" width="30" height="66"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="HKN-Py-GMs"/>
+                                            <constraint firstAttribute="height" constant="66" id="HKN-Py-GMs"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="AUI-TN-Y83" firstAttribute="centerY" secondItem="hIC-jZ-Flc" secondAttribute="centerY" id="QEJ-8U-Y8Y"/>
+                                    <constraint firstItem="AUI-TN-Y83" firstAttribute="centerY" secondItem="hIC-jZ-Flc" secondAttribute="centerY" constant="3.5" id="QEJ-8U-Y8Y"/>
                                     <constraint firstItem="AUI-TN-Y83" firstAttribute="centerX" secondItem="hIC-jZ-Flc" secondAttribute="centerX" id="fNa-Bh-fKF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -222,6 +222,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map_pin" width="30" height="30"/>
+        <image name="Cross Hair" width="30" height="30"/>
     </resources>
 </document>
