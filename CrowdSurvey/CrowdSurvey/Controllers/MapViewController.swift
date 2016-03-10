@@ -230,6 +230,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         // Get the new view controller using segue.destinationViewController.
         if segue.identifier == Constants.SegueIDs.ShowSurvey {
             if let surveyVC = segue.destinationViewController as? SurveyViewController {
+                
+                // Ensure back button text is "Back" rather than the Survey title
+                let backItem = UIBarButtonItem()
+                backItem.title = "Back"
+                navigationItem.backBarButtonItem = backItem //
+                
+                
                 if let survey = survey {
                     surveyVC.survey = survey
                     
