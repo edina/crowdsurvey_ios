@@ -127,45 +127,51 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         navbarTitle.title = self.survey?.title
     }
     
+    
     func setupSurvey(){
         
-        if let surveys = surveysResource?.latestData?.content{
+        // Get surveys json
+        if let surveysJson = surveysResource?.latestData?.content as? JSON{
             
-            var surveyFound = false
-            let surveysJson = (surveys as! JSON)
-            
-            // Iterate over surveys and add to database if not already added
-            for (index, surveyJson):(String, JSON) in surveysJson {
-   
-                if let doc = self.database?.getOrCreateDocument(surveyJson){
-            
-                    let newSurvey = Mapper<Survey>().map(doc.properties)!
-                    
-                    // Only add survey to array if not already there
-                    if(!self.surveys.contains(newSurvey)){
-                        self.surveys.append(newSurvey)
-                    }
-                    
-                    // Check if we need to load a specific survey
-                    if self.surveyId == surveyJson["id"].stringValue{
-                        surveyFound = true
-                        self.survey = newSurvey
-                        createActiveSurveyModelForID(self.surveyId!)
-                    }
-                }
-            }
-            
-            
-            // If we weren't looking for a specific survey, assume we just load the first one as default
-            if !surveyFound {
+            // Only update our models and db if there are more surveys on the server
+            if ((surveysJson.count > self.surveys.count) || (self.surveyId?.isEmpty != nil)){
+           
+                var surveyFound = false
                 
-                // Get the default survey
-                if let defaultSurvey = self.surveys.filter({$0.id == defaultSurveyId}).first {
-                    self.survey = defaultSurvey
-                    createActiveSurveyModelForID(defaultSurveyId)
+                // Iterate over surveys and add to database if not already added
+                for (index, surveyJson):(String, JSON) in surveysJson {
+                    
+                    if let doc = self.database?.getOrCreateDocument(surveyJson){
+                        
+                        let newSurvey = Mapper<Survey>().map(doc.properties)!
+                        
+                        // Only add survey to array if not already there
+                        if(!self.surveys.contains(newSurvey)){
+                            self.surveys.append(newSurvey)
+                        }
+                        
+                        // Check if we need to load a specific survey
+                        if self.surveyId == surveyJson["id"].stringValue{
+                            surveyFound = true
+                            self.survey = newSurvey
+                            createActiveSurveyModelForID(self.surveyId!)
+                            self.surveyId = nil // Reset survey id - survey is loaded in self.survey anyway
+                        }
+                    }
+                }
+
+                // If we weren't looking for a specific survey, assume we just load the default
+                if !surveyFound {
+                    
+                    // Get the default survey
+                    if let defaultSurvey = self.surveys.filter({$0.id == defaultSurveyId}).first {
+                        self.survey = defaultSurvey
+                        createActiveSurveyModelForID(defaultSurveyId)
+                    }
                 }
             }
             
+                     
             // Add annotations to map for any existing survey responses 
             for record: Record in (survey?.records)! {
                 addAnnotationToMap(record)
