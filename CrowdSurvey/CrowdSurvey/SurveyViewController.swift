@@ -43,6 +43,9 @@ class SurveyViewController: FormViewController {
         if  let record = currentRecord {
             if record.validateFormEntries(){
                 
+                // TODO - submitted state should only really be set when sent to the Loopback API
+                record.state = RecordState.Submitted
+                
                 self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
                 
                 // All valid so we can unwind to the MapViewController

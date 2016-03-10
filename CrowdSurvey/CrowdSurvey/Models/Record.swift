@@ -14,6 +14,14 @@ import Foundation
 import GeoJSON
 import ObjectMapper
 
+
+enum RecordState {
+    case Incomplete
+    case Complete
+    case Submitted
+    case New
+}
+
 class Record: Mappable, CustomStringConvertible {
     
     var id: String?
@@ -28,6 +36,7 @@ class Record: Mappable, CustomStringConvertible {
     
     var location: CLLocation? // used to store user's selected location from MapView
     
+    var state: RecordState?
     
     init(survey: Survey, location: CLLocation){
         // TODO: create id and name
@@ -35,6 +44,8 @@ class Record: Mappable, CustomStringConvertible {
         self.name = "SOME_AUTO_GENERATED_NAME"
         self.editor = survey.id
 
+        self.state = RecordState.New
+        
         // Create create new field releated to this Record instance
         self.fields = []
         
@@ -135,7 +146,6 @@ class Record: Mappable, CustomStringConvertible {
                 
                 // Check required field has been completed
                 if Field.required?.boolValue ?? false{
-                    print("required")
                     
                     if let value = Field.value{
                         print(value)
@@ -148,6 +158,14 @@ class Record: Mappable, CustomStringConvertible {
                 }
             }
         }
+        
+        // Update record state
+        if valid{
+            self.state = RecordState.Complete
+        }else{
+            self.state = RecordState.Incomplete
+        }
+        
         return valid
     }
 }
