@@ -63,14 +63,26 @@ class SurveyViewController: FormViewController {
         }
     }
     
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            // Ensure the status of the record is set by calling Validate
+            self.survey?.records?.last?.validateFormEntries()
+
+        }
+    }
+    
+    
+    
+    /*// In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+    }*/
+
 
 }
