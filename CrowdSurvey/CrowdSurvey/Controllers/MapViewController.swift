@@ -71,11 +71,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         super.viewWillAppear(animated)
         
         statusOverlay.embedIn(self)
-        
-        // Get survey resource
-        surveysResource = crowdSurveyAPI.surveys
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +81,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         
         self.setupMapView()
         self.database = self.setupDatabase()
+        // Get survey resource
+        surveysResource = crowdSurveyAPI.surveys
     }
     
     // MARK: - Siesta Delegate
@@ -205,6 +203,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         }
     }
     
+    func removeAllAnnotations(){
+        if let annotations = self.mapView.annotations{
+            self.mapView.removeAnnotations(annotations)
+            
+        }
+    }
+
+    
     func showAlert(title: String, message: String){
         let alert = UIAlertController(
             title: title,
@@ -245,14 +251,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                     surveyListVC.surveys = self.surveys
                 }
             }
-
-            
-           
         }
     }
 
     @IBAction func returnToMapViewController(segue:UIStoryboardSegue) {
          //unwind segue
+        
+        let id = self.survey?.id
+        self.createActiveSurveyModelForID(id!)
+        self.removeAllAnnotations()
+        
+        for record: Record in (survey?.records)! {
+            addAnnotationToMap(record)
+        }
     }
 
 }

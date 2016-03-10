@@ -47,19 +47,26 @@ class SurveyListTableViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
-        print(row)
-        // Segue to map with new survey
     }
 
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+        // Note this segue was created in the storyboard
+
+      
+            
+            if let mvc = segue.destinationViewController as? MapViewController {
+                tableView.indexPathForSelectedRow?.row
+                if let surveyIndex = tableView.indexPathForSelectedRow?.row {
+                    mvc.survey = surveys[surveyIndex]
+                }
+            }
+        
+    
     }
-    */
+
 
 }
