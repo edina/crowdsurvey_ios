@@ -15,12 +15,6 @@ import GeoJSON
 import ObjectMapper
 
 
-enum RecordState {
-    case Incomplete
-    case Complete
-    case Submitted
-    case New
-}
 
 class Record: Mappable, CustomStringConvertible {
     
@@ -35,6 +29,13 @@ class Record: Mappable, CustomStringConvertible {
     var timestamp: NSDate?
     
     var location: CLLocation? // used to store user's selected location from MapView
+    
+    enum RecordState : String {
+        case Incomplete = "Incomplete"
+        case Complete = "Complete"
+        case Submitted = "Submitted"
+        case New = "New"
+    }
     
     var state: RecordState?
     
@@ -88,6 +89,8 @@ class Record: Mappable, CustomStringConvertible {
         timestamp <- (map["properties.timestamp"], ISO8601DateTransform())
         type      <- map["type"]
         geometry  <- map["geometry"]
+        state     <- (map["state"], EnumTransform<RecordState>())
+
     }
     
     var description: String {
