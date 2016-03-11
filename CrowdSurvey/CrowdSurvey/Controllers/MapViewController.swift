@@ -14,7 +14,7 @@ import Mapbox
 import SwiftyJSON
 import Siesta
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceObserver {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver {
 
     let locationManager = CLLocationManager()
  
@@ -70,6 +70,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Get survey resource
+        surveysResource = crowdSurveyAPI.surveys
+        
         statusOverlay.embedIn(self)
     }
     
@@ -81,8 +84,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         
         self.setupMapView()
         self.database = self.setupDatabase()
-        // Get survey resource
-        surveysResource = crowdSurveyAPI.surveys
     }
     
     // MARK: - Siesta Delegate
@@ -98,6 +99,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     
      // MARK: - Setup
     func setupMapView(){
+        // Set the map view‘s delegate property
+        mapView.delegate = self
+        
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -180,6 +184,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
                 }
             }
             
+            removeAllAnnotations()
             // Add annotations to map for any existing survey responses 
             for record: Record in (survey?.records)! {
                 addAnnotationToMap(record)
@@ -190,16 +195,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
     // MARK: - Utility
     
     func addAnnotationToMap(record: Record){
-        let pin = MGLPointAnnotation()
-        let recordJSON = record.description
-        if let dataFromString = recordJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-            let json = JSON(data: dataFromString)
-            let lat = json["geometry"]["coordinates"][1].double
-            let lon = json["geometry"]["coordinates"][0].double
-            if let lat = lat, lon = lon {
-                pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        if let state = record.state where state != Record.RecordState.New {
+            let pin = MGLPointAnnotation()
+            pin.title = state.rawValue
+            let recordJSON = record.description
+            if let dataFromString = recordJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                let json = JSON(data: dataFromString)
+                let lat = json["geometry"]["coordinates"][1].double
+                let lon = json["geometry"]["coordinates"][0].double
+                if let lat = lat, lon = lon {
+                    pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                }
+                mapView.addAnnotation(pin)
             }
-            mapView.addAnnotation(pin)
         }
     }
     
@@ -220,6 +228,29 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, ResourceOb
         if let navigationController = self.navigationController {
             navigationController.presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - MGLMapView Delegate
+    
+    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
+        var annotationImage: MGLAnnotationImage?
+        var image: UIImage!
+        var reuseIdentifier: String!
+        if let title = annotation.title where title == Record.RecordState.Incomplete.rawValue {
+            image = UIImage(named: "Map Marker (incomplete)")!
+            reuseIdentifier = Record.RecordState.Incomplete.rawValue
+        } else { // TODO: Need new pin for submitted Records and need to check for them here
+            image = UIImage(named: "Map Marker (complete)")!
+            reuseIdentifier = Record.RecordState.Complete.rawValue
+        }
+        // Initialize the ‘map pin’ annotation image with the UIImage we just loaded
+        annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: reuseIdentifier)
+        return annotationImage
+    }
+    
+    func mapView(mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        // Always allow callouts to popup when annotations are tapped
+        return true
     }
     
     
