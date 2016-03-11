@@ -44,7 +44,7 @@ class SurveyViewController: FormViewController {
             if record.validateFormEntries(){
                 
                 // TODO - submitted state should only really be set when sent to the Loopback API
-                record.state = RecordState.Submitted
+                record.state = Record.RecordState.Submitted
                 
                 self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
                 
