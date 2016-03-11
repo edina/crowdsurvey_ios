@@ -236,12 +236,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         var annotationImage: MGLAnnotationImage?
         var image: UIImage!
         var reuseIdentifier: String!
-        if let title = annotation.title where title == Record.RecordState.Incomplete.rawValue {
-            image = UIImage(named: "Map Marker (incomplete)")!
-            reuseIdentifier = Record.RecordState.Incomplete.rawValue
-        } else { // TODO: Need new pin for submitted Records and need to check for them here
-            image = UIImage(named: "Map Marker (complete)")!
-            reuseIdentifier = Record.RecordState.Complete.rawValue
+        if let title = annotation.title {
+            if title == Record.RecordState.Incomplete.rawValue {
+                image = UIImage(named: "Map Marker (incomplete)")!
+                reuseIdentifier = Record.RecordState.Incomplete.rawValue
+            } else if title == Record.RecordState.Complete.rawValue {
+                image = UIImage(named: "Map Marker (complete)")!
+                reuseIdentifier = Record.RecordState.Complete.rawValue
+            } else if title == Record.RecordState.Submitted.rawValue {
+                image = UIImage(named: "Map Marker (submitted)")!
+                reuseIdentifier = Record.RecordState.Submitted.rawValue
+            }
         }
         // Initialize the ‘map pin’ annotation image with the UIImage we just loaded
         annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: reuseIdentifier)
