@@ -202,19 +202,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     // MARK: - Utility
     
     func addAnnotationToMap(record: Record){
-        if let state = record.state where state != Record.RecordState.New {
-            let pin = MGLPointAnnotation()
-            pin.title = state.rawValue
-            let recordJSON = record.description
-            if let dataFromString = recordJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                let json = JSON(data: dataFromString)
-                let lat = json["geometry"]["coordinates"][1].double
-                let lon = json["geometry"]["coordinates"][0].double
-                if let lat = lat, lon = lon {
-                    pin.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                }
+        if let coordinate = record.geometry?.coordinate, state = record.state where state != Record.RecordState.New {
+               let pin = MGLPointAnnotation()
+                pin.title = state.rawValue
+                pin.coordinate = coordinate
                 mapView.addAnnotation(pin)
-            }
         }
     }
     
