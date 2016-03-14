@@ -33,16 +33,10 @@ class Field: Mappable {
     var containsValidValue: Bool? {
         var valid = true
         
-        if let required = self.required {
+        if self.required ?? false {
             
-            if required{
-                print("required - now check if a value has been added")
-                if self.value == nil{
-                    valid =  false
-                }else{
-                   valid =  true
-                }
-            }
+            valid = self.containsValue ?? false
+       
         }
         // Not required will be true
         return valid
