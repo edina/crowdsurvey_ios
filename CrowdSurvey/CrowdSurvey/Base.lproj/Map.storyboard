@@ -90,7 +90,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="GsE-ih-AMQ" secondAttribute="trailing" constant="-20" id="zya-24-vo6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Location" id="uC3-5a-jgV"/>
+                    <navigationItem key="navigationItem" title="Location" id="uC3-5a-jgV">
+                        <barButtonItem key="rightBarButtonItem" image="Location Arrow" id="lgi-KJ-lnc">
+                            <connections>
+                                <action selector="setMapToUserLocation:" destination="BYZ-38-t0r" id="gcj-pH-E5C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="hIC-jZ-Flc" id="irF-oL-i6I"/>
@@ -226,5 +232,6 @@
     </scenes>
     <resources>
         <image name="Cross Hair" width="30" height="30"/>
+        <image name="Location Arrow" width="24" height="24"/>
     </resources>
 </document>
