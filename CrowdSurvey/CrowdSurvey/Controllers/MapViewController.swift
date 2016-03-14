@@ -284,7 +284,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                     
                     // TODO Load existing record if it exists, or
                     // Create new Record for this Survey
-                    let record = Record(survey: survey, location: CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude))
+                    let geometry = [
+                        "coordinates": [mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude],
+                        "type": "Point"
+                    ]
+                    
+                    let record = Record(survey: survey, geometry: geometry)
                     surveyVC.survey?.records?.append(record)
                 }
                 surveyVC.database = self.database!

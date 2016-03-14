@@ -28,8 +28,6 @@ class Record: Mappable, CustomStringConvertible {
     var fields: [RecordField]?
     var timestamp: NSDate?
     
-    var location: CLLocation? // used to store user's selected location from MapView
-    
     enum RecordState : String {
         case Incomplete = "Incomplete"
         case Complete = "Complete"
@@ -58,11 +56,12 @@ class Record: Mappable, CustomStringConvertible {
     }
     
     
-    init(survey: Survey, location: CLLocation){
+    init(survey: Survey, geometry: [String: AnyObject]){
         // TODO: create id and name
         self.id = "SOME_AUTO_GENERATED_ID"
         self.name = "SOME_AUTO_GENERATED_NAME"
         self.editor = survey.id
+        self.geometry = geometry
 
         self.submitted = false
         
@@ -82,11 +81,6 @@ class Record: Mappable, CustomStringConvertible {
                 )
             )
         }
-        self.location = location
-        self.geometry = [
-                "coordinates": [location.coordinate.longitude, location.coordinate.latitude],
-                "type": "Point"
-        ]
         
         self.timestamp = NSDate()
         print("Record created")
@@ -133,19 +127,19 @@ class Record: Mappable, CustomStringConvertible {
         let form = Form()
         
         // Add location form element
-        if let location = self.location {
-            let locationValue = "\(round(location.coordinate.latitude*10000)/10000), \(round(location.coordinate.longitude*10000)/10000)"
-            let locationField = RecordField(
-                                    id: Constants.Form.Location,
-                                    label: Constants.Form.Location.capitalizedString,
-                                    value: locationValue,
-                                    type: Constants.Form.Text,
-                                    required: true,
-                                    persistent: true,
-                                    properties: [Constants.Form.Location: true]
-                                )
-            locationField.appendToForm(form)
-        }
+//        if let location = self.location {
+//            let locationValue = "\(round(location.coordinate.latitude*10000)/10000), \(round(location.coordinate.longitude*10000)/10000)"
+//            let locationField = RecordField(
+//                                    id: Constants.Form.Location,
+//                                    label: Constants.Form.Location.capitalizedString,
+//                                    value: locationValue,
+//                                    type: Constants.Form.Text,
+//                                    required: true,
+//                                    persistent: true,
+//                                    properties: [Constants.Form.Location: true]
+//                                )
+//            locationField.appendToForm(form)
+//        }
         
         for field in fields!{
             //print(Field.description)
