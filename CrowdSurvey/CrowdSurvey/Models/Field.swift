@@ -20,6 +20,34 @@ class Field: Mappable {
     var required: Bool?
     var persistent: Bool?
     
+    
+    var containsValue: Bool? {
+        var empty = true
+        
+        if self.value == nil {
+            empty = false
+        }
+        return empty
+    }
+    
+    var containsValidValue: Bool? {
+        var valid = true
+        
+        if let required = self.required {
+            
+            if required{
+                print("required - now check if a value has been added")
+                if self.value == nil{
+                    valid =  false
+                }else{
+                   valid =  true
+                }
+            }
+        }
+        // Not required will be true
+        return valid
+    }
+    
     // Lazily instantiate the notificationCenter so we can inject the mockNotificationCentre for testing
     lazy var notificationCentre = {
         return NSNotificationCenter.defaultCenter()

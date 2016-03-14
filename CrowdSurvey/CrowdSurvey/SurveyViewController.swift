@@ -44,7 +44,7 @@ class SurveyViewController: FormViewController {
             if record.validateFormEntries(){
                 
                 // TODO - submitted state should only really be set when sent to the Loopback API
-                record.state = Record.RecordState.Submitted
+                record.state = Record.RecordState.Complete
                 
                 self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
                 
@@ -70,9 +70,16 @@ class SurveyViewController: FormViewController {
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            // Ensure the status of the record is set by calling Validate
-            self.survey?.records?.last?.validateFormEntries()
+            
+            if let survey = self.survey?.records?.last {
+                                
+                // Ensure the status of the record is set by calling Validate
+                survey.validateFormEntries()
 
+                if survey.state == Record.RecordState.New {
+                    self.survey?.records?.removeLast()
+                }
+            }
         }
     }
     

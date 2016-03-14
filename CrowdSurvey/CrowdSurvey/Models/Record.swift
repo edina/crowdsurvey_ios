@@ -139,36 +139,38 @@ class Record: Mappable, CustomStringConvertible {
         return form
     }
     
+    
+    func areAllFieldsEmpty() -> Bool? {
+        return self.fields?.filter({$0.containsValue!}).isEmpty
+    }
+    
+    func doAllFieldsContainValidValues() -> Bool? {
+        return self.fields?.filter({!($0.containsValidValue!)}).isEmpty
+    }
+    
+    
     // Check all required Fields have been submitted
     func validateFormEntries() -> Bool{
         
-        var valid = true
-        
-        if let fields = self.fields {
-            for Field in fields{
-                
-                // Check required field has been completed
-                if Field.required?.boolValue ?? false{
-                    
-                    if let value = Field.value{
-                        print(value)
-                    }else{
-                        valid = false
-                        break
-                    }
-                    
-                    
-                }
-            }
+        var valid = false
+
+         // If no anwsers are supplied, the record is classed as New
+        if (self.areAllFieldsEmpty() ?? false){
+            self.state = RecordState.New
+            return valid
         }
+        
+        // False if an invalid value is found
+        valid = self.doAllFieldsContainValidValues() ?? false
         
         // Update record state
         if valid{
             self.state = RecordState.Complete
-        }else{
+        }
+        else{
             self.state = RecordState.Incomplete
         }
-        
+
         return valid
     }
 }
