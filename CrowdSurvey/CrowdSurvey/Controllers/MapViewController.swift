@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import GeoJSON
 import ObjectMapper
 import Mapbox
 import SwiftyJSON
@@ -284,13 +285,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                     
                     // TODO Load existing record if it exists, or
                     // Create new Record for this Survey
-                    let geometry = [
+                    let geometryDictionary = [
                         "coordinates": [mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude],
                         "type": "Point"
                     ]
-                    
-                    let record = Record(survey: survey, geometry: geometry)
-                    surveyVC.survey?.records?.append(record)
+                    let point = GeoJSONPoint(dictionary: geometryDictionary)
+                    if let pointGeom = point {
+                        let record = Record(survey: survey, geometry: pointGeom)
+                        surveyVC.survey?.records?.append(record)
+                    }
                 }
                 surveyVC.database = self.database!
             }
