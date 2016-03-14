@@ -67,6 +67,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         }
     }
     
+    @IBAction func setMapToUserLocation(sender: UIBarButtonItem) {
+        // TODO: Check user location is within survey bounding box
+        mapView.setCenterCoordinate(locationManager.location!.coordinate, animated: true)
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
