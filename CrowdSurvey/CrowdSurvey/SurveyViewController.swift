@@ -40,27 +40,48 @@ class SurveyViewController: FormViewController {
         
         // Perform form validation
         let currentRecord = survey?.records?.last
-        if  let record = currentRecord {
-            if record.validateFormEntries(){
+        
+        
+        if let record = currentRecord {
+            
+            let recordState = record.state ?? Record.RecordState.Incomplete
+            
+            switch recordState {
                 
-                // TODO - submitted state should only really be set when sent to the Loopback API
-                record.state = Record.RecordState.Complete
+            case Record.RecordState.Incomplete:
+         
+                // Show alert
+                self.showAlert()
                 
+            case Record.RecordState.Complete:
+    
+                // Save to dabase
                 self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
                 
                 // All valid so we can unwind to the MapViewController
                 performSegueWithIdentifier("saveSurvey", sender: self)
-            }else{
+
                 
-                let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
+            case Record.RecordState.New:
+                // Show alert
+                self.showAlert()
                 
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                
-                // show the alert
-                self.presentViewController(alert, animated: true, completion: nil)
+            case Record.RecordState.Submitted:
+                print("Submitted")
+                // Shouldn't get here
             }
         }
+    }
+    
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
+        // show the alert
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     
@@ -72,10 +93,8 @@ class SurveyViewController: FormViewController {
         if parent == nil {
             
             if let survey = self.survey?.records?.last {
-                                
-                // Ensure the status of the record is set by calling Validate
-                survey.validateFormEntries()
 
+                // If the record was empty, we can safely remove it
                 if survey.state == Record.RecordState.New {
                     self.survey?.records?.removeLast()
                 }

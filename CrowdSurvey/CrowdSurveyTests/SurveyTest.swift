@@ -44,7 +44,7 @@ class SurveyTest: CrowdSurveyTests {
         }
     }
     
-    func testValidateFormEntries(){
+    /*func testValidateFormEntries(){
         
         // No values added at all so will fail in the first instance
         XCTAssertFalse(self.survey!.validateFormEntries())
@@ -72,5 +72,5 @@ class SurveyTest: CrowdSurveyTests {
         XCTAssertEqual(form.rowByTag(Constants.Form.Question3Label)?.title, Constants.Form.Question3Label)       
         
         XCTAssertEqual(form.count, 18)
-    }
+    }*/
 }

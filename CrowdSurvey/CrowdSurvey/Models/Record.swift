@@ -37,7 +37,26 @@ class Record: Mappable, CustomStringConvertible {
         case New = "New"
     }
     
-    var state: RecordState?
+    // If set to true, subsequent calls to state will return RecordState.Submitted
+    var submitted: Bool?
+    
+    var state: RecordState?  {
+        
+        if (self.submitted ?? false){
+            // record has been submitted to API
+            return RecordState.Submitted
+        }
+        if (self.areAllFieldsEmpty() ?? false) {
+            return RecordState.New
+        }
+        if (self.doAllFieldsContainValidValues() ?? false) {
+            return RecordState.Complete
+        }
+        
+        // Otherwise record is incomplete
+        return RecordState.Incomplete
+    }
+    
     
     init(survey: Survey, location: CLLocation){
         // TODO: create id and name
@@ -45,7 +64,7 @@ class Record: Mappable, CustomStringConvertible {
         self.name = "SOME_AUTO_GENERATED_NAME"
         self.editor = survey.id
 
-        self.state = RecordState.New
+        self.submitted = false
         
         // Create create new field releated to this Record instance
         self.fields = []
@@ -89,8 +108,7 @@ class Record: Mappable, CustomStringConvertible {
         timestamp <- (map["properties.timestamp"], ISO8601DateTransform())
         type      <- map["type"]
         geometry  <- map["geometry"]
-        state     <- (map["state"], EnumTransform<RecordState>())
-
+        submitted  <- map["submitted"]
     }
     
     var description: String {
@@ -147,30 +165,4 @@ class Record: Mappable, CustomStringConvertible {
     func doAllFieldsContainValidValues() -> Bool? {
         return self.fields?.filter({!($0.containsValidValue!)}).isEmpty
     }
-    
-    
-    // Check all required Fields have been submitted
-    func validateFormEntries() -> Bool{
-        
-        var valid = false
-
-         // If no anwsers are supplied, the record is classed as New
-        if (self.areAllFieldsEmpty() ?? false){
-            self.state = RecordState.New
-            return valid
-        }
-        
-        // False if an invalid value is found
-        valid = self.doAllFieldsContainValidValues() ?? false
-        
-        // Update record state
-        if valid{
-            self.state = RecordState.Complete
-        }
-        else{
-            self.state = RecordState.Incomplete
-        }
-
-        return valid
-    }
-}
+ }
