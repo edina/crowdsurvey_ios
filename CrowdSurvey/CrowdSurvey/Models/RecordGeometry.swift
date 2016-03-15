@@ -13,7 +13,7 @@ import ObjectMapper
 
 class RecordGeometry: NSObject, Mappable, MGLAnnotation {
     
-    var coordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) // set to 0.0,0.0 as MGLAnnotation requires this to not be optional
+    var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
     var type = "Point"
     
     var title: String?
