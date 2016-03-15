@@ -62,11 +62,7 @@ class RecordField: Field {
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
-            if let value = self.value {
-                $0.value = "\(value)"
-            } else {
-                $0.value = ""
-            }
+            $0.value = ""
             $0.cell.textLabel?.numberOfLines=0
             }
             
@@ -75,6 +71,12 @@ class RecordField: Field {
                 $0.title = ""
                 $0.tag = label!+"_tag"
                 $0.placeholder = "Enter answer…"
+                if let value = self.value {
+                    $0.value = "\(value)"
+                } else {
+                    $0.value = ""
+                }
+                
                 }.onChange {[weak self] row in
                     
                     if let value = row.value{

@@ -127,19 +127,19 @@ class Record: Mappable, CustomStringConvertible {
         let form = Form()
         
         // Add location form element
-//        if let location = self.location {
-//            let locationValue = "\(round(location.coordinate.latitude*10000)/10000), \(round(location.coordinate.longitude*10000)/10000)"
-//            let locationField = RecordField(
-//                                    id: Constants.Form.Location,
-//                                    label: Constants.Form.Location.capitalizedString,
-//                                    value: locationValue,
-//                                    type: Constants.Form.Text,
-//                                    required: true,
-//                                    persistent: true,
-//                                    properties: [Constants.Form.Location: true]
-//                                )
-//            locationField.appendToForm(form)
-//        }
+        if let coordinate = self.geometry?.coordinate {
+            let locationValue = "\(round(coordinate.latitude*10000)/10000), \(round(coordinate.longitude*10000)/10000)"
+            let locationField = RecordField(
+                                    id: Constants.Form.Location,
+                                    label: Constants.Form.Location.capitalizedString,
+                                    value: locationValue,
+                                    type: Constants.Form.Text,
+                                    required: true,
+                                    persistent: true,
+                                    properties: [Constants.Form.Location: true]
+                                )
+            locationField.appendToForm(form)
+        }
         
         for field in fields!{
             //print(Field.description)
