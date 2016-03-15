@@ -16,6 +16,7 @@ struct Constants {
         static let ShowSurvey = "Show Survey"
         static let ShowSurveyList = "Show Survey List"
         static let ShowSurveyOnMap = "Show Survey On Map"
+        static let SaveSurvey = "saveSurvey"
     }
     struct Form {
         static let Text = "text"

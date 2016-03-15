@@ -55,11 +55,11 @@ class SurveyViewController: FormViewController {
                 
             case Record.RecordState.Complete:
     
-                // Save to dabase
-                self.database!.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
+                // Save to database
+                self.saveToDatabase()
                 
                 // All valid so we can unwind to the MapViewController
-                performSegueWithIdentifier("saveSurvey", sender: self)
+                performSegueWithIdentifier(Constants.SegueIDs.SaveSurvey, sender: self)
 
                 
             case Record.RecordState.New:
@@ -73,6 +73,10 @@ class SurveyViewController: FormViewController {
         }
     }
     
+    
+    func saveToDatabase() {       
+        self.database?.saveUpdatedSurveyRecords((self.survey?.jsonDict())!)
+    }
     
     func showAlert() {
         let alert = UIAlertController(title: "Survey Incomplete", message: "Please ensure all required fields have been completed.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -98,6 +102,8 @@ class SurveyViewController: FormViewController {
                 if survey.state == Record.RecordState.New {
                     self.survey?.records?.removeLast()
                 }
+                
+                self.saveToDatabase()
             }
         }
     }
