@@ -201,12 +201,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     // MARK: - Utility
     
     func addAnnotationToMap(record: Record){
-        if let coordinate = record.geometry?.coordinate, state = record.state where state != Record.RecordState.New {
-               let pin = MGLPointAnnotation()
-                print(record.description)
-                pin.title = state.rawValue
-                pin.coordinate = coordinate
-                mapView.addAnnotation(pin)
+        if let annotation = record.geometry {
+            if let state = record.state?.rawValue {
+                annotation.title = state
+            }
+            mapView.addAnnotation(annotation)
         }
     }
     

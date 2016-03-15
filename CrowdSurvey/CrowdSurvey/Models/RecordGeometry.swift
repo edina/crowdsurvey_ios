@@ -8,23 +8,28 @@
 
 import Foundation
 import CoreLocation
+import Mapbox
 import ObjectMapper
 
-struct RecordGeometry: Mappable {
+class RecordGeometry: NSObject, Mappable, MGLAnnotation {
     
-    var coordinate: CLLocationCoordinate2D?
+    var coordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0) // set to 0.0,0.0 as MGLAnnotation requires this to not be optional
     var type = "Point"
+    
+    var title: String?
     
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
     }
     
-    init?(_ map: Map) {
+    // MARK: - ObjectMapper
+    
+    required init?(_ map: Map) {
         
     }
     
     // Mappable
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
         coordinate <- (map["coordinate"], CoordinateTransform())
         type       <- map["type"]
     }
