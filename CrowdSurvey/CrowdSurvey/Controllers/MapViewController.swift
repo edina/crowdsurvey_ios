@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import Alamofire
-import GeoJSON
 import ObjectMapper
 import Mapbox
 import SwiftyJSON
@@ -204,6 +203,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     func addAnnotationToMap(record: Record){
         if let coordinate = record.geometry?.coordinate, state = record.state where state != Record.RecordState.New {
                let pin = MGLPointAnnotation()
+                print(record.description)
                 pin.title = state.rawValue
                 pin.coordinate = coordinate
                 mapView.addAnnotation(pin)
@@ -216,7 +216,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             
         }
     }
-
     
     func showAlert(title: String, message: String){
         let alert = UIAlertController(
@@ -277,15 +276,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                     
                     // TODO Load existing record if it exists, or
                     // Create new Record for this Survey
-                    let geometryDictionary = [
-                        "coordinates": [mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude],
-                        "type": "Point"
-                    ]
-                    let point = GeoJSONPoint(dictionary: geometryDictionary)
-                    if let pointGeom = point {
-                        let record = Record(survey: survey, geometry: pointGeom)
-                        surveyVC.survey?.records?.append(record)
-                    }
+                    let point = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+                    let recordGeometry = RecordGeometry(coordinate: point)
+                    let record = Record(survey: survey, geometry: recordGeometry)
+                    surveyVC.survey?.records?.append(record)
                 }
                 surveyVC.database = self.database!
             }

@@ -21,7 +21,7 @@ class Record: Mappable, CustomStringConvertible {
     var id: String?
     var name: String?
     var type = "Feature"
-    var geometry: GeoJSONPoint?
+    var geometry: RecordGeometry?
     
     // properties
     var editor: String?
@@ -56,7 +56,7 @@ class Record: Mappable, CustomStringConvertible {
     }
     
     
-    init(survey: Survey, geometry: GeoJSONPoint){
+    init(survey: Survey, geometry: RecordGeometry){
         // TODO: create id and name
         self.id = "SOME_AUTO_GENERATED_ID"
         self.name = "SOME_AUTO_GENERATED_NAME"

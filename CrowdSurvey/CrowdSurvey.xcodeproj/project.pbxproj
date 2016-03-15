@@ -38,6 +38,7 @@
 		3C39C8A51C8F2C620041BDDC /* RecordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39C8A41C8F2C620041BDDC /* RecordField.swift */; };
 		3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA011C47BBE900389A1A /* Survey.swift */; };
 		3C8CCA061C47C28E00389A1A /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CCA051C47C28E00389A1A /* Field.swift */; };
+		3C93F3911C97280900F70BCA /* RecordGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C93F3901C97280900F70BCA /* RecordGeometry.swift */; };
 		3CC15FB61C4F921F00C3F247 /* FieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC15FB51C4F921F00C3F247 /* FieldTest.swift */; };
 		3CCA0E9F1C4915670035418D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA0E9E1C4915670035418D /* Record.swift */; };
 		3CD7DA421C578BA200B7A8D6 /* CouchBaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD7DA411C578BA200B7A8D6 /* CouchBaseUtils.swift */; };
@@ -102,6 +103,7 @@
 		3C39C8A41C8F2C620041BDDC /* RecordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordField.swift; path = Models/RecordField.swift; sourceTree = "<group>"; };
 		3C8CCA011C47BBE900389A1A /* Survey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Survey.swift; path = Models/Survey.swift; sourceTree = "<group>"; };
 		3C8CCA051C47C28E00389A1A /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Models/Field.swift; sourceTree = "<group>"; };
+		3C93F3901C97280900F70BCA /* RecordGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordGeometry.swift; path = Models/RecordGeometry.swift; sourceTree = "<group>"; };
 		3CC15FB51C4F921F00C3F247 /* FieldTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldTest.swift; sourceTree = "<group>"; };
 		3CCA0E9E1C4915670035418D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Models/Record.swift; sourceTree = "<group>"; };
 		3CD7DA411C578BA200B7A8D6 /* CouchBaseUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CouchBaseUtils.swift; path = "Supporting Files/CouchBaseUtils.swift"; sourceTree = "<group>"; };
@@ -273,6 +275,8 @@
 		3C8CC9FE1C47B8AD00389A1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3C93F3901C97280900F70BCA /* RecordGeometry.swift */,
+				3CCA0E9E1C4915670035418D /* Record.swift */,
 				3C8CCA051C47C28E00389A1A /* Field.swift */,
 				3BCE1B7A1C982DE500329638 /* Record */,
 				3BCE1B7B1C982DFB00329638 /* Survey */,
@@ -481,6 +485,7 @@
 				3C8CCA021C47BBE900389A1A /* Survey.swift in Sources */,
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3CCA0E9F1C4915670035418D /* Record.swift in Sources */,
+				3C93F3911C97280900F70BCA /* RecordGeometry.swift in Sources */,
 				3CD7DA421C578BA200B7A8D6 /* CouchBaseUtils.swift in Sources */,
 				3C1F67FA1C98227E00308BD5 /* CoordinateTransform.swift in Sources */,
 				3B55DBE81C88601700356648 /* Networking-Alamofire.swift in Sources */,
