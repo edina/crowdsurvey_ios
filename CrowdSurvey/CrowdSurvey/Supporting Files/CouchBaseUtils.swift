@@ -65,9 +65,6 @@ class CouchBaseUtils {
             let result = try query.run()
             while let row = result.nextRow() {
                 if let document = row.document {
-                    if let properties = document.properties {
-                        print(properties["active"])
-                    }
                     removeActiveFlag(document)
                 }
             }
