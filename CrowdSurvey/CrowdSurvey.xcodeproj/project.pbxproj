@@ -32,6 +32,7 @@
 		3B60096F1C45617D004F248D /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B60096E1C45617D004F248D /* libz.1.1.3.tbd */; };
 		3BECCB891C454956009232D3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BECCB881C454956009232D3 /* CoreLocation.framework */; };
 		3C1DAA101C4E9B8E00BFA67E /* SurveyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1DAA0F1C4E9B8E00BFA67E /* SurveyTest.swift */; };
+		3C1F67FA1C98227E00308BD5 /* CoordinateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F67F91C98227E00308BD5 /* CoordinateTransform.swift */; };
 		3C37DCB21C4E505E0016EF0A /* RecordTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37DCB11C4E505E0016EF0A /* RecordTest.swift */; };
 		3C39C8A31C8F2BF10041BDDC /* SurveyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39C8A21C8F2BF10041BDDC /* SurveyField.swift */; };
 		3C39C8A51C8F2C620041BDDC /* RecordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C39C8A41C8F2C620041BDDC /* RecordField.swift */; };
@@ -95,6 +96,7 @@
 		3BECCB881C454956009232D3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchBaseBridgingHeader.h; sourceTree = "<group>"; };
 		3C1DAA0F1C4E9B8E00BFA67E /* SurveyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyTest.swift; sourceTree = "<group>"; };
+		3C1F67F91C98227E00308BD5 /* CoordinateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoordinateTransform.swift; path = "Supporting Files/CoordinateTransform.swift"; sourceTree = "<group>"; };
 		3C37DCB11C4E505E0016EF0A /* RecordTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTest.swift; sourceTree = "<group>"; };
 		3C39C8A21C8F2BF10041BDDC /* SurveyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyField.swift; path = Models/SurveyField.swift; sourceTree = "<group>"; };
 		3C39C8A41C8F2C620041BDDC /* RecordField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordField.swift; path = Models/RecordField.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		3BECCB8E1C4553C5009232D3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3C1F67F91C98227E00308BD5 /* CoordinateTransform.swift */,
 				3CFE09AA1C97153000E13D48 /* Cardrona.gpx */,
 				3CD7DA411C578BA200B7A8D6 /* CouchBaseUtils.swift */,
 				3BECCB8D1C45539A009232D3 /* CouchBaseBridgingHeader.h */,
@@ -479,6 +482,7 @@
 				3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */,
 				3CCA0E9F1C4915670035418D /* Record.swift in Sources */,
 				3CD7DA421C578BA200B7A8D6 /* CouchBaseUtils.swift in Sources */,
+				3C1F67FA1C98227E00308BD5 /* CoordinateTransform.swift in Sources */,
 				3B55DBE81C88601700356648 /* Networking-Alamofire.swift in Sources */,
 				3C8CCA061C47C28E00389A1A /* Field.swift in Sources */,
 				3B0107381C44009800ECA5DB /* MapViewController.swift in Sources */,
