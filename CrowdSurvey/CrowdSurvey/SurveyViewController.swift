@@ -54,13 +54,9 @@ class SurveyViewController: FormViewController {
                 self.showAlert()
                 
             case Record.RecordState.Complete:
-    
-                // Save to database
-                self.saveToDatabase()
                 
                 // All valid so we can unwind to the MapViewController
                 performSegueWithIdentifier(Constants.SegueIDs.SaveSurvey, sender: self)
-
                 
             case Record.RecordState.New:
                 // Show alert
