@@ -201,13 +201,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     // MARK: - Utility
     
     func addAnnotationToMap(record: Record){
-        if let annotation = record.geometry {
-            if let state = record.state?.rawValue {
-                annotation.title = state
-            }
-            mapView.addAnnotation(annotation)
+        if let state = record.state?.rawValue {
+            record.title = state
         }
-    }
+        mapView.addAnnotation(record)
+     }
     
     func removeAllAnnotations(){
         if let annotations = self.mapView.annotations{
@@ -276,8 +274,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                     // TODO Load existing record if it exists, or
                     // Create new Record for this Survey
                     let point = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-                    let recordGeometry = RecordGeometry(coordinate: point)
-                    let record = Record(survey: survey, geometry: recordGeometry)
+                    let record = Record(survey: survey, coordinate: point)
                     surveyVC.survey?.records?.append(record)
                 }
                 surveyVC.database = self.database!

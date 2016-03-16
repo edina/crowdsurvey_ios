@@ -7,21 +7,22 @@
 //
 
 
-
 import CoreLocation
 import Eureka
 import Foundation
 import GeoJSON
+import Mapbox
 import ObjectMapper
 
 
-
-class Record: Mappable, CustomStringConvertible {
+class Record: NSObject, Mappable, MGLAnnotation {
     
     var id: String?
     var name: String?
     var type = "Feature"
-    var geometry: RecordGeometry?
+    var title: String?
+    var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
+    var geometryType = "Point"
     
     // properties
     var editor: String?
@@ -56,12 +57,12 @@ class Record: Mappable, CustomStringConvertible {
     }
     
     
-    init(survey: Survey, geometry: RecordGeometry){
+    init(survey: Survey, coordinate: CLLocationCoordinate2D){
         // TODO: create id and name
         self.id = "SOME_AUTO_GENERATED_ID"
         self.name = "SOME_AUTO_GENERATED_NAME"
         self.editor = survey.id
-        self.geometry = geometry
+        self.coordinate = coordinate
 
         self.submitted = false
         
@@ -95,17 +96,18 @@ class Record: Mappable, CustomStringConvertible {
     
     // Mappable
     func mapping(map: Map) {
-        id        <- map["id"]
-        name      <- map["name"]
-        editor    <- map["properties.editor"]
-        fields    <- map["properties.fields"]
-        timestamp <- (map["properties.timestamp"], ISO8601DateTransform())
-        type      <- map["type"]
-        geometry  <- map["geometry"]
-        submitted  <- map["submitted"]
+        id           <- map["id"]
+        name         <- map["name"]
+        editor       <- map["properties.editor"]
+        fields       <- map["properties.fields"]
+        timestamp    <- (map["properties.timestamp"], ISO8601DateTransform())
+        type         <- map["type"]
+        coordinate   <- (map["geometry.coordinate"], CoordinateTransform())
+        geometryType <- map["geometry.type"]
+        submitted    <- map["submitted"]
     }
     
-    var description: String {
+    override var description: String {
         get {
             return Mapper().toJSONString(self, prettyPrint: true)!
         }
@@ -127,19 +129,17 @@ class Record: Mappable, CustomStringConvertible {
         let form = Form()
         
         // Add location form element
-        if let coordinate = self.geometry?.coordinate {
-            let locationValue = "\(round(coordinate.latitude*10000)/10000), \(round(coordinate.longitude*10000)/10000)"
-            let locationField = RecordField(
-                                    id: Constants.Form.Location,
-                                    label: Constants.Form.Location.capitalizedString,
-                                    value: locationValue,
-                                    type: Constants.Form.Text,
-                                    required: true,
-                                    persistent: true,
-                                    properties: [Constants.Form.Location: true]
-                                )
-            locationField.appendToForm(form)
-        }
+        let locationValue = "\(round(coordinate.latitude*10000)/10000), \(round(coordinate.longitude*10000)/10000)"
+        let locationField = RecordField(
+                                id: Constants.Form.Location,
+                                label: Constants.Form.Location.capitalizedString,
+                                value: locationValue,
+                                type: Constants.Form.Text,
+                                required: true,
+                                persistent: true,
+                                properties: [Constants.Form.Location: true]
+                            )
+        locationField.appendToForm(form)
         
         for field in fields!{
             //print(Field.description)
