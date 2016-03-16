@@ -13,9 +13,13 @@ import ObjectMapper
 import Mapbox
 import SwiftyJSON
 import Siesta
+import BubbleTransition
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate {
 
+    
+    
+    let transition = BubbleTransition()
     let locationManager = CLLocationManager()
  
     // Simple default survey to be loaded if no other id explicitly specified 
@@ -262,6 +266,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         if segue.identifier == Constants.SegueIDs.ShowSurvey {
             if let surveyVC = segue.destinationViewController as? SurveyViewController {
                 
+              
+                surveyVC.transitioningDelegate = self
+                surveyVC.modalPresentationStyle = .Custom
+                
+                
                 // Ensure back button text is "Back" rather than the Survey title
                 let backItem = UIBarButtonItem()
                 backItem.title = "Back"
@@ -304,5 +313,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             addAnnotationToMap(record)
         }
     }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .Present
+        transition.startingPoint = newSurvey.center
+        transition.bubbleColor = newSurvey.backgroundColor!
+        return transition
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .Dismiss
+        transition.startingPoint = newSurvey.center
+        transition.bubbleColor = newSurvey.backgroundColor!
+        return transition
+    }
+
 
 }

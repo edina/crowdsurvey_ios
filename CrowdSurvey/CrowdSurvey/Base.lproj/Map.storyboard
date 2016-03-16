@@ -56,7 +56,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
                                 <state key="normal" title="+"/>
                                 <connections>
-                                    <segue destination="tQL-mZ-wAf" kind="show" identifier="Show Survey" id="o2g-VE-9X1"/>
+                                    <segue destination="tQL-mZ-wAf" kind="show" identifier="Show Survey" action="showDetailViewController:sender:" id="o2g-VE-9X1"/>
                                 </connections>
                             </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsE-ih-AMQ">
@@ -232,6 +232,6 @@
     </scenes>
     <resources>
         <image name="Cross Hair" width="30" height="30"/>
-        <image name="Location Arrow" width="24" height="24"/>
+        <image name="Location Arrow" width="18" height="18"/>
     </resources>
 </document>

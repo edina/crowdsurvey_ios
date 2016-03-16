@@ -12,16 +12,42 @@ import Eureka
 
 class SurveyViewController: FormViewController {
 
+
+    @IBOutlet weak var closeButton: UIButton! {
+        didSet{
+            closeButton.layer.cornerRadius = 30
+        }
+    }
+    
     var survey: Survey?
     var database: CouchBaseUtils?
     
+
+    @IBAction func close(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupForm()
         
+        closeButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
+        self.view.bringSubviewToFront(self.closeButton)
         // Listen out for Field changing
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "listenForFieldChange:", name:Constants.Notifications.FieldUpdatedNotification, object: nil)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+    }
+
+    
+    
     
     func listenForFieldChange(notification: NSNotification){
         // A field has changed so the survey should be resaved
