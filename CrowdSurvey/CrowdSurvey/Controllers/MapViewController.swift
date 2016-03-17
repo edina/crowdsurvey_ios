@@ -257,6 +257,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         return true
     }
     
+    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+        self.performSegueWithIdentifier(Constants.SegueIDs.ShowSurvey, sender: annotation)
+    }
+    
     
     // MARK: - Navigation
 
@@ -276,14 +280,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                 backItem.title = "Back"
                 navigationItem.backBarButtonItem = backItem //
                 
-                
                 if let survey = survey {
                     surveyVC.survey = survey
                     
-                    // TODO Load existing record if it exists, or
-                    // Create new Record for this Survey
                     let point = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-                    let record = Record(survey: survey, coordinate: point)
+                    let record = sender as? Record ?? Record(survey: survey, coordinate: point)
+                    
                     surveyVC.survey?.records?.append(record)
                 }
                 surveyVC.database = self.database!
