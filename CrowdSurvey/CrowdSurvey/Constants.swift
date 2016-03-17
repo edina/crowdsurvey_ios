@@ -8,7 +8,11 @@
 
 import Foundation
 struct Constants {
-    
+    struct API {
+//        Below is a proxypass entry for the following
+//        http://dlib-rainbow.edina.ac.uk:3000/api
+        static let url = "http://dlib-goatfell.ucs.ed.ac.uk/crowdsurvey/api"
+    }
     struct Notifications {
         static let FieldUpdatedNotification = "Field Updated Notification"
     }

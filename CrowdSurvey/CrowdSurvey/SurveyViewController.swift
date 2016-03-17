@@ -24,7 +24,19 @@ class SurveyViewController: FormViewController {
     
 
     @IBAction func close(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        if let survey = self.survey?.records?.last {
+            
+            // If the record was empty, we can safely remove it
+            if survey.state == Record.RecordState.New {
+                self.survey?.records?.removeLast()
+            }
+            
+            self.saveToDatabase()
+        }
+        
+        // This ensures that the returnToMapViewController IBAction in MapViewController gets callesd
+        self.performSegueWithIdentifier(Constants.SegueIDs.SaveSurvey, sender: self)
     }
 
 

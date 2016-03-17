@@ -15,9 +15,9 @@ import ObjectMapper
 class _CrowdSurveyAPI: Service {
     
     init() {
-        
-        super.init(baseURL: "http://dlib-rainbow.edina.ac.uk:3000/api", networking: AlamofireProvider())
-        
+
+        super.init(baseURL: Constants.API.url, networking: AlamofireProvider())
+
         // Uncomment for Siesta logging
         //        Siesta.enabledLogCategories = LogCategory.all
         

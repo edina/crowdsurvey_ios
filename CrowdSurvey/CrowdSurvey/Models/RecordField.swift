@@ -250,6 +250,8 @@ class RecordField: Field {
                 }.onChange({[weak self] row -> () in
                     // Get image, save in documents and add url to model
                     self?.saveImage(row)
+                    
+                    // Bug requires us to do this if displaying in modal - image won't appear otherwise
                     row.updateCell()
                     }).cellSetup { [weak self] cell, row in
                         if self?.required?.boolValue ?? false{
