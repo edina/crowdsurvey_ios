@@ -100,7 +100,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="mapView" destination="hIC-jZ-Flc" id="irF-oL-i6I"/>
-                        <outlet property="navbarTitle" destination="uC3-5a-jgV" id="lW1-Wd-n2B"/>
                         <outlet property="newSurvey" destination="akg-k8-ija" id="1So-Tz-y7P"/>
                     </connections>
                 </viewController>

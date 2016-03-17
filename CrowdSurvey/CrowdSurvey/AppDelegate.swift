@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        // This ensure we get white text on the status bar and can see it against the dark blue background
+        UINavigationBar.appearance().barStyle = .Black
+
         return true
     }
 

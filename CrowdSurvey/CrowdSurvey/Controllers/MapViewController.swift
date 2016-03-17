@@ -1,39 +1,44 @@
-//
-//  MapViewController.swift
-//  CrowdSurvey
-//
-//  Created by Colin Gormley on 11/01/2016.
-//  Copyright © 2016 Edina. All rights reserved.
-//
-
-import UIKit
-import CoreLocation
-import Alamofire
-import ObjectMapper
-import Mapbox
-import SwiftyJSON
-import Siesta
-import BubbleTransition
-
-class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate {
-
+  //
+  //  MapViewController.swift
+  //  CrowdSurvey
+  //
+  //  Created by Colin Gormley on 11/01/2016.
+  //  Copyright © 2016 Edina. All rights reserved.
+  //
+  
+  import UIKit
+  import CoreLocation
+  import Alamofire
+  import ObjectMapper
+  import Mapbox
+  import SwiftyJSON
+  import Siesta
+  import BubbleTransition
+  import BTNavigationDropdownMenu
+  
+  class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate {
+    
     
     
     let transition = BubbleTransition()
     let locationManager = CLLocationManager()
- 
-    // Simple default survey to be loaded if no other id explicitly specified 
+    
+    
+    var menuView: BTNavigationDropdownMenu!
+    
+    
+    // Simple default survey to be loaded if no other id explicitly specified
     let defaultSurveyId = "566ed9b30351d817555158ce"
     
     var database: CouchBaseUtils?
     var survey: Survey?
     var surveyId: String?
-
+    
     var surveys: [Survey] = []
     
     let statusOverlay = ResourceStatusOverlay()
     
-
+    
     var surveysResource: Resource? {
         didSet {
             // One call to removeObservers() removes both self and statusOverlay as observers of the old resource,
@@ -48,7 +53,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
                 .loadIfNeeded()
         }
     }
- 
+    
     override func viewDidLayoutSubviews() {
         statusOverlay.positionToCoverParent()
     }
@@ -62,7 +67,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     }
     @IBOutlet weak var mapView: MGLMapView!
     
-    @IBOutlet weak var navbarTitle: UINavigationItem!
+    //    @IBOutlet weak var navbarTitle: UINavigationItem!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
         print("Submitted")
@@ -88,7 +93,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        
         self.newSurvey.hidden = true
         self.newSurvey.enabled = false
         
@@ -103,11 +108,60 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         // Only do stuff if there is new data
         if case .NewData = event {
             setupSurvey()
+            
+            setupNavBar()
         }
     }
-
     
-     // MARK: - Setup
+    
+    
+    // MARK: - Setup
+    
+    func setupNavBar() {
+        let items = self.surveys.map({$0.title!})
+        
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = Constants.Colour.DarkBlue
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        var title : String?
+        
+        if (self.surveyId?.isEmpty != nil) {
+            // Load requested survey
+            if let requestedTitle = self.surveys.filter({$0.id == self.surveyId}).first?.title{
+                title = requestedTitle
+            }
+            
+        }else{
+            // load default
+            if let defaultSurveyTitle = self.surveys.filter({$0.id == defaultSurveyId}).first?.title {
+                title = defaultSurveyTitle
+            }
+        }
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: title!, items: items)
+    
+        menuView.cellHeight = 50
+        menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
+        menuView.cellSelectionColor = Constants.Colour.LightBlue
+        menuView.cellSeparatorColor = Constants.Colour.LightBlue
+        menuView.cellTextLabelAlignment = .Left // .Center // .Right // .Left
+        menuView.arrowPadding = 15
+        menuView.animationDuration = 0.5
+        menuView.maskBackgroundColor = UIColor.blackColor()
+        menuView.maskBackgroundOpacity = 0.3
+        
+        // Use weak self to prevent strong reference cycle
+        menuView.didSelectItemAtIndexHandler = {[weak self] (indexPath: Int) -> () in
+
+            self?.survey = self?.surveys[indexPath]
+            self?.resetAnnotationsForNewSurvey()
+        }
+        
+        self.navigationItem.titleView = menuView
+        
+        
+    }
+    
     func setupMapView(){
         // Set the map view‘s delegate property
         mapView.delegate = self
@@ -136,7 +190,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         self.database?.setActiveFlagForId(id)
         self.newSurvey.hidden = false
         self.newSurvey.enabled = true
-        navbarTitle.title = self.survey?.title
+        //        navbarTitle.title = self.survey?.title
     }
     
     func loadDefaultSurvey(){
@@ -179,15 +233,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             
             // Only update our models and db if there are more surveys on the server
             if ((surveysJson.count > self.surveys.count) || (self.surveyId?.isEmpty != nil)){
-           
+                
                 var surveyFound = false
                 
                 // Iterate over surveys and add to database if not already added
                 for (index, surveyJson):(String, JSON) in surveysJson {
-  
+                    
                     surveyFound = addSurveysToDB(surveyJson)
                 }
-
+                
                 // If we weren't looking for a specific survey, assume we just load the default
                 if !surveyFound {
                     loadDefaultSurvey()
@@ -195,7 +249,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             }
             
             removeAllAnnotations()
-            // Add annotations to map for any existing survey responses 
+            // Add annotations to map for any existing survey responses
             for record: Record in (survey?.records)! {
                 addAnnotationToMap(record)
             }
@@ -209,7 +263,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             record.title = state
         }
         mapView.addAnnotation(record)
-     }
+    }
     
     func removeAllAnnotations(){
         if let annotations = self.mapView.annotations{
@@ -226,6 +280,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
         if let navigationController = self.navigationController {
             navigationController.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func resetAnnotationsForNewSurvey() {
+        let id = self.survey?.id
+        self.createActiveSurveyModelForID(id!)
+        self.removeAllAnnotations()
+        
+        for record: Record in (survey?.records)! {
+            addAnnotationToMap(record)
         }
     }
     
@@ -263,14 +327,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
     
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         if segue.identifier == Constants.SegueIDs.ShowSurvey {
             if let surveyVC = segue.destinationViewController as? SurveyViewController {
                 
-              
+                
                 surveyVC.transitioningDelegate = self
                 surveyVC.modalPresentationStyle = .Custom
                 
@@ -292,7 +356,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             }
             
         }else if segue.identifier == Constants.SegueIDs.ShowSurveyList {
-         
+            
             // Destination is NavigationViewController - we want the subsequent SurveyListTableViewController
             if let navVC = segue.destinationViewController as? UINavigationController{
                 
@@ -303,17 +367,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
             }
         }
     }
-
+    
     @IBAction func returnToMapViewController(segue:UIStoryboardSegue) {
-         //unwind segue
-        
-        let id = self.survey?.id
-        self.createActiveSurveyModelForID(id!)
-        self.removeAllAnnotations()
-        
-        for record: Record in (survey?.records)! {
-            addAnnotationToMap(record)
-        }
+        //unwind segue
+        self.resetAnnotationsForNewSurvey()
     }
     
     // MARK: UIViewControllerTransitioningDelegate
@@ -331,6 +388,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapView
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
     }
-
-
-}
+    
+    
+  }

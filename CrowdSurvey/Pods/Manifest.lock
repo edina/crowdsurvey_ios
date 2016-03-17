@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.2.1)
+  - BTNavigationDropdownMenu (0.2.1)
   - BubbleTransition (1.0.1)
   - Eureka (1.4.1)
   - GeoJSON (0.2.0)
@@ -13,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - BTNavigationDropdownMenu (from `https://github.com/ilyailya/BTNavigationDropdownMenu.git`)
   - BubbleTransition (~> 1.0.0)
   - Eureka
   - GeoJSON
@@ -22,8 +24,18 @@ DEPENDENCIES:
   - Siesta (>= 1.0-beta.6)
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  BTNavigationDropdownMenu:
+    :git: https://github.com/ilyailya/BTNavigationDropdownMenu.git
+
+CHECKOUT OPTIONS:
+  BTNavigationDropdownMenu:
+    :commit: 7393e5cedd006ba599c176b3bba3944eb07312e9
+    :git: https://github.com/ilyailya/BTNavigationDropdownMenu.git
+
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  BTNavigationDropdownMenu: 9cf4060162c96510ee27c388412e28678320cdc0
   BubbleTransition: 76d5e306dbda0f622260ea7d082c971d976422ab
   Eureka: 2f1921d3162491921d2fef3b516bc4ef93a05122
   GeoJSON: 921bab1a5af2236d7523109be55b54893846b626
