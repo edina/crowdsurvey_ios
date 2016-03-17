@@ -20,7 +20,6 @@ class Record: NSObject, Mappable, MGLAnnotation {
     var id: String?
     var name: String?
     var type = "Feature"
-    var title: String?
     var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
     var geometryType = "Point"
     

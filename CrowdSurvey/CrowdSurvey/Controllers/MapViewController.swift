@@ -259,9 +259,6 @@
     // MARK: - Utility
     
     func addAnnotationToMap(record: Record){
-        if let state = record.state?.rawValue {
-            record.title = state
-        }
         mapView.addAnnotation(record)
     }
     
@@ -299,15 +296,16 @@
         var annotationImage: MGLAnnotationImage?
         var image: UIImage!
         var reuseIdentifier: String!
-        if let title = annotation.title {
-            if title == Record.RecordState.Incomplete.rawValue {
-                image = UIImage(named: "Map Marker (incomplete)")!
+        if let record = annotation as? Record {
+            let state = record.state!.rawValue
+            if state == Record.RecordState.Incomplete.rawValue {
+                image = UIImage(named: Constants.ImageIdentifiers.MapMarkerIncomplete)!
                 reuseIdentifier = Record.RecordState.Incomplete.rawValue
-            } else if title == Record.RecordState.Complete.rawValue {
-                image = UIImage(named: "Map Marker (complete)")!
+            } else if state == Record.RecordState.Complete.rawValue {
+                image = UIImage(named: Constants.ImageIdentifiers.MapMarkerComplete)!
                 reuseIdentifier = Record.RecordState.Complete.rawValue
-            } else if title == Record.RecordState.Submitted.rawValue {
-                image = UIImage(named: "Map Marker (submitted)")!
+            } else if state == Record.RecordState.Submitted.rawValue {
+                image = UIImage(named: Constants.ImageIdentifiers.MapMarkerSubmitted)!
                 reuseIdentifier = Record.RecordState.Submitted.rawValue
             }
         }
