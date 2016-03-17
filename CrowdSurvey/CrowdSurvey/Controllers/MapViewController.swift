@@ -382,7 +382,7 @@
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .Dismiss
-        transition.startingPoint = newSurvey.center
+        transition.startingPoint = mapView.center
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
     }
