@@ -250,7 +250,7 @@ class RecordField: Field {
                 }.onChange({[weak self] row -> () in
                     // Get image, save in documents and add url to model
                     self?.saveImage(row)
-                    
+                    row.updateCell()
                     }).cellSetup { [weak self] cell, row in
                         if self?.required?.boolValue ?? false{
                             row.cell!.backgroundColor = Constants.Form.requiredRedColour
