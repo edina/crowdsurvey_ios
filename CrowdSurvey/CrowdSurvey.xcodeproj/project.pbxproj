@@ -19,7 +19,6 @@
 		3B01073B1C450E8900ECA5DB /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */; };
 		3B01074A1C45204100ECA5DB /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0107481C45204100ECA5DB /* Map.storyboard */; };
 		3B01074D1C45204F00ECA5DB /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B01074B1C45204E00ECA5DB /* Survey.storyboard */; };
-		3B1962BC1C902FA700B29FA7 /* SurveyListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1962BB1C902FA700B29FA7 /* SurveyListTableViewController.swift */; };
 		3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D351B1C5A3831002AED82 /* Constants.swift */; };
 		3B2F1A711C6200E6002D5DBC /* MockNSNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */; };
 		3B55DBE81C88601700356648 /* Networking-Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55DBE71C88601700356648 /* Networking-Alamofire.swift */; };
@@ -81,7 +80,6 @@
 		3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		3B0107491C45204100ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		3B01074C1C45204F00ECA5DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Survey.storyboard; sourceTree = "<group>"; };
-		3B1962BB1C902FA700B29FA7 /* SurveyListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyListTableViewController.swift; path = Controllers/SurveyListTableViewController.swift; sourceTree = "<group>"; };
 		3B1D351B1C5A3831002AED82 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B2F1A701C6200E6002D5DBC /* MockNSNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNSNotificationCenter.swift; sourceTree = "<group>"; };
 		3B55DBE71C88601700356648 /* Networking-Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Networking-Alamofire.swift"; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			children = (
 				3B01073A1C450E8900ECA5DB /* SurveyViewController.swift */,
 				3B0107371C44009800ECA5DB /* MapViewController.swift */,
-				3B1962BB1C902FA700B29FA7 /* SurveyListTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -489,7 +486,6 @@
 				3B1D351C1C5A3831002AED82 /* Constants.swift in Sources */,
 				3C39C8A31C8F2BF10041BDDC /* SurveyField.swift in Sources */,
 				3B55DBEA1C887ECA00356648 /* CrowdSurveyAPI.swift in Sources */,
-				3B1962BC1C902FA700B29FA7 /* SurveyListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

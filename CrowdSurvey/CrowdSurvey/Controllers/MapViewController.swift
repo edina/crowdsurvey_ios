@@ -353,16 +353,6 @@
                 surveyVC.database = self.database!
             }
             
-        }else if segue.identifier == Constants.SegueIDs.ShowSurveyList {
-            
-            // Destination is NavigationViewController - we want the subsequent SurveyListTableViewController
-            if let navVC = segue.destinationViewController as? UINavigationController{
-                
-                if let surveyListVC = navVC.viewControllers.first as? SurveyListTableViewController {
-                    // Set survey list
-                    surveyListVC.surveys = self.surveys
-                }
-            }
         }
     }
     
