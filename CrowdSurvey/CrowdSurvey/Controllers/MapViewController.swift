@@ -69,8 +69,6 @@
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var crossHair: UIImageView!
     
-    //    @IBOutlet weak var navbarTitle: UINavigationItem!
-    
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
         print("Submitted")
         if let record = self.survey?.records?.last {
@@ -90,6 +88,7 @@
         button.layer.shadowOffset = CGSizeMake(2, 2)
         button.layer.shadowRadius = 5
         button.layer.shadowOpacity = 0.5
+        button.setTitleColor(Constants.Colour.LightBlue, forState: UIControlState.Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
