@@ -14,8 +14,8 @@ class SurveyViewController: FormViewController {
 
 
     @IBOutlet weak var closeButton: UIButton! {
-        didSet{
-            closeButton.layer.cornerRadius = 30
+        didSet{            
+            MapViewController.styleButton(closeButton)
         }
     }
     
@@ -35,7 +35,7 @@ class SurveyViewController: FormViewController {
             self.saveToDatabase()
         }
         
-        // This ensures that the returnToMapViewController IBAction in MapViewController gets callesd
+        // This ensures that the returnToMapViewController IBAction in MapViewController gets called
         self.performSegueWithIdentifier(Constants.SegueIDs.SaveSurvey, sender: self)
     }
 

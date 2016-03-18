@@ -62,9 +62,10 @@
     // MARK: - Outlets
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
-            newSurvey.layer.cornerRadius = 30
+            MapViewController.styleButton(newSurvey)
         }
     }
+    
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var crossHair: UIImageView!
     
@@ -82,6 +83,14 @@
         mapView.setCenterCoordinate(locationManager.location!.coordinate, animated: true)
     }
     
+    
+    class func styleButton(button: UIButton!) {
+        button.layer.cornerRadius = 30
+        button.layer.shadowColor = UIColor.blackColor().CGColor
+        button.layer.shadowOffset = CGSizeMake(2, 2)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.5
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
