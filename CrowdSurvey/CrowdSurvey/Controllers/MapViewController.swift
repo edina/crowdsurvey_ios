@@ -66,6 +66,7 @@
         }
     }
     @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet weak var crossHair: UIImageView!
     
     //    @IBOutlet weak var navbarTitle: UINavigationItem!
     
@@ -365,14 +366,14 @@
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .Present
-        transition.startingPoint = newSurvey.center
+        transition.startingPoint = CGPointMake(newSurvey.center.x, newSurvey.center.y + self.navigationController!.navigationBar.frame.height)
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .Dismiss
-        transition.startingPoint = mapView.center
+        transition.startingPoint = CGPointMake(mapView.center.x, mapView.center.y + self.navigationController!.navigationBar.frame.height + (crossHair.frame.height)/4)
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
     }
