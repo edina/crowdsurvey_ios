@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ede-xc-efg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Survey View Controller-->
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRH-J8-Xcp">
-                                <rect key="frame" x="270" y="410" width="60" height="60"/>
+                                <rect key="frame" x="531" y="468" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.79215686269999996" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Vco-sI-mNT"/>
@@ -33,8 +34,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vlI-0q-0Gm" firstAttribute="top" secondItem="oRH-J8-Xcp" secondAttribute="bottom" constant="66" id="60z-f6-ehd"/>
-                            <constraint firstItem="oRH-J8-Xcp" firstAttribute="centerX" secondItem="kNe-Lw-NGE" secondAttribute="centerX" id="QhC-QT-b9F"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oRH-J8-Xcp" secondAttribute="trailing" constant="-11" id="YI9-0G-iV8"/>
+                            <constraint firstItem="vlI-0q-0Gm" firstAttribute="top" secondItem="oRH-J8-Xcp" secondAttribute="bottom" constant="8" symbolic="YES" id="rWI-m5-yjd"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>

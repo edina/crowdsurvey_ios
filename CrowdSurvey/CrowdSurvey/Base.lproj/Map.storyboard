@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
@@ -25,10 +25,26 @@
                                             <constraint firstAttribute="height" constant="66" id="HKN-Py-GMs"/>
                                         </constraints>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akg-k8-ija">
+                                        <rect key="frame" x="532" y="468" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.99607843137254903" green="0.792156862745098" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Zbs-aR-Wfc"/>
+                                            <constraint firstAttribute="height" constant="60" id="z5e-UV-flJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <segue destination="tQL-mZ-wAf" kind="show" identifier="Show Survey" action="showDetailViewController:sender:" id="o2g-VE-9X1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="akg-k8-ija" secondAttribute="bottom" constant="8" id="2Jv-wi-YcA"/>
                                     <constraint firstItem="AUI-TN-Y83" firstAttribute="centerY" secondItem="hIC-jZ-Flc" secondAttribute="centerY" constant="-18" id="QEJ-8U-Y8Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="akg-k8-ija" secondAttribute="trailing" constant="8" id="W63-Vj-Lfy"/>
                                     <constraint firstItem="AUI-TN-Y83" firstAttribute="centerX" secondItem="hIC-jZ-Flc" secondAttribute="centerX" id="fNa-Bh-fKF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -44,27 +60,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akg-k8-ija">
-                                <rect key="frame" x="270" y="464" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.99607843137254903" green="0.792156862745098" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Zbs-aR-Wfc"/>
-                                    <constraint firstAttribute="height" constant="60" id="z5e-UV-flJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                                <state key="normal" title="+"/>
-                                <connections>
-                                    <segue destination="tQL-mZ-wAf" kind="show" identifier="Show Survey" action="showDetailViewController:sender:" id="o2g-VE-9X1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="akg-k8-ija" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FqV-SQ-YSx"/>
                             <constraint firstItem="hIC-jZ-Flc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="YYE-SG-yDN"/>
-                            <constraint firstItem="hIC-jZ-Flc" firstAttribute="centerX" secondItem="akg-k8-ija" secondAttribute="centerX" id="mPQ-h0-54i"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="akg-k8-ija" secondAttribute="bottom" constant="76" id="nJQ-hD-4zQ"/>
+                            <constraint firstAttribute="trailing" secondItem="hIC-jZ-Flc" secondAttribute="trailing" id="hk7-Qz-Gbx"/>
                             <constraint firstItem="hIC-jZ-Flc" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="rHv-sc-Geb"/>
                             <constraint firstItem="hIC-jZ-Flc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="swu-ar-48F"/>
                         </constraints>
