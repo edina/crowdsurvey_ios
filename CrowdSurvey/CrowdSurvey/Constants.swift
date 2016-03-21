@@ -49,6 +49,8 @@ struct Constants {
         static let Notification = "Field Updated Notification"
     }
     struct ImageIdentifiers {
+        static let LocationArrowIcon = "Location Arrow"
+        static let LocationArrowIconOutline = "Location Arrow Outline"
         static let MapMarkerIncomplete = "Map Marker (incomplete)"
         static let MapMarkerComplete = "Map Marker (complete)"
         static let MapMarkerSubmitted = "Map Marker (submitted)"

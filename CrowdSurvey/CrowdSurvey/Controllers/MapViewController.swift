@@ -16,7 +16,7 @@
   import BubbleTransition
   import BTNavigationDropdownMenu
   
-  class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate {
+  class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
     
     
@@ -68,6 +68,8 @@
     
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var crossHair: UIImageView!
+    @IBOutlet weak var userLocationButton: UIBarButtonItem!
+    @IBOutlet var mapViewPanGesture: UIPanGestureRecognizer!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
         print("Submitted")
@@ -78,9 +80,20 @@
     
     @IBAction func setMapToUserLocation(sender: UIBarButtonItem) {
         // TODO: Check user location is within survey bounding box
+        userLocationButton.image = UIImage(named: Constants.ImageIdentifiers.LocationArrowIcon)
         mapView.setCenterCoordinate(locationManager.location!.coordinate, animated: true)
     }
     
+    @IBAction func mapDrag(sender: UIPanGestureRecognizer) {
+        if(sender.state == UIGestureRecognizerState.Changed){
+            let locationOutlineImage = UIImage(named: Constants.ImageIdentifiers.LocationArrowIconOutline)
+            if let image = userLocationButton.image {
+                if image != locationOutlineImage{
+                    userLocationButton.image = locationOutlineImage
+                }
+            }
+        }
+    }
     
     class func styleButton(button: UIButton!) {
         button.layer.cornerRadius = 30
@@ -107,6 +120,7 @@
         self.newSurvey.enabled = false
         
         self.setupMapView()
+        self.mapViewPanGesture.delegate = self
         self.database = self.setupDatabase()
     }
     
@@ -174,6 +188,9 @@
     func setupMapView(){
         // Set the map view‘s delegate property
         mapView.delegate = self
+        
+        
+        
         
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
@@ -384,6 +401,12 @@
         transition.startingPoint = CGPointMake(mapView.center.x, mapView.center.y + self.navigationController!.navigationBar.frame.height + (crossHair.frame.height)/4)
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
+    }
+    
+    // MARK: UIGestureRecognizerDelegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     

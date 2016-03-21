@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
@@ -41,6 +41,7 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="akg-k8-ija" secondAttribute="bottom" constant="8" id="2Jv-wi-YcA"/>
                                     <constraint firstItem="AUI-TN-Y83" firstAttribute="centerY" secondItem="hIC-jZ-Flc" secondAttribute="centerY" constant="-18" id="QEJ-8U-Y8Y"/>
@@ -59,6 +60,9 @@
                                         <real key="value" value="13"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Hmu-7J-J4M" appends="YES" id="DFx-jS-FLI"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -70,7 +74,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="uC3-5a-jgV">
-                        <barButtonItem key="rightBarButtonItem" image="Location Arrow" id="lgi-KJ-lnc">
+                        <barButtonItem key="rightBarButtonItem" image="Location Arrow Outline" id="lgi-KJ-lnc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="setMapToUserLocation:" destination="BYZ-38-t0r" id="gcj-pH-E5C"/>
                             </connections>
@@ -80,10 +85,17 @@
                     <connections>
                         <outlet property="crossHair" destination="AUI-TN-Y83" id="I9c-NN-M8X"/>
                         <outlet property="mapView" destination="hIC-jZ-Flc" id="irF-oL-i6I"/>
+                        <outlet property="mapViewPanGesture" destination="Hmu-7J-J4M" id="3Ca-WN-tAa"/>
                         <outlet property="newSurvey" destination="akg-k8-ija" id="1So-Tz-y7P"/>
+                        <outlet property="userLocationButton" destination="lgi-KJ-lnc" id="6e6-8R-Cee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="Hmu-7J-J4M">
+                    <connections>
+                        <action selector="mapDrag:" destination="BYZ-38-t0r" id="77R-pT-nwf"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="791" y="392"/>
         </scene>
@@ -98,6 +110,6 @@
     </scenes>
     <resources>
         <image name="Cross Hair" width="30" height="30"/>
-        <image name="Location Arrow" width="18" height="18"/>
+        <image name="Location Arrow Outline" width="18" height="18"/>
     </resources>
 </document>
