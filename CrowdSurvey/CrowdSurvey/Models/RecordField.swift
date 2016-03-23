@@ -250,7 +250,10 @@ class RecordField: Field {
             <<< ImageRow() {
                 $0.title = "Choose Photo…"
                 $0.tag = label! + "_imageTag"
-                }.onChange({[weak self] row -> () in
+                if let name = self.value, image = imageFromCache(name as! String) {
+                    $0.value = image
+                    $0.updateCell()
+                }}.onChange({[weak self] row -> () in
                     // Get image, save in documents and add url to model
                     self?.saveImage(row)
                     
@@ -285,5 +288,14 @@ class RecordField: Field {
             
         }
         
+    }
+    
+    func imageFromCache(named: String) -> UIImage? {
+        var image: UIImage?
+        let cache = Shared.imageCache
+        cache.fetch(key: named).onSuccess { fetchedImage in
+            image = fetchedImage
+        }
+        return image
     }
 }
