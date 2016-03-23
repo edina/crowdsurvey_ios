@@ -263,7 +263,7 @@
                 var surveyFound = false
                 
                 // Iterate over surveys and add to database if not already added
-                for (index, surveyJson):(String, JSON) in surveysJson {
+                for (_, surveyJson):(String, JSON) in surveysJson {
                     
                     surveyFound = addSurveysToDB(surveyJson)
                 }

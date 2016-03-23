@@ -47,15 +47,15 @@ class SurveyViewController: FormViewController {
         closeButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_4))
         self.view.bringSubviewToFront(self.closeButton)
         // Listen out for Field changing
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "listenForFieldChange:", name:Constants.Notifications.FieldUpdatedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SurveyViewController.listenForFieldChange(_:)), name:Constants.Notifications.FieldUpdatedNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+        self.navigationController?.navigationBar.barStyle = .Default
     }
     
     override func viewWillDisappear(animated: Bool) {
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
     }
 
     

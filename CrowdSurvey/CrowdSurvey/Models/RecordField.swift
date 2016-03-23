@@ -56,9 +56,9 @@ class RecordField: Field {
     }
     
     // Add a simple text field
-    func addTextToForm(var form: Form){
+    func addTextToForm(form: Form){
         //         form +++= Section(label!)
-        
+        var form = form
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
@@ -109,9 +109,10 @@ class RecordField: Field {
         }
     }
     
-    func addRadioToForm(var form: Form){
+    func addRadioToForm(form: Form){
         //        form +++= Section(label!)
         
+        var form = form
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
@@ -174,9 +175,10 @@ class RecordField: Field {
         }
     }
     
-    func addCheckBoxToForm(var form: Form){
+    func addCheckBoxToForm(form: Form){
         //        form +++= Section(label!)
         
+        var form = form
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
@@ -233,11 +235,12 @@ class RecordField: Field {
         }
     }
     
-    func addImageToForm(var form: Form){
+    func addImageToForm(form: Form){
         ImageRow.defaultCellUpdate = { cell, row in
             cell.accessoryView?.layer.cornerRadius = 17
             cell.accessoryView?.frame = CGRectMake(0, 0, 34, 34)
         }
+        var form = form
         form +++= LabelRow () {
             $0.title = label!
             $0.tag = label!
