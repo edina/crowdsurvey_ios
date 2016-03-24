@@ -72,8 +72,9 @@
     @IBOutlet var mapViewPanGesture: UIPanGestureRecognizer!
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
-        print("Submitted")
-        if let record = self.survey?.records?.last {
+        removeAllAnnotations()
+        // Add annotations to map for any existing survey responses
+        for record: Record in (survey?.records)! {
             addAnnotationToMap(record)
         }
     }
@@ -364,17 +365,24 @@
                 
                 
                 // Ensure back button text is "Back" rather than the Survey title
-                let backItem = UIBarButtonItem()
-                backItem.title = "Back"
-                navigationItem.backBarButtonItem = backItem //
+//                let backItem = UIBarButtonItem()
+//                backItem.title = "Back"
+//                navigationItem.backBarButtonItem = backItem
+                // Comment out for now as we're now using modal presentation
                 
-                if let survey = survey {
+                if let survey = self.survey {
                     surveyVC.survey = survey
                     
-                    let point = CLLocationCoordinate2D(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-                    let record = sender as? Record ?? Record(survey: survey, coordinate: point)
+                    if let record = sender as? Record {
+                        surveyVC.currentRecord = record
+                    } else {
+                        // create new record
+                        let point = CLLocationCoordinate2D(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude)
+                        let record = Record(survey: survey, coordinate: point)
+                        surveyVC.survey?.records?.append(record)
+                        surveyVC.currentRecord = record
+                    }
                     
-                    surveyVC.survey?.records?.append(record)
                 }
                 surveyVC.database = self.database!
             }

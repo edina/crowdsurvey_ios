@@ -20,6 +20,7 @@ class SurveyViewController: FormViewController {
     }
     
     var survey: Survey?
+    var currentRecord: Record?
     var database: CouchBaseUtils?
     
 
@@ -68,8 +69,7 @@ class SurveyViewController: FormViewController {
     }
     
     func setupForm(){
-        let currentRecord = survey?.records?.last
-        if  let record = currentRecord {
+        if let record = currentRecord {
             form = record.form()
         }
     }
@@ -77,9 +77,6 @@ class SurveyViewController: FormViewController {
     @IBAction func save(sender: UIBarButtonItem) {
         
         // Perform form validation
-        let currentRecord = survey?.records?.last
-        
-        
         if let record = currentRecord {
             
             let recordState = record.state ?? Record.RecordState.Incomplete
@@ -130,13 +127,12 @@ class SurveyViewController: FormViewController {
         super.willMoveToParentViewController(parent)
         if parent == nil {
             
-            if let survey = self.survey?.records?.last {
+            if let record = currentRecord {
 
                 // If the record was empty, we can safely remove it
-                if survey.state == Record.RecordState.New {
+                if record.state == Record.RecordState.New {
                     self.survey?.records?.removeLast()
                 }
-                
                 self.saveToDatabase()
             }
         }
