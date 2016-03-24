@@ -5,7 +5,7 @@ PODS:
   - Eureka (1.5.0)
   - GeoJSON (0.2.0)
   - HanekeSwift (0.10.1)
-  - Mapbox-iOS-SDK (3.1.2)
+  - Mapbox-iOS-SDK (3.2.0-pre.2-symbols)
   - ObjectMapper (1.1.5)
   - Siesta (1.0-beta.6):
     - Siesta/Core (= 1.0-beta.6)
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - Eureka
   - GeoJSON
   - HanekeSwift
-  - Mapbox-iOS-SDK
+  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec`)
   - ObjectMapper
   - Siesta (>= 1.0-beta.6)
   - SwiftyJSON
@@ -27,6 +27,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   BTNavigationDropdownMenu:
     :git: https://github.com/ilyailya/BTNavigationDropdownMenu.git
+  Mapbox-iOS-SDK:
+    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec
 
 CHECKOUT OPTIONS:
   BTNavigationDropdownMenu:
@@ -40,7 +42,7 @@ SPEC CHECKSUMS:
   Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
   GeoJSON: 921bab1a5af2236d7523109be55b54893846b626
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
-  Mapbox-iOS-SDK: 0a910c2cce1aa8cff5b9ec2a990e7a32332a776a
+  Mapbox-iOS-SDK: 1c2253023d197b89d2e771ab41dfffe5057802ec
   ObjectMapper: 528b1a6677a6acac7747edd508576983e76a9148
   Siesta: 353fba713b4ce9112c26f6b5038ccebeb897f60b
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

@@ -1,6 +1,6 @@
 {
   "name": "Mapbox-iOS-SDK",
-  "version": "3.1.0-pre.2-symbols",
+  "version": "3.2.0-pre.2-symbols",
   "summary": "Open source vector map solution for iOS with full styling capabilities.",
   "description": "Open source, OpenGL-based vector map solution for iOS with full styling capabilities and Cocoa Touch APIs.",
   "homepage": "https://www.mapbox.com/ios-sdk/",
@@ -11,11 +11,11 @@
   "authors": {
     "Mapbox": "mobile@mapbox.com"
   },
-  "screenshots": "https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/ios/screenshot.png",
+  "screenshots": "https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/screenshot.png",
   "social_media_url": "https://twitter.com/mapbox",
   "documentation_url": "https://www.mapbox.com/ios-sdk/",
   "source": {
-    "http": "https://mapbox.s3.amazonaws.com/mapbox-gl-native/ios/builds/mapbox-ios-sdk-3.1.0-pre.2-symbols-dynamic.zip",
+    "http": "https://mapbox.s3.amazonaws.com/mapbox-gl-native/ios/builds/mapbox-ios-sdk-3.2.0-pre.2-symbols-dynamic.zip",
     "flatten": true
   },
   "platforms": {
