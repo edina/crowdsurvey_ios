@@ -18,27 +18,18 @@
   
   class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
+    // MARK: - VARIABLES
     
-    
-    let transition = BubbleTransition()
+    let defaultSurveyId = "566ed9b30351d817555158ce" // Simple default survey to be loaded if no other id explicitly specified
     let locationManager = CLLocationManager()
+    let statusOverlay = ResourceStatusOverlay()
+    let transition = BubbleTransition()
     
-    
-    var menuView: BTNavigationDropdownMenu!
-    
-    
-    // Simple default survey to be loaded if no other id explicitly specified
-    let defaultSurveyId = "566ed9b30351d817555158ce"
-    
-    var database: CouchBaseUtils?
     var survey: Survey?
     var surveyId: String?
-    
     var surveys: [Survey] = []
-    
-    let statusOverlay = ResourceStatusOverlay()
-    
-    
+    var database: CouchBaseUtils?
+    var menuView: BTNavigationDropdownMenu!
     var surveysResource: Resource? {
         didSet {
             // One call to removeObservers() removes both self and statusOverlay as observers of the old resource,
@@ -47,29 +38,27 @@
             oldValue?.cancelLoadIfUnobserved(afterDelay: 0.1)
             
             // Adding ourselves as an observer triggers an immediate call to resourceChanged().
-            
             surveysResource?.addObserver(self)
                 .addObserver(statusOverlay, owner: self)
                 .loadIfNeeded()
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        statusOverlay.positionToCoverParent()
-    }
+    // MARK: - OUTLETS
     
+    // MARK: Variables
     
-    // MARK: - Outlets
     @IBOutlet weak var newSurvey: UIButton!{
         didSet{
             MapViewController.styleButton(newSurvey)
         }
     }
-    
     @IBOutlet weak var mapView: MGLMapView!
     @IBOutlet weak var crossHair: UIImageView!
     @IBOutlet weak var userLocationButton: UIBarButtonItem!
     @IBOutlet var mapViewPanGesture: UIPanGestureRecognizer!
+    
+    // MARK: Actions
     
     @IBAction func surveySubmitted(segue:UIStoryboardSegue) {
         removeAllAnnotations()
@@ -96,23 +85,12 @@
         }
     }
     
-    class func styleButton(button: UIButton!) {
-        button.layer.cornerRadius = 30
-        button.layer.shadowColor = UIColor.blackColor().CGColor
-        button.layer.shadowOffset = CGSizeMake(2, 2)
-        button.layer.shadowRadius = 5
-        button.layer.shadowOpacity = 0.5
-        button.setTitleColor(Constants.Colour.LightBlue, forState: UIControlState.Normal)
+    @IBAction func returnToMapViewController(segue:UIStoryboardSegue) {
+        //unwind segue
+        self.resetAnnotationsForNewSurvey()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Get survey resource
-        surveysResource = crowdSurveyAPI.surveys
-        
-        statusOverlay.embedIn(self)
-    }
+    // MARK: - VIEW LIFECYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,21 +103,18 @@
         self.database = self.setupDatabase()
     }
     
-    // MARK: - Siesta Delegate
-    // Listen for SurveysResource changing.
-    func resourceChanged(resource: Resource, event: ResourceEvent) {
-        
-        // Only do stuff if there is new data
-        if case .NewData = event {
-            setupSurvey()
-            
-            setupNavBar()
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // Get survey resource
+        surveysResource = crowdSurveyAPI.surveys
+        statusOverlay.embedIn(self)
     }
     
+    override func viewDidLayoutSubviews() {
+        statusOverlay.positionToCoverParent()
+    }
     
-    
-    // MARK: - Setup
+    // MARK: - SETUP
     
     func setupNavBar() {
         let items = self.surveys.map({$0.title!})
@@ -213,6 +188,93 @@
         return CouchBaseUtils(databaseName: "survey")
     }
     
+    func setupSurvey(){
+        
+        // Get surveys json
+        if let surveysJson = surveysResource?.latestData?.content as? JSON{
+            
+            // Only update our models and db if there are more surveys on the server
+            if ((surveysJson.count > self.surveys.count) || (self.surveyId?.isEmpty != nil)){
+                
+                var surveyFound = false
+                
+                // Iterate over surveys and add to database if not already added
+                for (_, surveyJson):(String, JSON) in surveysJson {
+                    
+                    surveyFound = addSurveysToDB(surveyJson)
+                }
+                
+                // If we weren't looking for a specific survey, assume we just load the default
+                if !surveyFound {
+                    loadDefaultSurvey()
+                }
+            }
+            
+            removeAllAnnotations()
+            // Add annotations to map for any existing survey responses
+            for record: Record in (survey?.records)! {
+                addAnnotationToMap(record)
+            }
+        }
+    }
+    
+    // MARK: - NAVIGATION
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        if segue.identifier == Constants.SegueIDs.ShowSurvey {
+            if let surveyVC = segue.destinationViewController as? SurveyViewController {
+                
+                surveyVC.transitioningDelegate = self
+                surveyVC.modalPresentationStyle = .Custom
+                
+                if let survey = self.survey {
+                    surveyVC.survey = survey
+                    
+                    if let record = sender as? Record {
+                        surveyVC.currentRecord = record
+                    } else {
+                        // create new record
+                        let point = CLLocationCoordinate2D(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude)
+                        let record = Record(survey: survey, coordinate: point)
+                        surveyVC.survey?.records?.append(record)
+                        surveyVC.currentRecord = record
+                    }
+                    
+                }
+                surveyVC.database = self.database!
+            }
+        }
+    }
+    
+    // MARK: - UTILITY
+    
+    // MARK: Annotations
+    
+    func addAnnotationToMap(record: Record){
+        mapView.addAnnotation(record)
+    }
+    
+    func removeAllAnnotations(){
+        if let annotations = self.mapView.annotations{
+            self.mapView.removeAnnotations(annotations)
+            
+        }
+    }
+    
+    func resetAnnotationsForNewSurvey() {
+        let id = self.survey?.id
+        self.createActiveSurveyModelForID(id!)
+        self.removeAllAnnotations()
+        
+        for record: Record in (survey?.records)! {
+            addAnnotationToMap(record)
+        }
+    }
+    
+    // MARK: Surveys
+    
     func createActiveSurveyModelForID(id : String){
         self.database?.setActiveFlagForId(id)
         self.newSurvey.hidden = false
@@ -252,49 +314,7 @@
         return surveyFound
     }
     
-    
-    func setupSurvey(){
-        
-        // Get surveys json
-        if let surveysJson = surveysResource?.latestData?.content as? JSON{
-            
-            // Only update our models and db if there are more surveys on the server
-            if ((surveysJson.count > self.surveys.count) || (self.surveyId?.isEmpty != nil)){
-                
-                var surveyFound = false
-                
-                // Iterate over surveys and add to database if not already added
-                for (_, surveyJson):(String, JSON) in surveysJson {
-                    
-                    surveyFound = addSurveysToDB(surveyJson)
-                }
-                
-                // If we weren't looking for a specific survey, assume we just load the default
-                if !surveyFound {
-                    loadDefaultSurvey()
-                }
-            }
-            
-            removeAllAnnotations()
-            // Add annotations to map for any existing survey responses
-            for record: Record in (survey?.records)! {
-                addAnnotationToMap(record)
-            }
-        }
-    }
-    
-    // MARK: - Utility
-    
-    func addAnnotationToMap(record: Record){
-        mapView.addAnnotation(record)
-    }
-    
-    func removeAllAnnotations(){
-        if let annotations = self.mapView.annotations{
-            self.mapView.removeAnnotations(annotations)
-            
-        }
-    }
+    // MARK: Views
     
     func showAlert(title: String, message: String){
         let alert = UIAlertController(
@@ -307,17 +327,18 @@
         }
     }
     
-    func resetAnnotationsForNewSurvey() {
-        let id = self.survey?.id
-        self.createActiveSurveyModelForID(id!)
-        self.removeAllAnnotations()
-        
-        for record: Record in (survey?.records)! {
-            addAnnotationToMap(record)
-        }
+    class func styleButton(button: UIButton!) {
+        button.layer.cornerRadius = 30
+        button.layer.shadowColor = UIColor.blackColor().CGColor
+        button.layer.shadowOffset = CGSizeMake(2, 2)
+        button.layer.shadowRadius = 5
+        button.layer.shadowOpacity = 0.5
+        button.setTitleColor(Constants.Colour.LightBlue, forState: UIControlState.Normal)
     }
     
-    // MARK: - MGLMapView Delegate
+    // MARK: - DELEGATE METHODS
+    
+    // MARK: MGLMapView Delegate
     
     func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
         var annotationImage: MGLAnnotationImage?
@@ -350,49 +371,23 @@
         self.performSegueWithIdentifier(Constants.SegueIDs.ShowSurvey, sender: annotation)
     }
     
+    // MARK: Siesta Delegate
     
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        if segue.identifier == Constants.SegueIDs.ShowSurvey {
-            if let surveyVC = segue.destinationViewController as? SurveyViewController {
-                
-                
-                surveyVC.transitioningDelegate = self
-                surveyVC.modalPresentationStyle = .Custom
-                
-                
-                // Ensure back button text is "Back" rather than the Survey title
-//                let backItem = UIBarButtonItem()
-//                backItem.title = "Back"
-//                navigationItem.backBarButtonItem = backItem
-                // Comment out for now as we're now using modal presentation
-                
-                if let survey = self.survey {
-                    surveyVC.survey = survey
-                    
-                    if let record = sender as? Record {
-                        surveyVC.currentRecord = record
-                    } else {
-                        // create new record
-                        let point = CLLocationCoordinate2D(latitude: self.mapView.centerCoordinate.latitude, longitude: self.mapView.centerCoordinate.longitude)
-                        let record = Record(survey: survey, coordinate: point)
-                        surveyVC.survey?.records?.append(record)
-                        surveyVC.currentRecord = record
-                    }
-                    
-                }
-                surveyVC.database = self.database!
-            }
+    // Listen for SurveysResource changing.
+    func resourceChanged(resource: Resource, event: ResourceEvent) {
+        
+        // Only do stuff if there is new data
+        if case .NewData = event {
+            setupSurvey()
             
+            setupNavBar()
         }
     }
     
-    @IBAction func returnToMapViewController(segue:UIStoryboardSegue) {
-        //unwind segue
-        self.resetAnnotationsForNewSurvey()
+    // MARK: UIGestureRecognizerDelegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     // MARK: UIViewControllerTransitioningDelegate
@@ -409,12 +404,6 @@
         transition.startingPoint = CGPointMake(mapView.center.x, mapView.center.y + self.navigationController!.navigationBar.frame.height + (crossHair.frame.height)/4)
         transition.bubbleColor = newSurvey.backgroundColor!
         return transition
-    }
-    
-    // MARK: UIGestureRecognizerDelegate
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
     
     
