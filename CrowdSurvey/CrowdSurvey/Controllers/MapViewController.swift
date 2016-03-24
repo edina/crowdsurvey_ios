@@ -16,7 +16,7 @@
   import BubbleTransition
   import BTNavigationDropdownMenu
   
-  class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, ResourceObserver, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
+  class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, MGLOfflinePackDelegate, ResourceObserver, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
     // MARK: - VARIABLES
     
@@ -30,6 +30,7 @@
     var surveys: [Survey] = []
     var database: CouchBaseUtils?
     var menuView: BTNavigationDropdownMenu!
+    var offlinePacks = [MGLOfflinePack]()
     var surveysResource: Resource? {
         didSet {
             // One call to removeObservers() removes both self and statusOverlay as observers of the old resource,
@@ -165,9 +166,6 @@
         // Set the map view‘s delegate property
         mapView.delegate = self
         
-        
-        
-        
         // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
         
@@ -182,6 +180,32 @@
         mapView.showsUserLocation = true
         
         self.view.bringSubviewToFront(self.newSurvey)
+        
+        // Set up offline mapping
+        // Create a region that includes the current viewport and any tiles needed to view it when zoomed further in.
+        let region = MGLTilePyramidOfflineRegion(styleURL: mapView.styleURL, bounds: mapView.visibleCoordinateBounds, fromZoomLevel: mapView.zoomLevel, toZoomLevel: mapView.maximumZoomLevel)
+        
+        // Store some data for identification purposes alongside the downloaded resources.
+        let userInfo = ["name": "Test offline pack"]
+        let context = NSKeyedArchiver.archivedDataWithRootObject(userInfo)
+        
+        // Create and register an offline pack with the shared offline storage object.
+        MGLOfflineStorage.sharedOfflineStorage().addPackForRegion(region, withContext: context) { (pack, error) in
+            guard error == nil else {
+                // The pack couldn’t be created for some reason.
+                return
+            }
+            if let pack = pack {
+                // Set the pack’s delegate (assuming self conforms to the MGLOfflinePackDelegate protocol).
+                pack.delegate = self
+                
+                // Start downloading.
+                pack.resume()
+                
+                // Due to https://github.com/mapbox/mapbox-gl-native/issues/4287, your class needs to hold a strong reference to the pack.
+                self.offlinePacks.append(pack)
+            }
+        }
     }
     
     func setupDatabase() -> CouchBaseUtils {
@@ -338,7 +362,7 @@
     
     // MARK: - DELEGATE METHODS
     
-    // MARK: MGLMapView Delegate
+    // MARK: MGLMapViewDelegate
     
     func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
         var annotationImage: MGLAnnotationImage?
@@ -371,6 +395,20 @@
         self.performSegueWithIdentifier(Constants.SegueIDs.ShowSurvey, sender: annotation)
     }
     
+    // MARK: MGLOfflinePackDelegate
+    
+    func offlinePack(pack: MGLOfflinePack, progressDidChange progress: MGLOfflinePackProgress) {
+        let userInfo = NSKeyedUnarchiver.unarchiveObjectWithData(pack.context) as! [String: String]
+        let completed = progress.countOfResourcesCompleted
+        let expected = progress.countOfResourcesExpected
+        print("Offline pack “\(userInfo["name"])” has downloaded \(completed) of \(expected) resources.")
+    }
+    
+    func offlinePack(pack: MGLOfflinePack, didReceiveError error: NSError) {
+        let userInfo = NSKeyedUnarchiver.unarchiveObjectWithData(pack.context) as! [String: String]
+        print("Offline pack “\(userInfo["name"])” received error: \(error.localizedFailureReason)")
+    }
+    
     // MARK: Siesta Delegate
     
     // Listen for SurveysResource changing.
@@ -379,7 +417,6 @@
         // Only do stuff if there is new data
         if case .NewData = event {
             setupSurvey()
-            
             setupNavBar()
         }
     }
