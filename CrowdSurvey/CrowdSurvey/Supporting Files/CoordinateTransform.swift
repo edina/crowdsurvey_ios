@@ -17,9 +17,9 @@ public class CoordinateTransform: TransformType {
     public init() {}
     
     public func transformFromJSON(value: AnyObject?) -> CLLocationCoordinate2D? {
-        if let coordinateString = value {
+        if let coordinateString = value as? [Double?] {
             guard coordinateString.count >= 2 else { return nil }
-            guard let latitude = coordinateString[1] as? Double, longitude = coordinateString[0] as? Double else { return nil }
+            guard let latitude = coordinateString[1], longitude = coordinateString[0] else { return nil }
             return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         }
         return nil
