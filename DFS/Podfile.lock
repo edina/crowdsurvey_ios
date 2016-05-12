@@ -1,0 +1,60 @@
+PODS:
+  - Alamofire (3.4.0)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - AlamofireObjectMapper (3.0.0):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - BubbleTransition (1.0.3)
+  - DATAFilter (0.10.0):
+    - DATAObjectIDs (~> 0.5.1)
+  - DATAObjectIDs (0.5.1)
+  - DATAStack (5.0.0)
+  - Mapbox-iOS-SDK (3.3.0-alpha.2)
+  - NSDictionary-ANDYSafeValue (0.3.1)
+  - NSEntityDescription-SYNCPrimaryKey (1.1.0):
+    - NSString-HYPNetworking (~> 0.4.0)
+  - NSManagedObject-HYPPropertyMapper (3.6.4):
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.1.0)
+    - NSString-HYPNetworking (~> 0.4.0)
+  - NSString-HYPNetworking (0.4.0)
+  - ObjectMapper (1.2.0)
+  - SwiftyJSON (2.3.2)
+  - Sync (1.7.0):
+    - DATAFilter (~> 0.10.0)
+    - DATAStack (~> 5.0.0)
+    - NSDictionary-ANDYSafeValue (~> 0.3.1)
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.1.0)
+    - NSManagedObject-HYPPropertyMapper (~> 3.6.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage (~> 2.0)
+  - AlamofireObjectMapper (~> 3.0)
+  - BubbleTransition (~> 1.0.0)
+  - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec`)
+  - SwiftyJSON
+  - Sync
+
+EXTERNAL SOURCES:
+  Mapbox-iOS-SDK:
+    :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec
+
+SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  BubbleTransition: a7ae6678721406d60f604cbbea1ace505563119d
+  DATAFilter: b6662b05dd0dcf658d526aa0f9095bb202d7b10e
+  DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
+  DATAStack: e0111e1db6044c8b355e68311e002cbec8963b28
+  Mapbox-iOS-SDK: b8f4df7f34cfca0a62eb923a325daf39c4110a48
+  NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
+  NSEntityDescription-SYNCPrimaryKey: 66f1b5393ee3b6c8b12700d4c86ba6e5ad2bcfe9
+  NSManagedObject-HYPPropertyMapper: 01ea4945879774201011260f6e309b1ae347b6fb
+  NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  Sync: f56c2d180e04d1a53eeb9b4c527fce44bccfb4ef
+
+COCOAPODS: 0.39.0

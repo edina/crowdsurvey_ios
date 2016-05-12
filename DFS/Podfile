@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Alamofire'
+pod 'AlamofireObjectMapper', '~> 3.0'
+pod 'AlamofireImage', '~> 2.0'
+pod 'Mapbox-iOS-SDK', :podspec => 'https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec'
+pod 'SwiftyJSON'
+pod 'BubbleTransition', '~> 1.0.0'
+pod 'Sync'
