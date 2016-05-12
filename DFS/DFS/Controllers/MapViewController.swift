@@ -6,8 +6,13 @@
 //  Copyright © 2016 Edina. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class MapViewController: UIViewController {
 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       
+    }
 }
