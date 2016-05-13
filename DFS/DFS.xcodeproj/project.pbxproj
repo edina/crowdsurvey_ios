@@ -15,6 +15,7 @@
 		3B597B5F1CE4B14A00EF0221 /* DFSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B597B5E1CE4B14A00EF0221 /* DFSUITests.swift */; };
 		3B597B741CE4B49F00EF0221 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B597B731CE4B49F00EF0221 /* Constants.swift */; };
 		3B597B761CE4B58F00EF0221 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B597B751CE4B58F00EF0221 /* MapViewController.swift */; };
+		3CF87BA01CE5F6B1006FB606 /* Edinburgh.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 3CF87B9F1CE5F6B1006FB606 /* Edinburgh.gpx */; };
 		5FF03A41759561C1058C8742 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3CD839A02B2DC3A89C146A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		3B597B601CE4B14A00EF0221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B597B731CE4B49F00EF0221 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utils/Constants.swift; sourceTree = "<group>"; };
 		3B597B751CE4B58F00EF0221 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
+		3CF87B9F1CE5F6B1006FB606 /* Edinburgh.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Edinburgh.gpx; sourceTree = "<group>"; };
 		69690ACEC983D5F6502BFA46 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC3CD839A02B2DC3A89C146A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 		3B597B721CE4B42600EF0221 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CF87B9F1CE5F6B1006FB606 /* Edinburgh.gpx */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			files = (
 				3B597B491CE4B14A00EF0221 /* LaunchScreen.storyboard in Resources */,
 				3B597B461CE4B14A00EF0221 /* Assets.xcassets in Resources */,
+				3CF87BA01CE5F6B1006FB606 /* Edinburgh.gpx in Resources */,
 				3B597B441CE4B14A00EF0221 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
