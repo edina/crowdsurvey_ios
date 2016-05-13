@@ -10,6 +10,7 @@ PODS:
     - DATAObjectIDs (~> 0.5.1)
   - DATAObjectIDs (0.5.1)
   - DATAStack (5.0.0)
+  - LiquidFloatingActionButton (0.1.1)
   - Mapbox-iOS-SDK (3.3.0-alpha.2)
   - NSDictionary-ANDYSafeValue (0.3.1)
   - NSEntityDescription-SYNCPrimaryKey (1.1.0):
@@ -32,13 +33,23 @@ DEPENDENCIES:
   - AlamofireImage (~> 2.0)
   - AlamofireObjectMapper (~> 3.0)
   - BubbleTransition (~> 1.0.0)
+  - LiquidFloatingActionButton (from `https://github.com/yoavlt/LiquidFloatingActionButton`,
+    branch `swift-2.0`)
   - Mapbox-iOS-SDK (from `https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec`)
   - SwiftyJSON
   - Sync
 
 EXTERNAL SOURCES:
+  LiquidFloatingActionButton:
+    :branch: swift-2.0
+    :git: https://github.com/yoavlt/LiquidFloatingActionButton
   Mapbox-iOS-SDK:
     :podspec: https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/platform/ios/Mapbox-iOS-SDK.podspec
+
+CHECKOUT OPTIONS:
+  LiquidFloatingActionButton:
+    :commit: 25de77f23df84e0a0981193abecced8afc2ed9c7
+    :git: https://github.com/yoavlt/LiquidFloatingActionButton
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
@@ -48,6 +59,7 @@ SPEC CHECKSUMS:
   DATAFilter: b6662b05dd0dcf658d526aa0f9095bb202d7b10e
   DATAObjectIDs: 33db74dd1c858c2d22a45a4013c95f1082182e4e
   DATAStack: e0111e1db6044c8b355e68311e002cbec8963b28
+  LiquidFloatingActionButton: dcdae1e59eb07eccbf60c027001a4d6731c345c9
   Mapbox-iOS-SDK: b8f4df7f34cfca0a62eb923a325daf39c4110a48
   NSDictionary-ANDYSafeValue: 2d7adf339b6e302d71fec5f1d71ae00aacda993e
   NSEntityDescription-SYNCPrimaryKey: 66f1b5393ee3b6c8b12700d4c86ba6e5ad2bcfe9

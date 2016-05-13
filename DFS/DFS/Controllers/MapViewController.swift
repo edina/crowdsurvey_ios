@@ -7,33 +7,63 @@
 //
 
 import UIKit
+import LiquidFloatingActionButton
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate {
 
     // MARK: Variables
-    
-    
-    @IBOutlet weak var addPhotoButton: UIButton!{
-        didSet{
-            addPhotoButton.layer.cornerRadius = 30
-            addPhotoButton.layer.shadowColor = UIColor.blackColor().CGColor
-            addPhotoButton.layer.shadowOffset = CGSizeMake(2, 2)
-            addPhotoButton.layer.shadowRadius = 5
-            addPhotoButton.layer.shadowOpacity = 0.5
-            addPhotoButton.setTitleColor(Constants.Colour.LightBlue, forState: UIControlState.Normal)
-        }
-    }
+    var cells: [LiquidFloatingCell] = []
+    var floatingActionButton: LiquidFloatingActionButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.setupLiquidFloatingActionButton()
+    }
+    
+    func setupLiquidFloatingActionButton(){
+        
+        let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
+            let floatingActionButton = CustomDrawingActionButton(frame: frame)
+            floatingActionButton.animateStyle = style
+            floatingActionButton.dataSource = self
+            floatingActionButton.delegate = self
+            return floatingActionButton
+        }
+        
+        let cellFactory: (String) -> LiquidFloatingCell = { (iconName) in
+            let cell = LiquidFloatingCell(icon: UIImage(named: iconName)!)
+            return cell
+        }
+        
+        cells.append(cellFactory("ic_cloud"))
+        cells.append(cellFactory("ic_place"))
+        
+        let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 56 - 16, width: 56, height: 56)
+        let bottomRightButton = createButton(floatingFrame, .Up)
+        
+        let image = UIImage(named: "plus")
+        bottomRightButton.image = image
+ 
+        self.view.addSubview(bottomRightButton)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-
+    
+    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
+        return cells.count
+    }
+    
+    func cellForIndex(index: Int) -> LiquidFloatingCell {
+        return cells[index]
+    }
+    
+    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
+        print("did Tapped! \(index)")
+        liquidFloatingActionButton.close()
+    }
     /*
      // MARK: - Navigation
      
@@ -43,4 +73,35 @@ class MapViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+}
+
+
+public class CustomDrawingActionButton: LiquidFloatingActionButton {
+    
+    override public func createPlusLayer(frame: CGRect) -> CAShapeLayer {
+        
+        let plusLayer = CAShapeLayer()
+        plusLayer.lineCap = kCALineCapRound
+        plusLayer.strokeColor = UIColor.whiteColor().CGColor
+        plusLayer.lineWidth = 3.0
+        
+        let w = frame.width
+        let h = frame.height
+        
+        let points = [
+            (CGPoint(x: w * 0.25, y: h * 0.35), CGPoint(x: w * 0.75, y: h * 0.35)),
+            (CGPoint(x: w * 0.25, y: h * 0.5), CGPoint(x: w * 0.75, y: h * 0.5)),
+            (CGPoint(x: w * 0.25, y: h * 0.65), CGPoint(x: w * 0.75, y: h * 0.65))
+        ]
+        
+        let path = UIBezierPath()
+        for (start, end) in points {
+            path.moveToPoint(start)
+            path.addLineToPoint(end)
+        }
+        
+        plusLayer.path = path.CGPath
+        
+        return plusLayer
+    }
 }

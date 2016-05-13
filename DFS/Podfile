@@ -9,3 +9,4 @@ pod 'Mapbox-iOS-SDK', :podspec => 'https://raw.githubusercontent.com/mapbox/mapb
 pod 'SwiftyJSON'
 pod 'BubbleTransition', '~> 1.0.0'
 pod 'Sync'
+pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
