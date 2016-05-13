@@ -17,4 +17,8 @@ struct Constants {
     struct SegueIDs {
         static let addPhoto = "addPhoto"
     }
+    struct Image {
+        static let gallery = "Gallery"
+        static let camera = "Camera"
+    }
 }

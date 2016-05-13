@@ -50,13 +50,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
             return floatingActionButton
         }
         
-        let cellFactory: (String) -> LiquidFloatingCell = { (iconName) in
-            let cell = LiquidFloatingCell(icon: UIImage(named: iconName)!)
+        let cellFactory: (String) -> CustomLiquidFloatingCell = { (iconName) in
+            let cell = CustomLiquidFloatingCell(icon: UIImage(named: iconName)!)
+            
+            cell.type =  Type(rawValue: iconName)!
+
             return cell
         }
         
-        cells.append(cellFactory("Camera"))
-        cells.append(cellFactory("Gallery"))
+        cells.append(cellFactory(Constants.Image.camera))
+        cells.append(cellFactory(Constants.Image.gallery))
         
         let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 56 - 16, width: 56, height: 56)
         let bottomRightButton = createButton(floatingFrame, .Up)
@@ -76,7 +79,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
     }
     
     func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
-        print("did Tapped! \(index)")
+        let cell = cells[index] as? CustomLiquidFloatingCell
+            
+        if let type = cell?.type{
+            switch type {
+            case .Camera:
+                print("Launch Camera")
+            case Type.Gallery:
+                print("Launch Gallery")
+            }
+        }
+        
         liquidFloatingActionButton.close()
     }
     
@@ -108,4 +121,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
      // Pass the selected object to the new view controller.
      }
      */
+}
+
+// Use custom cell so we can easily determine what button has been pressed
+public class CustomLiquidFloatingCell: LiquidFloatingCell {
+    
+    public var type : Type = .Camera
+
+    enum StringEnum: String
+    {
+        case one = "one"
+        case two = "two"
+        case three = "three"
+    }
+
+}
+
+public enum Type : String{
+    case Camera = "Camera"
+    case Gallery = "Gallery"
 }
