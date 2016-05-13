@@ -7,18 +7,38 @@
 //
 
 import UIKit
+import CoreLocation
 import LiquidFloatingActionButton
+import Mapbox
 
-class MapViewController: UIViewController, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate {
+
+class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate, MGLMapViewDelegate {
 
     // MARK: Variables
+    let locationManager = CLLocationManager()
+    
     var cells: [LiquidFloatingCell] = []
     var floatingActionButton: LiquidFloatingActionButton!
     
+    // MARK: - OUTLETS
+    
+    // MARK: Variables
+    @IBOutlet weak var mapView: MGLMapView!
+    
+    // MARK: - VIEW LIFECYCLE
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupMapView()
         self.setupLiquidFloatingActionButton()
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        
+    }
+    
+    // MARK: - SETUP
     
     func setupLiquidFloatingActionButton(){
         
@@ -47,11 +67,6 @@ class MapViewController: UIViewController, LiquidFloatingActionButtonDataSource,
         self.view.addSubview(bottomRightButton)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
     func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
         return cells.count
     }
@@ -64,6 +79,26 @@ class MapViewController: UIViewController, LiquidFloatingActionButtonDataSource,
         print("did Tapped! \(index)")
         liquidFloatingActionButton.close()
     }
+    
+    func setupMapView(){
+        // Set the map view‘s delegate property
+        mapView.delegate = self
+        
+        // Ask for Authorisation from the User.
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        mapView.showsUserLocation = true
+    }
+    
+    
     /*
      // MARK: - Navigation
      
