@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5T5-0r-zUw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5T5-0r-zUw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,17 +21,18 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cross Hair" translatesAutoresizingMaskIntoConstraints="NO" id="kFK-bF-jEI">
-                                        <rect key="frame" x="284" y="235" width="33" height="66"/>
+                                        <rect key="frame" x="284" y="250" width="33" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="33" id="Wd5-Jc-U73"/>
-                                            <constraint firstAttribute="height" constant="66" id="hew-Bb-nbY"/>
+                                            <constraint firstAttribute="width" constant="33" id="jsS-ZY-d7z"/>
+                                            <constraint firstAttribute="height" constant="33" id="yim-LY-11y"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="kFK-bF-jEI" firstAttribute="centerX" secondItem="tjk-ag-Bs9" secondAttribute="centerX" id="TKr-Fq-oEL"/>
-                                    <constraint firstItem="kFK-bF-jEI" firstAttribute="centerY" secondItem="tjk-ag-Bs9" secondAttribute="centerY" id="qxD-d3-Efu"/>
+                                    <constraint firstItem="kFK-bF-jEI" firstAttribute="centerX" secondItem="tjk-ag-Bs9" secondAttribute="centerX" id="2yv-Wy-YyF"/>
+                                    <constraint firstItem="kFK-bF-jEI" firstAttribute="centerY" secondItem="tjk-ag-Bs9" secondAttribute="centerY" constant="-1.5" id="o51-gI-cuO"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="zoomLevel">
@@ -45,22 +46,38 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="styleURL__" value="http://dlib-rainbow.edina.ac.uk:8080/bright-v8.json"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="h8K-me-P29" appends="YES" id="BIG-kQ-uTJ"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="2NC-nI-tIc"/>
-                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EtR-28-TdH"/>
-                            <constraint firstAttribute="trailing" secondItem="tjk-ag-Bs9" secondAttribute="trailing" id="cyh-eF-CP9"/>
-                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fSj-K1-OUQ"/>
+                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="DYB-gF-2FO"/>
+                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="fOn-Wb-qYg"/>
+                            <constraint firstAttribute="trailing" secondItem="tjk-ag-Bs9" secondAttribute="trailing" id="pkW-40-C0f"/>
+                            <constraint firstItem="tjk-ag-Bs9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sad-ph-aBd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Location" id="tie-hK-pBl"/>
+                    <navigationItem key="navigationItem" title="Location" id="tie-hK-pBl">
+                        <barButtonItem key="rightBarButtonItem" image="Location Arrow Outline" id="ALA-LR-ltQ">
+                            <connections>
+                                <action selector="setMapToUserLocation:" destination="BYZ-38-t0r" id="nuj-BU-pxU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tjk-ag-Bs9" id="0E6-Ov-a6A"/>
+                        <outlet property="mapViewPanGesture" destination="h8K-me-P29" id="afz-hk-PIZ"/>
+                        <outlet property="userLocationButton" destination="ALA-LR-ltQ" id="Nnh-6T-Y8b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="h8K-me-P29">
+                    <connections>
+                        <action selector="mapDrag:" destination="BYZ-38-t0r" id="0ku-Jx-GAG"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1097" y="429"/>
         </scene>
@@ -85,5 +102,6 @@
     </scenes>
     <resources>
         <image name="Cross Hair" width="30" height="30"/>
+        <image name="Location Arrow Outline" width="18" height="18"/>
     </resources>
 </document>

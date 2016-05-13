@@ -12,7 +12,7 @@ import LiquidFloatingActionButton
 import Mapbox
 
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate, MGLMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate, MGLMapViewDelegate, UIGestureRecognizerDelegate {
 
     // MARK: Variables
     let locationManager = CLLocationManager()
@@ -24,11 +24,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
     
     // MARK: Variables
     @IBOutlet weak var mapView: MGLMapView!
+    @IBOutlet var mapViewPanGesture: UIPanGestureRecognizer!
+    @IBOutlet weak var userLocationButton: UIBarButtonItem!
+    
+    // MARK: Actions
+    
+    @IBAction func setMapToUserLocation(sender: UIBarButtonItem) {
+        // TODO: Check user location is within survey bounding box
+        userLocationButton.image = UIImage(named: Constants.Image.LocationArrowIcon)
+        mapView.setCenterCoordinate(locationManager.location!.coordinate, animated: true)
+    }
+    
+    @IBAction func mapDrag(sender: UIPanGestureRecognizer) {
+        if(sender.state == UIGestureRecognizerState.Changed){
+            let locationOutlineImage = UIImage(named: Constants.Image.LocationArrowIconOutline)
+            if let image = userLocationButton.image {
+                if image != locationOutlineImage{
+                    userLocationButton.image = locationOutlineImage
+                }
+            }
+        }
+    }
     
     // MARK: - VIEW LIFECYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapViewPanGesture.delegate = self
         self.setupMapView()
         self.setupLiquidFloatingActionButton()
     }
@@ -111,6 +133,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
         mapView.showsUserLocation = true
     }
     
+    // MARK: - DELEGATE METHODS
+    
+    // MARK: UIGestureRecognizerDelegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     /*
      // MARK: - Navigation

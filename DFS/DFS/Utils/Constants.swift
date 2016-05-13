@@ -20,5 +20,7 @@ struct Constants {
     struct Image {
         static let gallery = "Gallery"
         static let camera = "Camera"
+        static let LocationArrowIcon = "Location Arrow"
+        static let LocationArrowIconOutline = "Location Arrow Outline"
     }
 }
