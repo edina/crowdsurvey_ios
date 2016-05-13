@@ -55,13 +55,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
             return cell
         }
         
-        cells.append(cellFactory("ic_cloud"))
-        cells.append(cellFactory("ic_place"))
+        cells.append(cellFactory("Camera"))
+        cells.append(cellFactory("Gallery"))
         
         let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 56 - 16, width: 56, height: 56)
         let bottomRightButton = createButton(floatingFrame, .Up)
         
-        let image = UIImage(named: "plus")
+        let image = UIImage(named: "Plus")
         bottomRightButton.image = image
  
         self.view.addSubview(bottomRightButton)
