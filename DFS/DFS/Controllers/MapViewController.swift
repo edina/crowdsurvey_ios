@@ -8,17 +8,13 @@
 
 import UIKit
 import CoreLocation
-import LiquidFloatingActionButton
 import Mapbox
 
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate, MGLMapViewDelegate, UIGestureRecognizerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MGLMapViewDelegate, UIGestureRecognizerDelegate {
 
     // MARK: Variables
     let locationManager = CLLocationManager()
-    
-    var cells: [LiquidFloatingCell] = []
-    var floatingActionButton: LiquidFloatingActionButton!
     
     // MARK: - OUTLETS
     
@@ -27,6 +23,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
     @IBOutlet var mapViewPanGesture: UIPanGestureRecognizer!
     @IBOutlet weak var userLocationButton: UIBarButtonItem!
     
+    @IBOutlet weak var addPhoto: UIButton!{
+        didSet{
+            addPhoto.layer.cornerRadius = 30
+            addPhoto.layer.shadowColor = UIColor.blackColor().CGColor
+            addPhoto.layer.shadowOffset = CGSizeMake(2, 2)
+            addPhoto.layer.shadowRadius = 5
+            addPhoto.layer.shadowOpacity = 0.5
+            addPhoto.setTitleColor(Constants.Colour.LightBlue, forState: UIControlState.Normal)
+        }
+    }
     // MARK: Actions
     
     @IBAction func setMapToUserLocation(sender: UIBarButtonItem) {
@@ -52,7 +58,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
         super.viewDidLoad()
         self.mapViewPanGesture.delegate = self
         self.setupMapView()
-        self.setupLiquidFloatingActionButton()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,60 +66,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
     }
     
     // MARK: - SETUP
-    
-    func setupLiquidFloatingActionButton(){
-        
-        let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
-            let floatingActionButton = LiquidFloatingActionButton(frame: frame)
-            floatingActionButton.animateStyle = style
-            floatingActionButton.dataSource = self
-            floatingActionButton.delegate = self
-            return floatingActionButton
-        }
-        
-        let cellFactory: (String) -> CustomLiquidFloatingCell = { (iconName) in
-            let cell = CustomLiquidFloatingCell(icon: UIImage(named: iconName)!)
-            
-            cell.type =  Type(rawValue: iconName)!
-
-            return cell
-        }
-        
-        cells.append(cellFactory(Constants.Image.camera))
-        cells.append(cellFactory(Constants.Image.gallery))
-        
-        let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 56 - 16, width: 56, height: 56)
-        let bottomRightButton = createButton(floatingFrame, .Up)
-        
-        let image = UIImage(named: "Plus")
-        bottomRightButton.image = image
- 
-        self.view.addSubview(bottomRightButton)
-    }
-    
-    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
-        return cells.count
-    }
-    
-    func cellForIndex(index: Int) -> LiquidFloatingCell {
-        return cells[index]
-    }
-    
-    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
-        let cell = cells[index] as? CustomLiquidFloatingCell
-            
-        if let type = cell?.type{
-            switch type {
-            case .Camera:
-                print("Launch Camera")
-            case Type.Gallery:
-                print("Launch Gallery")
-            }
-        }
-        
-        liquidFloatingActionButton.close()
-    }
-    
     func setupMapView(){
         // Set the map view‘s delegate property
         mapView.delegate = self
@@ -150,23 +101,4 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, LiquidFloa
      // Pass the selected object to the new view controller.
      }
      */
-}
-
-// Use custom cell so we can easily determine what button has been pressed
-public class CustomLiquidFloatingCell: LiquidFloatingCell {
-    
-    public var type : Type = .Camera
-
-    enum StringEnum: String
-    {
-        case one = "one"
-        case two = "two"
-        case three = "three"
-    }
-
-}
-
-public enum Type : String{
-    case Camera = "Camera"
-    case Gallery = "Gallery"
 }
