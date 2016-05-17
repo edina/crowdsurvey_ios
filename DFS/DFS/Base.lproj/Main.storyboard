@@ -142,6 +142,9 @@
                                             <rect key="frame" x="20" y="3" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button" image="Gallery"/>
+                                            <connections>
+                                                <action selector="goToCameraRoll:" destination="NYe-V3-thw" eventType="touchUpInside" id="tAi-Mw-ZFG"/>
+                                            </connections>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GoO-9v-Ba6"/>
@@ -150,6 +153,9 @@
                                             <rect key="frame" x="530" y="3" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button" image="Camera"/>
+                                            <connections>
+                                                <action selector="takePhoto:" destination="NYe-V3-thw" eventType="touchUpInside" id="9wP-eO-YeQ"/>
+                                            </connections>
                                         </button>
                                     </barButtonItem>
                                 </items>
