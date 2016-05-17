@@ -134,7 +134,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlH-RZ-Nos">
                                 <rect key="frame" x="0.0" y="545" width="600" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="mkR-G3-ImF"/>
+                                    <constraint firstAttribute="height" constant="55" id="3FJ-wS-OTl"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="IIq-Hm-Zz1">
@@ -160,21 +160,61 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dcs-rS-wGV">
+                                <rect key="frame" x="0.0" y="64" width="593" height="481"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZKq-KL-9Nz">
+                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="zAL-WT-9t7" customClass="CustomCollectionViewCell" customModule="DFS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OaK-lV-zRr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="OaK-lV-zRr" secondAttribute="trailing" id="Q57-Jw-MSd"/>
+                                            <constraint firstItem="OaK-lV-zRr" firstAttribute="top" secondItem="zAL-WT-9t7" secondAttribute="top" id="fw8-7c-fWE"/>
+                                            <constraint firstItem="OaK-lV-zRr" firstAttribute="leading" secondItem="zAL-WT-9t7" secondAttribute="leading" id="nSD-2C-Tbq"/>
+                                            <constraint firstAttribute="bottom" secondItem="OaK-lV-zRr" secondAttribute="bottom" id="sKq-nq-BWZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="OaK-lV-zRr" id="9Uj-3Q-u6G"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="StD-se-1rn" firstAttribute="leading" secondItem="lrA-Xk-WRG" secondAttribute="leading" id="0te-B3-J1T"/>
-                            <constraint firstItem="StD-se-1rn" firstAttribute="top" secondItem="XHq-if-Kn0" secondAttribute="bottom" id="564-dj-lq6"/>
-                            <constraint firstItem="vlH-RZ-Nos" firstAttribute="trailing" secondItem="StD-se-1rn" secondAttribute="trailing" id="NtQ-HO-4lF"/>
-                            <constraint firstItem="vlH-RZ-Nos" firstAttribute="leading" secondItem="StD-se-1rn" secondAttribute="leading" id="TDv-Ah-HIa"/>
-                            <constraint firstItem="vlH-RZ-Nos" firstAttribute="bottom" secondItem="AVQ-F7-Hzt" secondAttribute="top" id="gBF-Rq-XLv"/>
-                            <constraint firstAttribute="trailing" secondItem="StD-se-1rn" secondAttribute="trailing" id="wDT-K8-LWR"/>
+                            <constraint firstItem="StD-se-1rn" firstAttribute="leading" secondItem="Dcs-rS-wGV" secondAttribute="leading" id="5dR-xh-3ra"/>
+                            <constraint firstItem="vlH-RZ-Nos" firstAttribute="bottom" secondItem="AVQ-F7-Hzt" secondAttribute="top" id="DPz-dj-g1e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dcs-rS-wGV" secondAttribute="trailing" constant="-13" id="Iek-2G-z8z"/>
+                            <constraint firstItem="Dcs-rS-wGV" firstAttribute="leading" secondItem="vlH-RZ-Nos" secondAttribute="leading" id="Z2I-9N-A9E"/>
+                            <constraint firstItem="vlH-RZ-Nos" firstAttribute="top" secondItem="Dcs-rS-wGV" secondAttribute="bottom" id="ajQ-bH-yrC"/>
+                            <constraint firstItem="StD-se-1rn" firstAttribute="leading" secondItem="lrA-Xk-WRG" secondAttribute="leading" id="gE0-q0-Tam"/>
+                            <constraint firstItem="Dcs-rS-wGV" firstAttribute="top" secondItem="StD-se-1rn" secondAttribute="bottom" id="iyc-lp-OPf"/>
+                            <constraint firstItem="StD-se-1rn" firstAttribute="trailing" secondItem="vlH-RZ-Nos" secondAttribute="trailing" id="nj8-5k-6z1"/>
+                            <constraint firstItem="StD-se-1rn" firstAttribute="top" secondItem="XHq-if-Kn0" secondAttribute="bottom" id="oHl-qG-ylP"/>
+                            <constraint firstAttribute="trailing" secondItem="StD-se-1rn" secondAttribute="trailing" id="wLP-fT-7GU"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Title" id="ALe-Rk-FWs"/>
                     <connections>
                         <outlet property="closeButton" destination="B7u-mh-DDD" id="G8V-Fz-ogx"/>
+                        <outlet property="collectionView" destination="Dcs-rS-wGV" id="a2a-pt-Dcr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJb-Qj-Aqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
