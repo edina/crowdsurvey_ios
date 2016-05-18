@@ -99,15 +99,27 @@ class PhotoViewController: UIViewController, UINavigationControllerDelegate, UII
         
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        print(segue.identifier)
+        if segue.identifier == Constants.SegueIDs.showPhoto {
+            if let imvc = segue.destinationViewController as? ImageViewController{
+                
+                if let indexPath = collectionView.indexPathsForSelectedItems(){
+                    let r = self.images[indexPath[0].row] as UIImage
+           
+                    imvc.image =  r
+                }
+            }
+        }
+        
      }
-     */
+    
 }
 
 
@@ -153,10 +165,12 @@ extension PhotoViewController : UICollectionViewDataSource {
 
 extension PhotoViewController : UICollectionViewDelegate {
     
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 //        highlightCell(indexPath, flag: true)
-//    }
-//    
+        // handle tap events
+//        performSegueWithIdentifier(Constants.SegueIDs.showPhoto, sender: indexPath)
+    }
+//
 //    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
 //        highlightCell(indexPath, flag: false)
 //    }
